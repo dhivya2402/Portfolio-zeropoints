@@ -1,0 +1,93 @@
+START
+│
+├── Home
+│   ├── Hero Section
+│   ├── Company Intro
+│   ├── Featured Services
+│   ├── Why Choose Us
+│   ├── Testimonials
+│   ├── Latest Updates
+│   └── Call To Action
+│
+├── About
+│   ├── Company Overview
+│   ├── Mission
+│   ├── Vision
+│   ├── Core Values
+│   ├── Team Members
+│   ├── Statistics
+│   └── Achievements
+│
+├── Services
+│   ├── Web Development
+│   │   ├── Business Websites
+│   │   ├── Portfolio Websites
+│   │   ├── Landing Pages
+│   │   └── Custom Apps
+│   │
+│   ├── Mobile App Development
+│   │   ├── Android
+│   │   ├── iOS
+│   │   └── Cross Platform
+│   │
+│   ├── Digital Marketing
+│   │   ├── SEO
+│   │   ├── Social Media
+│   │   ├── Google Ads
+│   │   └── Email Marketing
+│   │
+│   ├── Branding
+│   │   ├── Logo Design
+│   │   ├── Brand Identity
+│   │   └── Brand Strategy
+│   │
+│   ├── Content Creation
+│   │   ├── Graphic Design
+│   │   └── Video Content
+│   │
+│   ├── Script Writing
+│   ├── Business Promotion
+│   ├── Shooting & Editing
+│   ├── Sales
+│   ├── Service Details
+│   ├── Pricing Preview
+│   ├── Contact CTA
+│   └── Copywriting
+│
+├── Pricing
+│   ├── Basic Plan
+│   ├── Standard Plan
+│   ├── Premium Plan
+│   ├── Enterprise Plan
+│   ├── Features Included
+│   ├── FAQs
+│   └── Get Started
+│
+├── Blog
+│   ├── Latest Articles
+│   ├── Categories
+│   ├── Blog Details
+│   ├── Related Articles
+│   ├── Search
+│   └── Comments
+│
+├── Contact
+│   ├── Contact Form
+│   ├── Contact Information
+│   │   ├── Phone
+│   │   ├── Email
+│   │   ├── Office Address
+│   │   └── Business Hours
+│   │
+│   └── Social Media
+│       ├── Facebook
+│       ├── Twitter (X)
+│       └── YouTube
+│
+└── Footer
+    ├── Quick Links
+    ├── Privacy Policy
+    ├── Terms & Conditions
+    └── Copyright
+
+END

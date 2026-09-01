@@ -1,0 +1,24 @@
+zeropoint-labs
+│
+├── public/
+│
+├── src/
+│
+│   ├── assets/
+│   │
+│   ├── pages/
+│   │   ├── Home.jsx
+│   │   ├── About.jsx
+│   │   ├── Founder.jsx
+│   │   ├── Services.jsx
+│   │   ├── Pricing.jsx
+│   │   ├── Blog.jsx
+│   │   └── Contact.jsx
+│   │
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+│
+├── package.json
+├── vite.config.js
+└── index.html

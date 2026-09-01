@@ -1,0 +1,69 @@
+Home
+
+Navbar
+Hero Section
+Company Introduction
+Featured Services
+Why Choose Us
+Testimonials
+Latest Blog
+CTA
+Footer
+
+About
+
+Company Story
+Mission
+Vision
+Core Values
+Team
+Statistics
+Achievements
+
+Services
+
+Web Development
+Mobile Apps
+UI/UX
+SEO
+Branding
+Marketing
+Content Creation
+Promotion
+CTA
+
+Pricing
+
+Basic Plan
+Standard Plan
+Premium Plan
+Enterprise Plan
+Features
+FAQ
+CTA
+
+Blog
+
+
+Articles
+Categories
+Search
+Related Posts
+
+Founder
+
+Founder Photo
+Biography
+Journey
+Skills
+Achievements
+Vision
+
+Contact
+
+Contact Form
+Phone
+Email
+Address
+Social Media
+Business Hours
