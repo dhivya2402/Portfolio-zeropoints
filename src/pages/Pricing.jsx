@@ -2,15 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-/*
-  ZEROPOINT LABS — PRICING PAGE
-  Same visual language as the Services page:
-  - #050e1a background
-  - #e2f3ff primary text
-  - #38bdf8 accent
-  - Inter + Cormorant Garamond + Merriweather
-  - Premium glow / grid / reveal / hover animations
-*/
+
 
 const websitePlans = [
   {
@@ -398,6 +390,7 @@ function Reveal({ children, className = "" }) {
 }
 
 export default function Pricing() {
+ 
   const [activeTab, setActiveTab] = useState("website");
 
   /* NEW:

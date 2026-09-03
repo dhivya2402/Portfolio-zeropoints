@@ -578,7 +578,7 @@ export default function ZeroPointSequence() {
           <div className="zpl-ai-core">
             <div className="zpl-ai-core-glow" />
             <div className="zpl-ai-core-inner">
-              <span>ZP</span>
+              <span>ZPL</span>
             </div>
           </div>
 
