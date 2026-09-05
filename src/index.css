@@ -1,6 +1,270 @@
 @import "tailwindcss";
 
-body{
-  font-family:-apple-system,BlinkMacSystemFont,
-  "SF Pro Display","Helvetica Neue",sans-serif;
+/* =========================================================
+   ZEROPOINT LABS DESIGN SYSTEM
+========================================================= */
+
+@theme {
+  --color-bg-deep: #050e1a;
+  --color-bg-panel: #091a2d;
+
+  --color-ink-primary: #eef6fb;
+  --color-ink-secondary: #9fb1c1;
+  --color-ink-muted: #607487;
+
+  --color-accent: #40b8ef;
+  --color-accent-bright: #40b8ef;
+  --color-accent-border: rgba(64, 184, 239, 0.35);
+
+  --color-hairline: rgba(255, 255, 255, 0.09);
+
+  --color-accent-bg: rgba(64, 184, 239, 0.08);
+  --color-social-bg: rgba(255, 255, 255, 0.04);
+}
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #050e1a;
+  color: #eef6fb;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.zp-container {
+  width: min(100% - 32px, 1380px);
+  margin-inline: auto;
+}
+
+@media (min-width: 640px) {
+  .zp-container {
+    width: min(100% - 48px, 1380px);
+  }
+}
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+.zp-section {
+  position: relative;
+  padding-top: 110px;
+  padding-bottom: 110px;
+}
+
+@media (max-width: 768px) {
+  .zp-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+}
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+
+.zp-eyebrow,
+.zp-label {
+  color: #40b8ef;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.zp-h1 {
+  color: #eef6fb;
+  font-size: clamp(3rem, 6vw, 6.5rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.94;
+}
+
+.zp-h2 {
+  color: #eef6fb;
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.zp-refined {
+  color: #9fb1c1;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.zp-script {
+  color: #40b8ef;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.zp-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 48px;
+  padding: 0 24px;
+
+  border: 1px solid #40b8ef;
+  border-radius: 999px;
+
+  background: #40b8ef;
+  color: #03101d;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.zp-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(64, 184, 239, 0.25);
+  background: #69c8f2;
+}
+
+.zp-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 48px;
+  padding: 0 24px;
+
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.025);
+  color: #eef6fb;
+
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+.zp-btn-secondary:hover {
+  transform: translateY(-2px);
+  border-color: rgba(64, 184, 239, 0.45);
+  background: rgba(64, 184, 239, 0.06);
+}
+
+/* =========================================================
+   GLASS
+========================================================= */
+
+.zp-glass {
+  background: rgba(9, 26, 45, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* =========================================================
+   BACKGROUNDS
+========================================================= */
+
+.bg-radial-fade {
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(64, 184, 239, 0.12),
+      transparent 60%
+    );
+}
+
+.bg-grid-lines {
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px
+    );
+}
+
+/* =========================================================
+   HAIRLINE
+========================================================= */
+
+.border-hairline {
+  border-color: rgba(255, 255, 255, 0.09);
+}
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+/* =========================================================
+   SELECTION
+========================================================= */
+
+::selection {
+  background: rgba(64, 184, 239, 0.25);
+  color: #ffffff;
 }
