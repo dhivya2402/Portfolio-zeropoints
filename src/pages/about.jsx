@@ -6,6 +6,7 @@ import EdgeFrame from '../components/EdgeFrame.jsx'
 import Icon from '../components/Icons.jsx'
 import CTA from '../components/CTA.jsx'
 import zplMark from '../assets/zpl-mark.png'
+import teamPhoto from '../assets/team-photo.jpeg'
 
 const values = [
   { title: 'Ownership', description: 'Every project deserves our full commitment.', icon: 'ownership' },
@@ -37,61 +38,104 @@ const highlights = [
   'Growing Every Month',
 ]
 
+// Team images live in src/assets. Looked up by filename (case-insensitive, any of
+// jpeg/jpg/png) so a missing photo falls back to the initials badge instead of
+// breaking the build.
+const teamImageFiles = import.meta.glob('../assets/*.{jpeg,jpg,png,webp}', {
+  eager: true,
+  import: 'default',
+})
+const teamImages = Object.fromEntries(
+  Object.entries(teamImageFiles).map(([path, url]) => [
+    path.split('/').pop().replace(/\.[^.]+$/, '').toLowerCase(),
+    url,
+  ]),
+)
+
 const teamMembers = [
-  {
-    name: 'Vishva Harini',
-    role: 'Script Writing',
-    description: 'Writes engaging scripts, hooks & CTAs for videos and ads.',
-  },
   {
     name: 'Srinitha',
     role: 'Script Writing',
-    description: 'Researches topics and refines content for clarity and impact.',
-  },
-  {
-    name: 'Niranjan',
-    role: 'Brand Ambassador',
-    description: 'The face of ZeroPoint Labs — builds brand awareness and audience trust.',
+    image: teamImages['srinitha'],
+    lines: [
+      'Researches topics and shapes ideas into clear stories.',
+      'Refines content for clarity, tone and impact.',
+      'Supports video and ad scripts with strong hooks.',
+    ],
   },
   {
     name: 'Hari',
     role: 'Shooting / Editing',
-    description: 'Shoots and edits reels, shorts, and promotional videos.',
+    image: teamImages['hari'],
+    lines: [
+      'Shoots reels, shorts and promotional videos.',
+      'Edits footage into polished, on-brand content.',
+      'Keeps every video sharp, consistent and engaging.',
+    ],
   },
   {
     name: 'Anjana',
     role: 'App / Web Developer (Lead)',
-    description: 'Leads planning, development & delivery of web/app projects.',
+    image: teamImages['anjana'],
+    lines: [
+      'Leads planning, development and delivery of web and app projects.',
+      'Guides the team from first idea to final launch.',
+      'Reviews the work to keep quality high in every build.',
+    ],
   },
   {
     name: 'Santhosh',
     role: 'App / Web Developer (Lead)',
-    description: 'Leads planning, development & delivery of web/app projects.',
+    image: teamImages['santhosh'],
+    focus: { x: 0.5, y: 0.43 },
+    lines: [
+      'Leads planning, development and delivery of web and app projects.',
+      'Guides the team from first idea to final launch.',
+      'Reviews the work to keep quality high in every build.',
+    ],
   },
   {
     name: 'Dhivyadharshini',
     role: 'App / Web Developer',
-    description: 'Learning member — assists in development and future project prep.',
+    image: teamImages['dhivyadharshini'],
+    focus: { x: 0.6, y: 0.3 },
+    lines: [
+      'Learning member of the development team.',
+      'Assists in building and testing web and app projects.',
+      'Preparing to take on future client projects.',
+    ],
   },
   {
     name: 'Sai Pooja',
     role: 'App / Web Developer',
-    description: 'Learning member — assists in development and future project prep.',
+    image: teamImages['saipooja'],
+    focus: { x: 0.5, y: 0.3 },
+    lines: [
+      'Learning member of the development team.',
+      'Assists in building and testing web and app projects.',
+      'Preparing to take on future client projects.',
+    ],
   },
   {
     name: 'Jayashri',
     role: 'App / Web Developer',
-    description: 'Learning member — assists in development and future project prep.',
+    image: teamImages['jayasri'] ?? teamImages['jayashri'],
+    lines: [
+      'Learning member of the development team.',
+      'Assists in building and testing web and app projects.',
+      'Preparing to take on future client projects.',
+    ],
   },
   {
     name: 'Divyadharshini',
     role: 'Sales',
-    description: 'Finds and reaches out to potential clients, builds long-term relationships.',
-  },
-  {
-    name: 'Aravind',
-    role: 'Video Editor',
-    description: 'Edits and polishes video content for a consistent, on-brand look.',
+    image: teamImages['divyadharshini'],
+    focus: { x: 0.5, y: 0.4 },
+    lines: [
+      'Finds and reaches out to potential clients.',
+      'Explains our services and understands client needs.',
+      'Builds long-term relationships with every business.',
+    ],
   },
 ]
 
@@ -292,7 +336,7 @@ function Team() {
             />
             <div className="relative overflow-hidden rounded-[24px] border border-accent-bright/30 bg-bg-panel/40 shadow-[0_40px_100px_-30px_rgba(64,184,239,0.45)]">
               <img
-                src="/team-photo.jpg"
+                src={teamPhoto}
                 alt="ZeroPoint Labs Team"
                 className="aspect-[16/9] w-full object-cover"
               />
@@ -311,7 +355,7 @@ function Team() {
           </p>
         </Reveal>
 
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {teamMembers.map((member, i) => (
             <TeamCard key={member.name} member={member} delay={i * 0.05} />
           ))}

@@ -12,6 +12,45 @@ const problems = [
   { title: 'Lack of professional digital presence', icon: 'presence' },
 ]
 
+const pillars = [
+  {
+    letter: '01',
+    name: 'BUILD',
+    service: 'Website',
+    tagline: 'Websites & Web Applications',
+    description: 'Business websites, e-commerce, booking systems and custom web applications.',
+    price: 'Starting from ₹19,999',
+    icon: 'code',
+  },
+  {
+    letter: '02',
+    name: 'GROW',
+    service: 'Digital Marketing',
+    tagline: 'Digital Marketing & Performance',
+    description: 'Social media management, content strategy, performance marketing and lead generation.',
+    price: 'Plans from ₹12,000/month',
+    icon: 'marketing',
+  },
+  {
+    letter: '03',
+    name: 'CREATE',
+    service: 'Content Creation',
+    tagline: 'Content Production',
+    description: 'Business video shoots, reels production, product photography and promotional videos.',
+    price: 'Projects from ₹5,000',
+    icon: 'content',
+  },
+  {
+    letter: '04',
+    name: 'AUTOMATE',
+    service: 'Business Promotion',
+    tagline: 'Business Software & Automation',
+    description: 'Inventory management, CRM, customer management, business dashboards and custom software.',
+    price: 'Solutions from ₹75,000',
+    icon: 'automate',
+  },
+]
+
 const whyPoints = [
   {
     title: 'Built Around Results',
@@ -40,6 +79,7 @@ export default function Home() {
     <>
       <Hero />
       <CompanyIntro />
+      <Services />
       <WhyChooseUs />
       <Results />
       <Insights />
@@ -195,6 +235,76 @@ function CompanyIntro() {
               long-term value&mdash;not temporary trends.
             </p>
           </Reveal>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ── 3B. SERVICES — FOUR PILLARS ─────────────────────────────────────── */
+function Services() {
+  return (
+    <section id="services" className="zp-section relative overflow-hidden border-t border-hairline">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[760px] -translate-x-1/2 rounded-full bg-[radial-gradient(50%_50%_at_50%_0%,rgba(64,184,239,0.08),transparent_70%)] blur-3xl"
+      />
+      <div className="zp-container relative">
+        <Reveal className="mx-auto max-w-2xl text-center">
+          <p className="zp-label font-extrabold tracking-[0.08em]" style={{ fontSize: 'clamp(2.2rem, 4vw, 4rem)', lineHeight: 1 }}>4 PILLARS</p>
+          <h2 className="zp-h2 mt-5">
+            Build. Grow. Create. <span className="zp-script">Automate.</span>
+          </h2>
+          <p className="zp-refined mx-auto mt-6 max-w-lg text-center">
+            We build your digital infrastructure, create your content, grow your audience and
+            generate leads, and automate your business operations.
+          </p>
+        </Reveal>
+
+        <div className="mx-auto mt-14 grid max-w-5xl gap-5 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-6">
+          {pillars.map((p, i) => (
+            <motion.a
+              key={p.name}
+              href={`/services?service=${encodeURIComponent(p.service)}`}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.65, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -5 }}
+              className="group relative flex flex-col overflow-hidden rounded-[20px] border border-white/[0.09] bg-bg-panel/45 p-6 shadow-[0_0_40px_-26px_rgba(64,184,239,0.55)] backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-accent-bright/30 hover:shadow-[0_32px_80px_-30px_rgba(64,184,239,0.45)]"
+            >
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(64,184,239,0.08),transparent_75%)]"
+              />
+
+              <div className="relative flex items-center justify-between">
+                <span className="font-sans text-[12px] font-extrabold tracking-wide text-white/40">
+                  {p.letter}
+                </span>
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/[0.10] bg-white/[0.04] text-accent-bright/80 transition-all duration-500 group-hover:border-accent-bright/50 group-hover:text-accent-bright group-hover:shadow-[0_0_24px_-6px_rgba(64,184,239,0.65)]">
+                  <Icon name={p.icon} size={18} />
+                </span>
+              </div>
+
+              <h3 className="zp-h3 relative mt-5 text-[19px] tracking-wide text-ink-primary">
+                {p.name}
+              </h3>
+              <p className="relative mt-1 text-[11px] font-semibold uppercase tracking-wider text-accent-bright/70">
+                {p.tagline}
+              </p>
+              <p className="zp-refined relative mt-3 flex-1 text-[12.5px] text-ink-muted">
+                {p.description}
+              </p>
+
+              <div className="relative mt-5 flex items-center justify-between border-t border-hairline pt-4">
+                <span className="text-[11.5px] font-semibold text-ink-secondary">{p.price}</span>
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-accent-bright/25 bg-white/[0.02] text-accent-bright/70 transition-all duration-500 group-hover:border-accent-bright/50 group-hover:text-accent-bright">
+                  <Icon name="arrowRight" size={12} className="-rotate-45" />
+                </span>
+              </div>
+            </motion.a>
+          ))}
         </div>
       </div>
     </section>

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import {
   ArrowRight,
-  UserRound,
   Code2,
   Palette,
   TrendingUp,
@@ -15,6 +14,7 @@ import { Link } from "react-router-dom";
 import { FaInstagram, FaGithub } from "react-icons/fa";
 
 import logo from "../assets/zeropoints_logo.png";
+import founderImage from "../assets/Founder.jpeg";
 
 function Founder() {
   const universeRef = useRef(null);
@@ -1509,6 +1509,22 @@ function Founder() {
           }
         }
 
+        .founder-photo-img {
+          position: absolute;
+
+          inset: 0;
+
+          width: 100%;
+
+          height: 100%;
+
+          object-fit: cover;
+
+          object-position: center 18%;
+
+          display: block;
+        }
+
         .founder-photo-content {
           position: relative;
 
@@ -2889,19 +2905,11 @@ function Founder() {
 
             <div className="founder-photo founder-reveal">
 
-              <div className="founder-photo-content">
-
-                <div className="founder-photo-icon">
-
-                  <UserRound size={42} />
-
-                </div>
-
-                <p>
-                  FOUNDER PORTRAIT
-                </p>
-
-              </div>
+              <img
+                src={founderImage}
+                alt="Founder of ZeroPoint Labs"
+                className="founder-photo-img"
+              />
 
             </div>
 

@@ -213,6 +213,19 @@ export default function ZeroPointSequence() {
     setActiveService(service);
   };
 
+  // Deep-link from the home page "Four Pillars" cards: /services?service=<title>
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const title = params.get("service");
+    if (!title) return;
+
+    const match = services.find((s) => s.title === title);
+    if (match) openService(match);
+
+    // clear the param so a refresh doesn't re-open the panel
+    window.history.replaceState({}, "", window.location.pathname);
+  }, []);
+
   const closeService = () => {
     if (!activeService || isServiceClosing) return;
 
