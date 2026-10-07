@@ -10,14 +10,13 @@ import Navbar from "./pages/Navbar";
 import Contact from "./pages/contact";
 import ZeroPointSequence from "./pages/services";
 import Pricing from "./pages/Pricing";
-
+import LoadingIntro from "./pages/LoadingIntro";
 function App() {
   return (
     <BrowserRouter>
       <Navbar />
 
       <Routes>
-       
         {/* Home */}
         <Route path="/" element={<Home />} />
 
