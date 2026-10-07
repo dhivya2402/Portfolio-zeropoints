@@ -5,6 +5,9 @@ import WhyCard from '../components/WhyCard.jsx'
 import EdgeFrame from '../components/EdgeFrame.jsx'
 import HeroVisual from '../components/HeroVisual.jsx'
 import Icon from '../components/Icons.jsx'
+import ServiceScrollStage from '../components/ServiceScrollStage.jsx'
+import PhotoMarquee from '../components/PhotoMarquee.jsx'
+import TextReveal from '../components/TextReveal.jsx'
 
 const problems = [
   { title: 'Struggle to generate leads', icon: 'leads' },
@@ -84,6 +87,9 @@ export default function Home() {
       <Results />
       <Insights />
       <FinalCTA />
+      <PhotoMarquee />
+      {/* keep last: its scroll triggers must be created after the pinned services stage */}
+      <TextReveal />
     </>
   )
 }
@@ -261,51 +267,7 @@ function Services() {
           </p>
         </Reveal>
 
-        <div className="mx-auto mt-14 grid max-w-5xl gap-5 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-6">
-          {pillars.map((p, i) => (
-            <motion.a
-              key={p.name}
-              href={`/services?service=${encodeURIComponent(p.service)}`}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.65, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -5 }}
-              className="group relative flex flex-col overflow-hidden rounded-[20px] border border-white/[0.09] bg-bg-panel/45 p-6 shadow-[0_0_40px_-26px_rgba(64,184,239,0.55)] backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-accent-bright/30 hover:shadow-[0_32px_80px_-30px_rgba(64,184,239,0.45)]"
-            >
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(64,184,239,0.08),transparent_75%)]"
-              />
-
-              <div className="relative flex items-center justify-between">
-                <span className="font-sans text-[12px] font-extrabold tracking-wide text-white/40">
-                  {p.letter}
-                </span>
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/[0.10] bg-white/[0.04] text-accent-bright/80 transition-all duration-500 group-hover:border-accent-bright/50 group-hover:text-accent-bright group-hover:shadow-[0_0_24px_-6px_rgba(64,184,239,0.65)]">
-                  <Icon name={p.icon} size={18} />
-                </span>
-              </div>
-
-              <h3 className="zp-h3 relative mt-5 text-[19px] tracking-wide text-ink-primary">
-                {p.name}
-              </h3>
-              <p className="relative mt-1 text-[11px] font-semibold uppercase tracking-wider text-accent-bright/70">
-                {p.tagline}
-              </p>
-              <p className="zp-refined relative mt-3 flex-1 text-[12.5px] text-ink-muted">
-                {p.description}
-              </p>
-
-              <div className="relative mt-5 flex items-center justify-between border-t border-hairline pt-4">
-                <span className="text-[11.5px] font-semibold text-ink-secondary">{p.price}</span>
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-accent-bright/25 bg-white/[0.02] text-accent-bright/70 transition-all duration-500 group-hover:border-accent-bright/50 group-hover:text-accent-bright">
-                  <Icon name="arrowRight" size={12} className="-rotate-45" />
-                </span>
-              </div>
-            </motion.a>
-          ))}
-        </div>
+        <ServiceScrollStage pillars={pillars} />
       </div>
     </section>
   )
