@@ -314,7 +314,7 @@ function CoreValues() {
 /* ── 5. TEAM ──────────────────────────────────────────────────────────── */
 function Team() {
   return (
-    <section className="zp-section border-t border-hairline bg-bg-deep/60">
+    <section className="zp-section overflow-x-clip border-t border-hairline bg-bg-deep/60">
       <div className="zp-container">
         <Reveal className="mx-auto max-w-xl text-center">
           <p className="zp-label">Our Team</p>

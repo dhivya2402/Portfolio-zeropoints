@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import zplMark from "../assets/zpl-mark.png";
 
@@ -7,8 +7,8 @@ const links = [
   { label: "Home", to: "/" },
   { label: "About", to: "/about" },
   { label: "Services", to: "/services" },
+  { label: "Work", to: "/#work" },
   { label: "Pricing", to: "/pricing" },
-  { label: "Blog", to: "/blog" },
   { label: "Founder", to: "/founder" },
   { label: "Contact", to: "/contact" },
 ];
@@ -16,6 +16,15 @@ const links = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { pathname, hash } = useLocation();
+
+  // "Work" lives on the Home page (#work), so Home and Work must not both
+  // light up while on "/". Every other link uses the router's own state.
+  const isLinkActive = (link, routerActive) => {
+    if (link.to === "/#work") return pathname === "/" && hash === "#work";
+    if (link.to === "/") return pathname === "/" && hash !== "#work";
+    return routerActive;
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -163,7 +172,9 @@ export default function Navbar() {
                 end={link.to === "/"}
                 className="group relative block px-1 py-3"
               >
-                {({ isActive }) => (
+                {({ isActive: routerActive }) => {
+                  const isActive = isLinkActive(link, routerActive);
+                  return (
                   <>
                     <span
                       className="
@@ -228,7 +239,8 @@ export default function Navbar() {
                       />
                     )}
                   </>
-                )}
+                  );
+                }}
               </NavLink>
             </li>
           ))}
@@ -368,7 +380,9 @@ export default function Navbar() {
                       onClick={() => setMobileOpen(false)}
                       className="flex items-center justify-between py-4"
                     >
-                      {({ isActive }) => (
+                      {({ isActive: routerActive }) => {
+                  const isActive = isLinkActive(link, routerActive);
+                  return (
                         <>
                           <div className="flex items-center gap-4">
                             <span
@@ -407,7 +421,8 @@ export default function Navbar() {
                             →
                           </span>
                         </>
-                      )}
+                      );
+                    }}
                     </NavLink>
                   </motion.li>
                 ))}

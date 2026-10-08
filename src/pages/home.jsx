@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal.jsx'
 import ResultCard from '../components/ResultCard.jsx'
 import WhyCard from '../components/WhyCard.jsx'
@@ -46,7 +47,8 @@ const pillars = [
   {
     letter: '04',
     name: 'AUTOMATE',
-    service: 'Business Promotion',
+    service: 'Web Applications', // existing Services-page entry: dashboards, management systems, custom software
+    photo: 'Business Promotion', // keeps the photo this pillar already shows
     tagline: 'Business Software & Automation',
     description: 'Inventory management, CRM, customer management, business dashboards and custom software.',
     price: 'Solutions from ₹75,000',
@@ -160,12 +162,12 @@ function Hero() {
             transition={{ duration: 0.8, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}
             className="mt-10 flex flex-wrap items-center gap-4"
           >
-            <a href="contact" className="zp-btn-primary">
+            <Link to="/contact" className="zp-btn-primary">
               Start Your Project
-            </a>
-            <a href="#work" className="zp-btn-secondary">
+            </Link>
+            <Link to="/services" className="zp-btn-secondary">
               View Our Work
-            </a>
+            </Link>
           </motion.div>
         </div>
 
@@ -481,9 +483,9 @@ function FinalCTA() {
             Let&rsquo;s create digital solutions that help your business grow.
           </p>
           <div className="relative mt-9">
-            <a href="#contact" className="zp-btn-primary">
+            <Link to="/contact" className="zp-btn-primary">
               Start Your Project
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>

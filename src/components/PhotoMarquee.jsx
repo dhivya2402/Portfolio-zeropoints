@@ -82,7 +82,7 @@ export default function PhotoMarquee() {
   }
 
   return (
-    <section aria-label="Project logos" className="relative overflow-hidden pb-16 pt-4 sm:pb-24">
+    <section id="work" aria-label="Project logos" className="relative scroll-mt-24 overflow-hidden pb-16 pt-4 sm:pb-24">
       <style>{`
         @keyframes zs-marquee { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
         .zs-marquee-track { animation: zs-marquee 60s linear infinite; will-change: transform; }

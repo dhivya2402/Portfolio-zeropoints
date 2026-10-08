@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
+import { Link } from 'react-router-dom'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Icon from './Icons.jsx'
 
@@ -60,8 +61,8 @@ function usePinnedMode() {
    the independent `translate` property). */
 function PillarCard({ p }) {
   return (
-    <a
-      href={`/services?service=${encodeURIComponent(p.service)}`}
+    <Link
+      to={`/services?service=${encodeURIComponent(p.service)}`}
       className="zs-card group relative flex flex-col overflow-hidden rounded-[20px] border border-white/[0.09] bg-bg-panel/45 p-6 shadow-[0_0_40px_-26px_rgba(64,184,239,0.55)] backdrop-blur-xl transition-[border-color,box-shadow,translate] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[5px] hover:border-accent-bright/30 hover:shadow-[0_32px_80px_-30px_rgba(64,184,239,0.45)]"
     >
       <div
@@ -90,12 +91,12 @@ function PillarCard({ p }) {
           <Icon name="arrowRight" size={12} className="-rotate-45" />
         </span>
       </div>
-    </a>
+    </Link>
   )
 }
 
 function PillarPhoto({ p }) {
-  const src = serviceImages[p.service]
+  const src = serviceImages[p.photo ?? p.service]
   return (
     <div className="zs-photo relative h-full min-h-[220px] w-full overflow-hidden rounded-[20px] border border-accent-bright/25 bg-bg-panel/60 shadow-[0_40px_100px_-40px_rgba(64,184,239,0.45)]">
       {src && (

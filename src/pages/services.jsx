@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -193,6 +193,10 @@ const services = [
   },
 ];
 export default function ZeroPointSequence() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const keyMountedRef = useRef(false); // skip the initial render
+  const skipKeyRef = useRef(false); // skip our own deep-link cleanup navigation
   const sectionRef = useRef(null);
   const [activeService, setActiveService] = useState(null);
   const [isServiceClosing, setIsServiceClosing] = useState(false);
@@ -223,8 +227,25 @@ export default function ZeroPointSequence() {
     if (match) openService(match);
 
     // clear the param so a refresh doesn't re-open the panel
-    window.history.replaceState({}, "", window.location.pathname);
+    skipKeyRef.current = true;
+    navigate(window.location.pathname, { replace: true });
   }, []);
+
+  // Clicking "Services" in the navbar while a service panel is open lands on
+  // the same route with a new history key — close the panel so the click
+  // visibly takes the user back to the Services page itself.
+  useEffect(() => {
+    if (!keyMountedRef.current) {
+      keyMountedRef.current = true;
+      return;
+    }
+    if (skipKeyRef.current) {
+      skipKeyRef.current = false;
+      return;
+    }
+    setIsServiceClosing(false);
+    setActiveService(null);
+  }, [location.key]);
 
   const closeService = () => {
     if (!activeService || isServiceClosing) return;
@@ -238,10 +259,10 @@ export default function ZeroPointSequence() {
   };
 
   const startProject = () => {
-    window.location.href = "/contact";
+    navigate("/contact");
   };
   const goToPricing = () => {
-     window.location.href = "/Pricing";
+    navigate("/pricing");
   };
 
   useLayoutEffect(() => {
