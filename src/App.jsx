@@ -1,12 +1,13 @@
 
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Home from "./pages/home";
 import About from "./pages/about";
 import Founder from "./pages/founder";
-import Footer from "./pages/Footer";
-import Navbar from "./pages/Navbar";
+import Footer from "./pages/footer";
+import Navbar from "./pages/navbar";
+import ScrollToTop from "./components/ScrollToTop";
 import Contact from "./pages/contact";
 import ZeroPointSequence from "./pages/services";
 import Pricing from "./pages/Pricing";
@@ -14,6 +15,7 @@ import LoadingIntro from "./pages/LoadingIntro";
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Navbar />
 
       <Routes>
@@ -34,6 +36,9 @@ function App() {
 
         {/* Contact */}
         <Route path="/contact" element={<Contact />} />
+
+        {/* Unknown URLs fall back to Home instead of a blank page */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
 
       <Footer />

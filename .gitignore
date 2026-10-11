@@ -1,4 +1,7 @@
+
+.originkit/
 node_modules/
 dist/
+.vite/
 .env
-.originkit/
+.env.*

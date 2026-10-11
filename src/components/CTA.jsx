@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 /**
  * CTA
@@ -70,9 +71,9 @@ export default function CTA({ heading, highlight, text, primaryLabel = 'Start Yo
           <h2 className="zp-h2 relative mx-auto max-w-2xl">{headingNode}</h2>
           <p className="zp-refined relative mx-auto mt-6 max-w-lg text-center">{text}</p>
           <div className="relative mt-9">
-            <a href="#contact" className="zp-btn-primary">
+            <Link to="/contact" className="zp-btn-primary">
               {primaryLabel}
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>

@@ -268,3 +268,13 @@ body {
   background: rgba(64, 184, 239, 0.25);
   color: #ffffff;
 }
+/* Keep the sticky navbar usable while a service detail overlay is open on
+   /services: the overlay starts below the navbar instead of covering it. */
+body .zpl-service-overlay {
+  top: 78px;
+}
+@media (min-width: 1024px) {
+  body .zpl-service-overlay {
+    top: 84px;
+  }
+}
