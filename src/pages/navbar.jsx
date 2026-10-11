@@ -1,436 +1,409 @@
-import { useEffect, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
-import zplMark from "../assets/zpl-mark.png";
 
-const links = [
-  { label: "Home", to: "/" },
-  { label: "About", to: "/about" },
-  { label: "Services", to: "/services" },
-  { label: "Work", to: "/#work" },
-  { label: "Pricing", to: "/pricing" },
-  { label: "Founder", to: "/founder" },
-  { label: "Contact", to: "/contact" },
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X, ArrowUpRight } from "lucide-react";
+
+const navLinks = [
+  { name: "Home", path: "/" },
+  { name: "About", path: "/about" },
+   { name: "Founder", path: "/founder" },
+  { name: "Services", path: "/services" },
+  { name: "Pricing", path: "/pricing" },
+  { name: "Contact", path: "/contact" },
 ];
 
-export default function Navbar() {
+export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const { pathname, hash } = useLocation();
-
-  // "Work" lives on the Home page (#work), so Home and Work must not both
-  // light up while on "/". Every other link uses the router's own state.
-  const isLinkActive = (link, routerActive) => {
-    if (link.to === "/#work") return pathname === "/" && hash === "#work";
-    if (link.to === "/") return pathname === "/" && hash !== "#work";
-    return routerActive;
-  };
+  const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
 
+    window.addEventListener("scroll", handleScroll);
     handleScroll();
 
-    window.addEventListener("scroll", handleScroll, {
-      passive: true,
-    });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setMobileOpen(false);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
-
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileOpen]);
+    setMenuOpen(false);
+  }, [location.pathname]);
 
   return (
-    <motion.header
-      initial={{ y: -30, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{
-        duration: 0.7,
-        ease: [0.16, 1, 0.3, 1],
-      }}
-      className="sticky top-0 z-50 w-full"
-      style={{
-        background: scrolled
-          ? "rgba(5, 14, 26, 0.94)"
-          : "#050e1a",
-        backdropFilter: scrolled ? "blur(18px)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(18px)" : "none",
-        borderBottom: "1px solid rgba(255,255,255,0.10)",
-      }}
-    >
-      {/* Top cyan line */}
-      <div
-        className="absolute left-0 right-0 top-0 h-px"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent, rgba(64,184,239,0.55), transparent)",
-        }}
-      />
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap');
 
-      <nav
-        className="
-          mx-auto
-          flex
-          h-[78px]
-          w-[calc(100%-32px)]
-          max-w-[1380px]
-          items-center
-          justify-between
-          lg:h-[84px]
-        "
-      >
-        {/* =================================================
-            LOGO
-        ================================================= */}
-        <Link
-          to="/"
-          onClick={() => setMobileOpen(false)}
-          className="group flex shrink-0 items-center gap-3"
-        >
-          <div
-            className="
-              flex
-              h-10
-              w-10
-              items-center
-              justify-center
-              overflow-hidden
-              rounded-lg
-            "
-            style={{
-              border: "1px solid rgba(255,255,255,0.16)",
-              background: "rgba(255,255,255,0.04)",
-            }}
+        .zpl-header {
+          --zpl-bg: #05080b;
+          --zpl-navy: #050e1a;
+          --zpl-cyan: #38bdf8;
+          --zpl-white: #f1f5f9;
+          --zpl-muted: #a5b4c5;
+
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          z-index: 1000;
+          background: rgba(5, 8, 11, 0.78);
+          border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+          backdrop-filter: blur(18px);
+          -webkit-backdrop-filter: blur(18px);
+          transition: background 0.3s ease,
+                      border-color 0.3s ease,
+                      box-shadow 0.3s ease;
+        }
+
+        .zpl-header *,
+        .zpl-header *::before,
+        .zpl-header *::after {
+          box-sizing: border-box;
+        }
+
+        .zpl-header.scrolled {
+          background: rgba(5, 14, 26, 0.96);
+          border-bottom-color: rgba(56, 189, 248, 0.22);
+          box-shadow: 0 8px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        /* HEADER LAYOUT */
+
+        .zpl-header .header-inner {
+          width: min(1400px, 92%);
+          height: 84px;
+          margin: auto;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 28px;
+        }
+
+        /* ORIGINAL ZPL LOGO */
+
+        .zpl-header .zpl-logo {
+          display: inline-flex;
+          align-items: center;
+          flex-shrink: 0;
+          text-decoration: none;
+        }
+
+        .zpl-header .zpl-logo-image {
+          display: block;
+          width: 165px;
+          height: 52px;
+          object-fit: contain;
+          object-position: left center;
+          transition: transform 0.3s ease,
+                      filter 0.3s ease;
+        }
+
+        .zpl-header .zpl-logo:hover .zpl-logo-image {
+          transform: scale(1.03);
+          filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.2));
+        }
+
+        /* DESKTOP NAVIGATION */
+
+        .zpl-header .desktop-nav {
+          display: flex;
+          align-items: center;
+          gap: clamp(18px, 2.5vw, 36px);
+        }
+
+        .zpl-header .nav-link {
+          position: relative;
+          padding: 10px 0;
+          color: var(--zpl-muted);
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 21px;
+          font-weight: 500;
+          font-style: italic;
+          text-decoration: none;
+          transition: color 0.25s ease;
+        }
+
+        .zpl-header .nav-link::after {
+          content: "";
+          position: absolute;
+          bottom: 2px;
+          left: 0;
+          width: 0;
+          height: 1px;
+          background: var(--zpl-cyan);
+          box-shadow: 0 0 10px rgba(56, 189, 248, 0.45);
+          transition: width 0.3s ease;
+        }
+
+        .zpl-header .nav-link:hover,
+        .zpl-header .nav-link.active {
+          color: var(--zpl-cyan);
+        }
+
+        .zpl-header .nav-link:hover::after,
+        .zpl-header .nav-link.active::after {
+          width: 100%;
+        }
+
+        /* LET'S TALK BUTTON */
+
+        .zpl-header .header-cta,
+        .zpl-header .mobile-cta {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          padding: 11px 17px;
+          border: 1px solid rgba(56, 189, 248, 0.45);
+          border-radius: 7px;
+          color: var(--zpl-cyan);
+          background: rgba(56, 189, 248, 0.06);
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 20px;
+          font-weight: 500;
+          font-style: italic;
+          text-decoration: none;
+          white-space: nowrap;
+          transition: all 0.3s ease;
+        }
+
+        .zpl-header .header-cta:hover,
+        .zpl-header .mobile-cta:hover {
+          color: #04111c;
+          background: var(--zpl-cyan);
+          border-color: var(--zpl-cyan);
+          box-shadow: 0 0 25px rgba(56, 189, 248, 0.2);
+        }
+
+        .zpl-header .header-cta svg,
+        .zpl-header .mobile-cta svg {
+          transition: transform 0.3s ease;
+        }
+
+        .zpl-header .header-cta:hover svg,
+        .zpl-header .mobile-cta:hover svg {
+          transform: translate(2px, -2px);
+        }
+
+        /* MOBILE MENU BUTTON */
+
+        .zpl-header .mobile-menu-btn {
+          display: none;
+          width: 42px;
+          height: 42px;
+          align-items: center;
+          justify-content: center;
+          color: var(--zpl-cyan);
+          background: rgba(56, 189, 248, 0.07);
+          border: 1px solid rgba(56, 189, 248, 0.2);
+          border-radius: 8px;
+          cursor: pointer;
+        }
+
+        .zpl-header .mobile-nav {
+          display: none;
+        }
+
+        /* TABLET */
+
+        @media (max-width: 1000px) {
+          .zpl-header .header-inner {
+            gap: 18px;
+          }
+
+          .zpl-header .desktop-nav {
+            gap: 18px;
+          }
+
+          .zpl-header .nav-link {
+            font-size: 19px;
+          }
+
+          .zpl-header .zpl-logo-image {
+            width: 145px;
+            height: 48px;
+          }
+        }
+
+        /* MOBILE NAVIGATION */
+
+        @media (max-width: 760px) {
+          .zpl-header .header-inner {
+            width: 90%;
+            height: 72px;
+            gap: 12px;
+          }
+
+          .zpl-header .desktop-nav,
+          .zpl-header .header-cta {
+            display: none;
+          }
+
+          .zpl-header .zpl-logo-image {
+            width: 140px;
+            height: 46px;
+          }
+
+          .zpl-header .mobile-menu-btn {
+            display: inline-flex;
+          }
+
+          .zpl-header .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 5%;
+            background: rgba(5, 14, 26, 0.99);
+            border-bottom: 1px solid transparent;
+            transition: max-height 0.4s ease,
+                        padding 0.4s ease,
+                        border-color 0.3s ease;
+          }
+
+          .zpl-header .mobile-nav.open {
+            max-height: 450px;
+            padding-top: 12px;
+            padding-bottom: 22px;
+            border-bottom-color: rgba(56, 189, 248, 0.22);
+          }
+
+          .zpl-header .mobile-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 4px;
+            color: var(--zpl-white);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-weight: 500;
+            font-style: italic;
+            text-decoration: none;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: color 0.25s ease,
+                        opacity 0.3s ease,
+                        transform 0.3s ease;
+            transition-delay: 0ms;
+          }
+
+          .zpl-header .mobile-nav.open .mobile-nav-link {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: var(--delay);
+          }
+
+          .zpl-header .mobile-nav-link span {
+            color: var(--zpl-cyan);
+            font-family: Inter, sans-serif;
+            font-size: 10px;
+            font-style: normal;
+            letter-spacing: 1px;
+          }
+
+          .zpl-header .mobile-nav-link svg {
+            margin-left: auto;
+            color: var(--zpl-cyan);
+          }
+
+          .zpl-header .mobile-nav-link:hover,
+          .zpl-header .mobile-nav-link.active {
+            color: var(--zpl-cyan);
+          }
+
+          .zpl-header .mobile-cta {
+            width: 100%;
+            margin-top: 15px;
+            padding: 12px;
+            font-size: 21px;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .zpl-header *,
+          .zpl-header *::before,
+          .zpl-header *::after {
+            transition-duration: 0.01ms !important;
+            animation-duration: 0.01ms !important;
+          }
+        }
+      `}</style>
+
+      <header className={`zpl-header ${scrolled ? "scrolled" : ""}`}>
+        <div className="header-inner">
+          {/* ZPL LOGO */}
+          <Link
+            to="/"
+            className="zpl-logo"
+            aria-label="ZeroPoint Labs Home"
           >
             <img
-              src={zplMark}
+              src="/zpl-logo.png"
               alt="ZeroPoint Labs"
-              className="h-8 w-8 object-contain transition-transform duration-500 group-hover:scale-110"
+              className="zpl-logo-image"
             />
-          </div>
+          </Link>
 
-          <div className="leading-none">
-            <div
-              className="
-                text-[12px]
-                font-semibold
-                uppercase
-                tracking-[0.22em]
-              "
-              style={{ color: "#f1f6fa" }}
-            >
-              ZEROPOINT
-            </div>
-
-            <div
-              className="
-                mt-1
-                text-[9px]
-                font-medium
-                uppercase
-                tracking-[0.34em]
-              "
-              style={{ color: "#40b8ef" }}
-            >
-              LABS
-            </div>
-          </div>
-        </Link>
-
-        {/* =================================================
-            DESKTOP NAV
-        ================================================= */}
-        <ul className="hidden items-center gap-5 xl:gap-7 lg:flex">
-          {links.map((link) => (
-            <li key={link.to}>
-              <NavLink
-                to={link.to}
-                end={link.to === "/"}
-                className="group relative block px-1 py-3"
+          {/* DESKTOP NAVIGATION */}
+          <nav className="desktop-nav" aria-label="Main navigation">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.path}
+                className={`nav-link ${
+                  location.pathname === link.path ? "active" : ""
+                }`}
               >
-                {({ isActive: routerActive }) => {
-                  const isActive = isLinkActive(link, routerActive);
-                  return (
-                  <>
-                    <span
-                      className="
-                        text-[11px]
-                        font-medium
-                        uppercase
-                        tracking-[0.18em]
-                        transition-colors
-                        duration-300
-                      "
-                      style={{
-                        color: isActive
-                          ? "#f1f6fa"
-                          : "#9aabba",
-                      }}
-                    >
-                      {link.label}
-                    </span>
+                {link.name}
+              </Link>
+            ))}
+          </nav>
 
-                    {/* Active / hover line */}
-                    <span
-                      className="absolute bottom-1 left-0 h-px transition-all duration-300"
-                      style={{
-                        width: isActive ? "100%" : "0%",
-                        background: "#40b8ef",
-                        boxShadow:
-                          "0 0 8px rgba(64,184,239,0.7)",
-                      }}
-                    />
+          {/* DESKTOP CTA */}
+          <Link to="/contact" className="header-cta">
+            Let's Talk <ArrowUpRight size={17} />
+          </Link>
 
-                    {/* Hover */}
-                    <span
-                      className="
-                        absolute
-                        bottom-1
-                        left-0
-                        h-px
-                        w-0
-                        bg-[#40b8ef]
-                        opacity-70
-                        transition-all
-                        duration-300
-                        group-hover:w-full
-                      "
-                    />
-
-                    {isActive && (
-                      <span
-                        className="
-                          absolute
-                          -right-1
-                          top-1
-                          h-1
-                          w-1
-                          rounded-full
-                        "
-                        style={{
-                          background: "#40b8ef",
-                          boxShadow:
-                            "0 0 8px rgba(64,184,239,0.9)",
-                        }}
-                      />
-                    )}
-                  </>
-                  );
-                }}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
-
-        {/* =================================================
-            MOBILE BUTTON
-        ================================================= */}
-        <button
-          type="button"
-          onClick={() => setMobileOpen((v) => !v)}
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          aria-expanded={mobileOpen}
-          className="
-            relative
-            z-[60]
-            flex
-            h-10
-            w-10
-            items-center
-            justify-center
-            rounded-full
-            lg:hidden
-          "
-          style={{
-            border: "1px solid rgba(255,255,255,0.14)",
-            background: "rgba(255,255,255,0.04)",
-            color: "#f1f6fa",
-          }}
-        >
-          <span className="relative flex h-4 w-5 flex-col justify-between">
-            <motion.span
-              animate={
-                mobileOpen
-                  ? { y: 7, rotate: 45 }
-                  : { y: 0, rotate: 0 }
-              }
-              className="h-px w-full bg-current"
-            />
-
-            <motion.span
-              animate={
-                mobileOpen
-                  ? { opacity: 0 }
-                  : { opacity: 1 }
-              }
-              className="h-px w-full bg-current"
-            />
-
-            <motion.span
-              animate={
-                mobileOpen
-                  ? { y: -7, rotate: -45 }
-                  : { y: 0, rotate: 0 }
-              }
-              className="h-px w-full bg-current"
-            />
-          </span>
-        </button>
-      </nav>
-
-      {/* =================================================
-          MOBILE MENU
-      ================================================= */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{
-              opacity: 0,
-              height: 0,
-            }}
-            animate={{
-              opacity: 1,
-              height: "auto",
-            }}
-            exit={{
-              opacity: 0,
-              height: 0,
-            }}
-            transition={{
-              duration: 0.35,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            className="overflow-hidden lg:hidden"
-            style={{
-              background: "rgba(5,14,26,0.98)",
-              borderTop:
-                "1px solid rgba(255,255,255,0.08)",
-            }}
+          {/* MOBILE MENU BUTTON */}
+          <button
+            type="button"
+            className="mobile-menu-btn"
+            onClick={() => setMenuOpen((prev) => !prev)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
           >
-            <div className="mx-auto w-[calc(100%-32px)] max-w-[1380px] py-6">
-              <div className="mb-5 flex items-center gap-3">
-                <span
-                  className="h-px w-8"
-                  style={{
-                    background: "#40b8ef",
-                  }}
-                />
+            {menuOpen ? <X size={23} /> : <Menu size={23} />}
+          </button>
+        </div>
 
-                <span
-                  className="
-                    text-[9px]
-                    uppercase
-                    tracking-[0.25em]
-                  "
-                  style={{
-                    color: "#718394",
-                  }}
-                >
-                  Navigation
-                </span>
-              </div>
+        {/* MOBILE NAVIGATION */}
+        <nav
+          className={`mobile-nav ${menuOpen ? "open" : ""}`}
+          aria-label="Mobile navigation"
+        >
+          {navLinks.map((link, index) => (
+            <Link
+              key={link.name}
+              to={link.path}
+              className={`mobile-nav-link ${
+                location.pathname === link.path ? "active" : ""
+              }`}
+              style={{ "--delay": `${index * 60}ms` }}
+            >
+              <span>0{index + 1}</span>
+              {link.name}
+              <ArrowUpRight size={16} />
+            </Link>
+          ))}
 
-              <ul>
-                {links.map((link, index) => (
-                  <motion.li
-                    key={link.to}
-                    initial={{
-                      opacity: 0,
-                      x: -15,
-                    }}
-                    animate={{
-                      opacity: 1,
-                      x: 0,
-                    }}
-                    transition={{
-                      delay: index * 0.04,
-                    }}
-                    style={{
-                      borderBottom:
-                        "1px solid rgba(255,255,255,0.08)",
-                    }}
-                  >
-                    <NavLink
-                      to={link.to}
-                      end={link.to === "/"}
-                      onClick={() => setMobileOpen(false)}
-                      className="flex items-center justify-between py-4"
-                    >
-                      {({ isActive: routerActive }) => {
-                  const isActive = isLinkActive(link, routerActive);
-                  return (
-                        <>
-                          <div className="flex items-center gap-4">
-                            <span
-                              className="text-[9px] tracking-widest"
-                              style={{
-                                color: "#536575",
-                              }}
-                            >
-                              0{index + 1}
-                            </span>
-
-                            <span
-                              className="
-                                text-[13px]
-                                font-medium
-                                uppercase
-                                tracking-[0.18em]
-                              "
-                              style={{
-                                color: isActive
-                                  ? "#f1f6fa"
-                                  : "#9aabba",
-                              }}
-                            >
-                              {link.label}
-                            </span>
-                          </div>
-
-                          <span
-                            style={{
-                              color: isActive
-                                ? "#40b8ef"
-                                : "#536575",
-                            }}
-                          >
-                            →
-                          </span>
-                        </>
-                      );
-                    }}
-                    </NavLink>
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.header>
+          <Link to="/contact" className="mobile-cta">
+            Start a Project <ArrowUpRight size={17} />
+          </Link>
+        </nav>
+      </header>
+    </>
   );
 }

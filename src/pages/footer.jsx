@@ -1,489 +1,291 @@
+
+import React from "react";
 import { Link } from "react-router-dom";
-import Icon from "../components/Icons.jsx";
-import zplMark from "../assets/zpl-mark.png";
-
-const links = [
-  { label: "Home", to: "/" },
-  { label: "About", to: "/about" },
-  { label: "Services", to: "/services" },
-  { label: "Work", to: "/#work" },
-  { label: "Pricing", to: "/pricing" },
-  { label: "Founder", to: "/founder" },
-  { label: "Contact", to: "/contact" },
-];
-
-const socials = [
-  { label: "Facebook", icon: "facebook", href: "#" },
-  { label: "Twitter", icon: "twitter", href: "#" },
-  { label: "LinkedIn", icon: "linkedin", href: "#" },
-  { label: "Instagram", icon: "instagram", href: "#" },
-];
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-white/[0.08] bg-[#050e1a] text-[#eef6fb]">
+    <footer className="zpl-footer">
+      <style>{`
+        .zpl-footer {
+          background: #050e1a;
+          color: #e5e7eb;
+          border-top: 1px solid rgba(56, 189, 248, 0.12);
+          font-family: Inter, sans-serif;
+        }
 
-      {/* =====================================================
-          BACKGROUND EFFECTS
-      ===================================================== */}
+        .zpl-footer-main {
+          display: grid;
+          grid-template-columns: 1.3fr 1fr 1.2fr 1fr;
+          gap: 48px;
+          padding: 68px 5% 55px;
+        }
 
-      {/* Grid */}
-      <div
-        aria-hidden
-        className="
-          pointer-events-none
-          absolute
-          inset-0
-          opacity-[0.10]
-          [background-image:linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)]
-          [background-size:64px_64px]
-          [mask-image:linear-gradient(to_bottom,black,transparent_90%)]
-        "
-      />
+        .zpl-footer-brand img {
+          display: block;
+          width: 150px;
+          max-height: 65px;
+          object-fit: contain;
+          object-position: left center;
+          margin-bottom: 22px;
+        }
 
-      {/* Top glow */}
-      <div
-        aria-hidden
-        className="
-          pointer-events-none
-          absolute
-          left-1/2
-          top-0
-          h-[420px]
-          w-[800px]
-          -translate-x-1/2
-          -translate-y-1/2
-          rounded-full
-          bg-[radial-gradient(circle,rgba(64,184,239,0.12),transparent_68%)]
-          blur-[90px]
-        "
-      />
+        .zpl-footer-description {
+          color: #94a3b8;
+          font-size: 13px;
+          line-height: 1.9;
+          max-width: 330px;
+          margin: 0;
+        }
 
-      {/* Left glow */}
-      <div
-        aria-hidden
-        className="
-          pointer-events-none
-          absolute
-          -left-40
-          bottom-20
-          h-[350px]
-          w-[350px]
-          rounded-full
-          bg-[radial-gradient(circle,rgba(64,184,239,0.07),transparent_70%)]
-          blur-[80px]
-        "
-      />
+        .zpl-footer-heading {
+          color: #f1f5f9;
+          font-size: 13px;
+          font-weight: 700;
+          letter-spacing: 3.5px;
+          text-transform: uppercase;
+          margin: 4px 0 27px;
+        }
 
-      {/* =====================================================
-          MAIN
-      ===================================================== */}
+        .zpl-footer-list {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+        }
 
-      <div className="relative mx-auto w-[calc(100%-32px)] max-w-[1380px]">
+        .zpl-footer-list a,
+        .zpl-footer-contact a {
+          color: #94a3b8;
+          font-size: 13px;
+          line-height: 1.8;
+          text-decoration: none;
+          overflow-wrap: anywhere;
+          transition: color 0.25s ease;
+        }
 
-        {/* =================================================
-            TOP SYSTEM BAR
-        ================================================= */}
+        .zpl-footer-list a:hover,
+        .zpl-footer-contact a:hover {
+          color: #38bdf8;
+        }
 
-        <div className="flex items-center justify-between border-b border-white/[0.07] py-4">
+        .zpl-footer-socials {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-top: 25px;
+        }
 
-          <div className="flex items-center gap-3">
+        .zpl-footer-socials a {
+          width: 43px;
+          height: 43px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          border: 1px solid rgba(56, 189, 248, 0.16);
+          background: rgba(56, 189, 248, 0.04);
+          color: #e2e8f0;
+          text-decoration: none;
+          font-size: 15px;
+          font-weight: 600;
+          transition: all 0.25s ease;
+        }
 
-            <span className="h-1.5 w-1.5 rounded-full bg-[#40b8ef] shadow-[0_0_10px_2px_rgba(64,184,239,0.7)]" />
+        .zpl-footer-socials a:hover {
+          color: #38bdf8;
+          border-color: #38bdf8;
+          background: rgba(56, 189, 248, 0.12);
+          transform: translateY(-3px);
+        }
 
-            <span className="text-[9px] font-medium uppercase tracking-[0.28em] text-[#607487]">
-              Digital Systems & Software
-            </span>
+        .zpl-footer-contact {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 17px;
+        }
 
+        .zpl-footer-contact p {
+          color: #94a3b8;
+          font-size: 13px;
+          line-height: 1.8;
+          margin: 0;
+        }
+
+        .zpl-footer-cta {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+          margin-top: 7px;
+          padding: 13px 22px;
+          border: 1px solid rgba(56, 189, 248, 0.4);
+          border-radius: 40px;
+          background: rgba(56, 189, 248, 0.05);
+          color: #e2e8f0 !important;
+          font-size: 13px !important;
+          font-weight: 600;
+          text-decoration: none;
+          transition: all 0.25s ease;
+        }
+
+        .zpl-footer-cta:hover {
+          background: #38bdf8;
+          color: #050e1a !important;
+          border-color: #38bdf8;
+          transform: translateY(-2px);
+        }
+
+        .zpl-footer-cta span {
+          transition: transform 0.25s ease;
+        }
+
+        .zpl-footer-cta:hover span {
+          transform: translate(3px, -3px);
+        }
+
+        .zpl-footer-bottom {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 16px;
+          padding: 23px 5%;
+          border-top: 1px solid rgba(148, 163, 184, 0.12);
+          color: #8493a8;
+          font-size: 12px;
+        }
+
+        .zpl-footer-bottom p {
+          margin: 0;
+        }
+
+        .zpl-footer-accent {
+          color: #38bdf8;
+        }
+
+        @media (max-width: 1050px) {
+          .zpl-footer-main {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 42px;
+            padding: 55px 6%;
+          }
+        }
+
+        @media (max-width: 600px) {
+          .zpl-footer-main {
+            grid-template-columns: 1fr;
+            gap: 35px;
+            padding: 42px 7%;
+          }
+
+          .zpl-footer-heading {
+            margin-bottom: 20px;
+          }
+
+          .zpl-footer-bottom {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px 7%;
+            line-height: 1.8;
+          }
+        }
+      `}</style>
+
+      <div className="zpl-footer-main">
+        {/* Brand */}
+        <div className="zpl-footer-brand">
+          <Link to="/" aria-label="ZeroPoint Labs home">
+            <img src="/zpl-logo.png" alt="ZeroPoint Labs" />
+          </Link>
+
+          <p className="zpl-footer-description">
+            We build digital experiences, create meaningful content,
+            and develop smarter solutions that move businesses forward.
+          </p>
+
+          <div className="zpl-footer-socials">
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram"
+            >
+              ◎
+            </a>
+
+            <a
+              href="https://www.linkedin.com/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+            >
+              in
+            </a>
+
+            <a
+              href="https://github.com/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+            >
+              ⌘
+            </a>
           </div>
-
-          <span className="hidden text-[9px] uppercase tracking-[0.25em] text-[#607487] sm:block">
-            ZPL / 2026
-          </span>
-
         </div>
 
-        {/* =================================================
-            BRAND / CTA AREA
-        ================================================= */}
+        {/* Navigation */}
+        <div>
+          <h3 className="zpl-footer-heading">Navigate</h3>
 
-        <div className="relative py-16 sm:py-20 lg:py-24">
-
-          <div className="grid items-end gap-12 lg:grid-cols-[1.4fr_0.6fr]">
-
-            {/* BRAND */}
-            <div>
-
-              <div className="flex items-center gap-4">
-
-                <div
-                  className="
-                    flex
-                    h-14
-                    w-14
-                    items-center
-                    justify-center
-                    rounded-xl
-                    border
-                    border-white/[0.10]
-                    bg-white/[0.03]
-                    shadow-[0_0_40px_-15px_rgba(64,184,239,0.5)]
-                  "
-                >
-                  <img
-                    src={zplMark}
-                    alt="ZeroPoint Labs"
-                    className="h-10 w-10 object-contain"
-                  />
-                </div>
-
-                <div>
-
-                  <h2 className="text-[18px] font-semibold uppercase tracking-[0.25em] text-[#eef6fb]">
-                    ZeroPoint
-                  </h2>
-
-                  <p className="mt-1 text-[9px] uppercase tracking-[0.45em] text-[#40b8ef]">
-                    Labs
-                  </p>
-
-                </div>
-
-              </div>
-
-              <h3
-                className="
-                  mt-10
-                  max-w-4xl
-                  text-[clamp(3rem,7vw,7.5rem)]
-                  font-medium
-                  leading-[0.85]
-                  tracking-[-0.07em]
-                  text-[#eef6fb]
-                "
-              >
-                Build.
-                <span className="text-[#40b8ef]"> Scale.</span>
-                <br />
-                Grow.
-              </h3>
-
-              <p className="mt-8 max-w-xl font-serif text-[16px] leading-[1.8] text-[#9fb1c1] sm:text-[18px]">
-                Websites, software, and digital growth systems built around
-                measurable business outcomes.
-              </p>
-
-            </div>
-
-            {/* CTA */}
-            <div className="lg:pb-2">
-
-              <div
-                className="
-                  relative
-                  overflow-hidden
-                  rounded-2xl
-                  border
-                  border-white/[0.09]
-                  bg-white/[0.025]
-                  p-6
-                  backdrop-blur-xl
-                "
-              >
-
-                {/* corner */}
-                <span className="absolute left-0 top-0 h-5 w-5 border-l border-t border-[#40b8ef]/50" />
-
-                <span className="absolute bottom-0 right-0 h-5 w-5 border-b border-r border-[#40b8ef]/50" />
-
-                <p className="text-[9px] uppercase tracking-[0.28em] text-[#607487]">
-                  Have a project?
-                </p>
-
-                <h4 className="mt-4 text-2xl font-medium tracking-tight text-[#eef6fb]">
-                  Let's build something
-                  <span className="font-serif italic text-[#40b8ef]">
-                    {" "}remarkable.
-                  </span>
-                </h4>
-
-                <Link
-                  to="/contact"
-                  className="
-                    mt-7
-                    inline-flex
-                    items-center
-                    gap-3
-                    rounded-full
-                    border
-                    border-[#40b8ef]
-                    bg-[#40b8ef]
-                    px-6
-                    py-3
-                    text-[10px]
-                    font-bold
-                    uppercase
-                    tracking-[0.18em]
-                    text-[#03101d]
-                    transition-all
-                    duration-300
-                    hover:-translate-y-1
-                    hover:bg-[#69c8f2]
-                    hover:shadow-[0_12px_35px_-10px_rgba(64,184,239,0.65)]
-                  "
-                >
-                  Start Your Project
-
-                  <span className="text-sm">
-                    →
-                  </span>
-                </Link>
-
-              </div>
-
-            </div>
-
-          </div>
-
+          <nav className="zpl-footer-list">
+            <Link to="/">Home</Link>
+            <Link to="/about">About Us</Link>
+            <Link to="/services">Services</Link>
+            <Link to="/pricing">Pricing</Link>
+            <Link to="/contact">Contact</Link>
+          </nav>
         </div>
 
-        {/* =================================================
-            DIVIDER
-        ================================================= */}
+        {/* Services */}
+        <div>
+          <h3 className="zpl-footer-heading">What We Do</h3>
 
-        <div className="relative flex items-center">
-
-          <div className="h-px flex-1 bg-white/[0.08]" />
-
-          <div className="mx-4 flex items-center gap-2">
-
-            <span className="h-1 w-1 rounded-full bg-[#40b8ef]" />
-
-            <span className="h-px w-10 bg-[#40b8ef]/30" />
-
-            <span className="h-1 w-1 rounded-full bg-[#40b8ef]" />
-
-          </div>
-
-          <div className="h-px flex-1 bg-white/[0.08]" />
-
+          <nav className="zpl-footer-list">
+            <Link to="/services">Websites & Applications</Link>
+            <Link to="/services">Digital Growth & Marketing</Link>
+            <Link to="/services">Content Creation</Link>
+            <Link to="/services">Business Automation</Link>
+            <Link to="/contact">Start a Project ↗</Link>
+          </nav>
         </div>
 
-        {/* =================================================
-            NAVIGATION AREA
-        ================================================= */}
+        {/* Contact */}
+        <div className="zpl-footer-contact">
+          <h3 className="zpl-footer-heading">Contact</h3>
 
-        <div className="grid gap-12 py-14 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr]">
+          <p>India</p>
 
-          {/* Navigation */}
-          <div>
+          <a href="mailto:hello@zeropointlabs.com">
+            hello@zeropointlabs.com
+          </a>
 
-            <div className="flex items-center gap-3">
-
-              <span className="text-[9px] text-[#40b8ef]">
-                01
-              </span>
-
-              <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#eef6fb]">
-                Navigation
-              </p>
-
-            </div>
-
-            <ul className="mt-6 space-y-3">
-
-              {links.map((link, index) => (
-
-                <li key={link.to}>
-
-                  <Link
-                    to={link.to}
-                    className="
-                      group
-                      flex
-                      items-center
-                      gap-4
-                      text-[13px]
-                      text-[#718394]
-                      transition-colors
-                      duration-300
-                      hover:text-[#eef6fb]
-                    "
-                  >
-
-                    <span className="w-5 text-[8px] text-[#536575]">
-                      0{index + 1}
-                    </span>
-
-                    <span className="relative">
-
-                      {link.label}
-
-                      <span
-                        className="
-                          absolute
-                          -bottom-1
-                          left-0
-                          h-px
-                          w-0
-                          bg-[#40b8ef]
-                          transition-all
-                          duration-300
-                          group-hover:w-full
-                        "
-                      />
-
-                    </span>
-
-                    <span className="ml-auto translate-x-[-5px] text-[#40b8ef] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
-                      →
-                    </span>
-
-                  </Link>
-
-                </li>
-
-              ))}
-
-            </ul>
-
-          </div>
-
-          {/* What we do */}
-          <div>
-
-            <div className="flex items-center gap-3">
-
-              <span className="text-[9px] text-[#40b8ef]">
-                02
-              </span>
-
-              <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#eef6fb]">
-                What We Build
-              </p>
-
-            </div>
-
-            <div className="mt-6 space-y-3">
-
-              {[
-                "Websites",
-                "Web Applications",
-                "Automation Systems",
-                "Digital Marketing",
-                "Branding & Content",
-              ].map((item, index) => (
-
-                <div
-                  key={item}
-                  className="flex items-center gap-3 text-[13px] text-[#718394]"
-                >
-
-                  <span className="h-px w-4 bg-[#40b8ef]/40" />
-
-                  <span>
-                    {item}
-                  </span>
-
-                </div>
-
-              ))}
-
-            </div>
-
-          </div>
-
-          {/* Social */}
-          <div>
-
-            <div className="flex items-center gap-3">
-
-              <span className="text-[9px] text-[#40b8ef]">
-                03
-              </span>
-
-              <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#eef6fb]">
-                Connect
-              </p>
-
-            </div>
-
-            <div className="mt-6 flex gap-3">
-
-              {socials.map((social) => (
-
-                <a
-                  key={social.label}
-                  href={social.href}
-                  aria-label={social.label}
-                  title={social.label}
-                  className="
-                    group
-                    flex
-                    h-11
-                    w-11
-                    items-center
-                    justify-center
-                    rounded-xl
-                    border
-                    border-white/[0.09]
-                    bg-white/[0.025]
-                    text-[#718394]
-                    transition-all
-                    duration-300
-                    hover:-translate-y-1
-                    hover:border-[#40b8ef]/40
-                    hover:bg-[#40b8ef]/[0.07]
-                    hover:text-[#40b8ef]
-                    hover:shadow-[0_10px_35px_-15px_rgba(64,184,239,0.7)]
-                  "
-                >
-                  <Icon name={social.icon} size={16} />
-                </a>
-
-              ))}
-
-            </div>
-
-            <p className="mt-6 max-w-xs text-[11px] leading-relaxed text-[#536575]">
-              Follow ZeroPoint Labs for technology, design, marketing and
-              digital growth insights.
-            </p>
-
-          </div>
-
+          <Link to="/contact" className="zpl-footer-cta">
+            Let's Talk <span>↗</span>
+          </Link>
         </div>
+      </div>
 
-        {/* =================================================
-            BOTTOM SYSTEM LINE
-        ================================================= */}
+      {/* Bottom bar */}
+      <div className="zpl-footer-bottom">
+        <p>
+          © {new Date().getFullYear()} ZeroPoint Labs. All rights reserved.
+        </p>
 
-        <div className="border-t border-white/[0.08] py-6">
-
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-
-            <p className="text-[10px] uppercase tracking-[0.15em] text-[#536575]">
-              © {new Date().getFullYear()} ZeroPoint Labs. All rights reserved.
-            </p>
-
-            <div className="flex items-center gap-5">
-
-              <span className="text-[9px] uppercase tracking-[0.22em] text-[#536575]">
-                Designed for Growth
-              </span>
-
-              <span className="h-1 w-1 rounded-full bg-[#40b8ef]" />
-
-              <span className="text-[9px] uppercase tracking-[0.22em] text-[#536575]">
-                Built with Purpose
-              </span>
-
-            </div>
-
-          </div>
-
-        </div>
-
+        <p>
+          Build. Grow. Create. Automate.
+          <span className="zpl-footer-accent"> ✦</span>
+        </p>
       </div>
     </footer>
   );
