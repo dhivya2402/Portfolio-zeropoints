@@ -195,8 +195,9 @@ const services = [
 export default function ZeroPointSequence() {
   const navigate = useNavigate();
   const location = useLocation();
-  const keyMountedRef = useRef(false); // skip the initial render
+  const lastKeyRef = useRef(location.key); // last location key the effect below has seen
   const skipKeyRef = useRef(false); // skip our own deep-link cleanup navigation
+  const deepLinkHandledRef = useRef(false); // deep-link runs once (StrictMode runs effects twice in dev)
   const sectionRef = useRef(null);
   const [activeService, setActiveService] = useState(null);
   const [isServiceClosing, setIsServiceClosing] = useState(false);
@@ -219,6 +220,9 @@ export default function ZeroPointSequence() {
 
   // Deep-link from the home page "Four Pillars" cards: /services?service=<title>
   useEffect(() => {
+    if (deepLinkHandledRef.current) return;
+    deepLinkHandledRef.current = true;
+
     const params = new URLSearchParams(window.location.search);
     const title = params.get("service");
     if (!title) return;
@@ -235,10 +239,10 @@ export default function ZeroPointSequence() {
   // the same route with a new history key — close the panel so the click
   // visibly takes the user back to the Services page itself.
   useEffect(() => {
-    if (!keyMountedRef.current) {
-      keyMountedRef.current = true;
-      return;
-    }
+    // Initial mount / StrictMode re-run: no navigation happened, so nothing to do
+    // (and the skip flag must stay set for our own cleanup navigation).
+    if (lastKeyRef.current === location.key) return;
+    lastKeyRef.current = location.key;
     if (skipKeyRef.current) {
       skipKeyRef.current = false;
       return;

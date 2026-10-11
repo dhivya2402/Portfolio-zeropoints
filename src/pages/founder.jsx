@@ -14,8 +14,8 @@ import {
 import { Link } from "react-router-dom";
 import { FaInstagram, FaGithub } from "react-icons/fa";
 
-import logo from "../assets/logo.jpeg";
-import founderImg from "../assets/founder_img.jpeg";
+import logo from "../assets/zpl-mark.png";
+import founderImg from "../assets/Founder.jpeg";
 
 function Founder() {
   const universeRef = useRef(null);

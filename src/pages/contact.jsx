@@ -20,7 +20,7 @@ import {
 } from "react-icons/fa";
 
 import { Link } from "react-router-dom";
-import zeropointsLogo from "../assets/logo.jpeg";
+import zeropointsLogo from "../assets/zpl-mark.png";
 
 const Contact = () => {
   const form = useRef();
