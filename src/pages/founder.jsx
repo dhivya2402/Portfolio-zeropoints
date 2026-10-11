@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import {
   ArrowRight,
+  UserRound,
   Code2,
   Palette,
   TrendingUp,
@@ -13,8 +14,8 @@ import {
 import { Link } from "react-router-dom";
 import { FaInstagram, FaGithub } from "react-icons/fa";
 
-import logo from "../assets/zeropoints_logo.png";
-import founderImage from "../assets/Founder.jpeg";
+import logo from "../assets/logo.jpeg";
+import founderImg from "../assets/founder_img.jpeg";
 
 function Founder() {
   const universeRef = useRef(null);
@@ -32,10 +33,7 @@ function Founder() {
     };
 
     const handleScroll = () => {
-      page.style.setProperty(
-        "--scroll-position",
-        `${window.scrollY}px`
-      );
+      page.style.setProperty("--scroll-position", `${window.scrollY}px`);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -72,12 +70,7 @@ function Founder() {
 
   return (
     <div className="founder-page" ref={universeRef}>
-
       <style>{`
-
-        /* =====================================================
-           FONTS
-        ===================================================== */
 
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap');
 
@@ -95,10 +88,6 @@ function Founder() {
           font-family: "Inter", sans-serif;
         }
 
-        /* =====================================================
-           MAIN PAGE
-        ===================================================== */
-
         .founder-page {
           --mouse-x: 0;
           --mouse-y: 0;
@@ -106,7 +95,6 @@ function Founder() {
 
           position: relative;
           min-height: 100vh;
-
           overflow: hidden;
 
           background:
@@ -128,7 +116,6 @@ function Founder() {
             );
 
           color: #f2f5f7;
-
           font-family: "Inter", sans-serif;
         }
 
@@ -136,10 +123,6 @@ function Founder() {
           text-decoration: none;
           color: inherit;
         }
-
-        /* =====================================================
-           ANIMATED DIGITAL GRID
-        ===================================================== */
 
         .founder-page::before {
           content: "";
@@ -196,10 +179,6 @@ function Founder() {
             background-position: 70px 70px;
           }
         }
-
-        /* =====================================================
-           DIGITAL UNIVERSE
-        ===================================================== */
 
         .founder-universe {
           position: fixed;
@@ -409,10 +388,6 @@ function Founder() {
           }
         }
 
-        /* =====================================================
-           FLOATING ORBS
-        ===================================================== */
-
         .founder-orb {
           position: absolute;
           border-radius: 50%;
@@ -539,10 +514,6 @@ function Founder() {
           }
         }
 
-        /* =====================================================
-           RINGS
-        ===================================================== */
-
         .founder-ring {
           position: absolute;
 
@@ -623,10 +594,6 @@ function Founder() {
           }
         }
 
-        /* =====================================================
-           SHAPES
-        ===================================================== */
-
         .founder-shape {
           position: absolute;
 
@@ -704,10 +671,6 @@ function Founder() {
           }
         }
 
-        /* =====================================================
-           LIGHT BEAM
-        ===================================================== */
-
         .founder-light-beam {
           position: fixed;
 
@@ -761,10 +724,6 @@ function Founder() {
             opacity: 0;
           }
         }
-
-        /* =====================================================
-           NAVIGATION
-        ===================================================== */
 
         .founder-nav {
           position: relative;
@@ -820,13 +779,23 @@ function Founder() {
             translateY(-2px);
         }
 
+        .founder-brand {
+          overflow: hidden;
+        }
+
         .founder-brand img {
           width: 42px;
           height: 42px;
 
-          object-fit: contain;
+          object-fit: cover;
 
           display: block;
+
+          border-radius: 50%;
+
+          overflow: hidden;
+
+          flex-shrink: 0;
 
           filter:
             drop-shadow(
@@ -858,10 +827,6 @@ function Founder() {
           }
         }
 
-        /* =====================================================
-           ZEROPOINT / LABS COLORS
-        ===================================================== */
-
         .founder-brand-name {
           white-space: nowrap;
 
@@ -883,10 +848,6 @@ function Founder() {
         .brand-labs {
           color: #2EADE6;
         }
-
-        /* =====================================================
-           NAV BUTTON
-        ===================================================== */
 
         .founder-nav-right {
           margin-left: auto;
@@ -941,10 +902,6 @@ function Founder() {
             0 0 25px
             rgba(46, 190, 235, 0.08);
         }
-
-        /* =====================================================
-           HERO
-        ===================================================== */
 
         .founder-hero {
           position: relative;
@@ -1070,8 +1027,6 @@ function Founder() {
             rgba(46, 173, 230, 0.04);
         }
 
-        /* SPECIAL WORDS */
-
         .founder-title span {
           display: block;
 
@@ -1169,10 +1124,6 @@ function Founder() {
             both;
         }
 
-        /* =====================================================
-           BUTTON
-        ===================================================== */
-
         .founder-primary-button {
           position: relative;
 
@@ -1260,10 +1211,6 @@ function Founder() {
             rgba(46, 173, 230, 0.12);
         }
 
-        /* =====================================================
-           COMMON SECTION
-        ===================================================== */
-
         .founder-section {
           position: relative;
 
@@ -1314,8 +1261,6 @@ function Founder() {
           font-family: "Inter", sans-serif;
         }
 
-        /* SPECIAL WORDS */
-
         .founder-section-title span {
           color: #2EADE6;
 
@@ -1340,15 +1285,12 @@ function Founder() {
           font-family: "Merriweather", serif;
         }
 
-        /* =====================================================
-           SCROLL REVEAL
-        ===================================================== */
-
         .founder-reveal {
           opacity: 0;
 
           transform:
-            translateY(45px);
+            translateY(55px)
+            scale(0.98);
 
           transition:
             opacity 0.9s
@@ -1361,26 +1303,28 @@ function Founder() {
           opacity: 1;
 
           transform:
-            translateY(0);
+            translateY(0)
+            scale(1);
         }
 
-        /* =====================================================
-           BIOGRAPHY
-        ===================================================== */
-
         .biography-grid {
-          display: grid;
+          display: flex;
 
-          grid-template-columns:
-            0.9fr 1.1fr;
-
-          gap: 100px;
+          flex-direction: column;
 
           align-items: center;
+
+          justify-content: center;
+
+          gap: 55px;
+
+          text-align: center;
         }
 
         .founder-photo {
-          min-height: 480px;
+          width: min(100%, 520px);
+
+          min-height: 560px;
 
           display: flex;
 
@@ -1388,15 +1332,24 @@ function Founder() {
 
           justify-content: center;
 
+          margin: 0 auto;
+
           border:
             1px solid
-            rgba(170, 220, 245, 0.12);
+            rgba(46, 173, 230, 0.18);
+
+          border-radius: 30px;
 
           background:
+            radial-gradient(
+              circle at 50% 45%,
+              rgba(46, 173, 230, 0.12),
+              transparent 48%
+            ),
             linear-gradient(
               145deg,
-              rgba(15, 46, 76, 0.5),
-              rgba(2, 14, 31, 0.65)
+              rgba(15, 46, 76, 0.52),
+              rgba(2, 14, 31, 0.78)
             );
 
           position: relative;
@@ -1413,18 +1366,27 @@ function Founder() {
             7s
             ease-in-out
             infinite;
+
+          box-shadow:
+            0 25px 80px
+            rgba(0, 0, 0, 0.28),
+            0 0 55px
+            rgba(46, 173, 230, 0.07);
         }
 
         .founder-photo:hover {
           transform:
-            translateY(-8px);
+            translateY(-10px)
+            scale(1.01);
 
           border-color:
-            rgba(46, 173, 230, 0.32);
+            rgba(46, 173, 230, 0.42);
 
           box-shadow:
-            0 25px 70px
-            rgba(20, 100, 145, 0.10);
+            0 30px 90px
+            rgba(20, 100, 145, 0.16),
+            0 0 55px
+            rgba(46, 173, 230, 0.12);
         }
 
         .founder-photo::before {
@@ -1432,8 +1394,14 @@ function Founder() {
 
           position: absolute;
 
-          width: 280px;
-          height: 280px;
+          width: 420px;
+          height: 420px;
+
+          left: 50%;
+          top: 50%;
+
+          transform:
+            translate(-50%, -50%);
 
           border-radius: 50%;
 
@@ -1441,12 +1409,14 @@ function Founder() {
             radial-gradient(
               circle,
               rgba(46, 173, 230, 0.18),
-              transparent 70%
+              transparent 68%
             );
 
           animation:
-            photoGlow 6s
-            ease-in-out infinite;
+            photoGlow
+            6s
+            ease-in-out
+            infinite;
         }
 
         .founder-photo::after {
@@ -1454,19 +1424,17 @@ function Founder() {
 
           position: absolute;
 
-          width: 180%;
-
+          width: 160%;
           height: 1px;
 
-          left: -40%;
-
+          left: -30%;
           top: 50%;
 
           background:
             linear-gradient(
               90deg,
               transparent,
-              rgba(46, 173, 230, 0.20),
+              rgba(46, 173, 230, 0.35),
               transparent
             );
 
@@ -1477,54 +1445,6 @@ function Founder() {
             infinite;
         }
 
-        @keyframes photoGlow {
-          0%, 100% {
-            transform: scale(1);
-            opacity: 0.6;
-          }
-
-          50% {
-            transform: scale(1.25);
-            opacity: 1;
-          }
-        }
-
-        @keyframes photoScan {
-          0% {
-            transform: translateY(-220px);
-          }
-
-          100% {
-            transform: translateY(220px);
-          }
-        }
-
-        @keyframes photoFloat {
-          0%, 100% {
-            transform: translateY(0);
-          }
-
-          50% {
-            transform: translateY(-5px);
-          }
-        }
-
-        .founder-photo-img {
-          position: absolute;
-
-          inset: 0;
-
-          width: 100%;
-
-          height: 100%;
-
-          object-fit: cover;
-
-          object-position: center 18%;
-
-          display: block;
-        }
-
         .founder-photo-content {
           position: relative;
 
@@ -1533,62 +1453,120 @@ function Founder() {
           text-align: center;
         }
 
-        .founder-photo-icon {
-          width: 90px;
-          height: 90px;
+        .founder-photo-image {
+          position: relative;
 
-          margin: 0 auto 20px;
+          width: min(100%, 410px);
 
-          display: flex;
+          height: 450px;
 
-          align-items: center;
+          margin: 0 auto 22px;
 
-          justify-content: center;
+          overflow: hidden;
 
-          border-radius: 50%;
-
-          color: #2EADE6;
+          border-radius: 26px;
 
           border:
             1px solid
-            rgba(46, 173, 230, 0.3);
+            rgba(46, 173, 230, 0.32);
 
-          background:
-            rgba(46, 173, 230, 0.08);
+          background: #020817;
+
+          box-shadow:
+            0 20px 55px
+            rgba(0, 0, 0, 0.38),
+            0 0 35px
+            rgba(46, 173, 230, 0.10);
 
           animation:
-            iconPulse
-            4s
+            founderImageFloat
+            7s
             ease-in-out
             infinite;
         }
 
-        @keyframes iconPulse {
+        .founder-photo-image::before {
+          content: "";
+
+          position: absolute;
+
+          inset: 0;
+
+          z-index: 2;
+
+          pointer-events: none;
+
+          background:
+            linear-gradient(
+              180deg,
+              transparent 55%,
+              rgba(2, 8, 23, 0.45)
+            );
+        }
+
+        .founder-photo-image img {
+          width: 100%;
+          height: 100%;
+
+          display: block;
+
+          object-fit: cover;
+
+          object-position: center;
+
+          transition:
+            transform 0.7s ease,
+            filter 0.7s ease;
+        }
+
+        .founder-photo:hover
+        .founder-photo-image img {
+          transform: scale(1.035);
+
+          filter: brightness(1.05);
+        }
+
+        @keyframes founderImageFloat {
           0%, 100% {
-            box-shadow:
-              0 0 0
-              rgba(46, 173, 230, 0);
+            transform: translateY(0);
           }
 
           50% {
-            box-shadow:
-              0 0 35px
-              rgba(46, 173, 230, 0.15);
+            transform: translateY(-8px);
           }
         }
 
         .founder-photo-content p {
           margin: 0;
 
-          color: #718da3;
+          color: #e6f5fb;
 
-          font-size: 11px;
+          font-size: 13px;
 
-          letter-spacing: 0.15em;
+          font-weight: 700;
+
+          letter-spacing: 0.18em;
+        }
+
+        .founder-photo-content span {
+          display: block;
+
+          margin-top: 7px;
+
+          color: #2EADE6;
+
+          font-size: 10px;
+
+          font-weight: 700;
+
+          letter-spacing: 0.18em;
         }
 
         .biography-content {
-          max-width: 580px;
+          width: min(720px, 100%);
+          max-width: 720px;
+          text-align: center;
+          margin: 0 auto;
         }
 
         .biography-content .founder-text {
@@ -1654,10 +1632,6 @@ function Founder() {
             left: 130%;
           }
         }
-
-        /* =====================================================
-           JOURNEY
-        ===================================================== */
 
         .journey-section {
           background:
@@ -1845,10 +1819,6 @@ function Founder() {
 
           font-family: "Merriweather", serif;
         }
-
-        /* =====================================================
-           PHILOSOPHY
-        ===================================================== */
 
         .philosophy-section {
           position: relative;
@@ -2070,10 +2040,6 @@ function Founder() {
           font-family: "Merriweather", serif;
         }
 
-        /* =====================================================
-           SKILLS
-        ===================================================== */
-
         .skills-grid {
           display: grid;
 
@@ -2247,10 +2213,6 @@ function Founder() {
           font-family: "Merriweather", serif;
         }
 
-        /* =====================================================
-           ACHIEVEMENTS
-        ===================================================== */
-
         .achievement-grid {
           display: grid;
 
@@ -2353,10 +2315,6 @@ function Founder() {
           font-family: "Merriweather", serif;
         }
 
-        /* =====================================================
-           SOCIALS
-        ===================================================== */
-
         .founder-socials {
           display: flex;
 
@@ -2407,10 +2365,6 @@ function Founder() {
             0 0 25px
             rgba(46, 173, 230, 0.10);
         }
-
-        /* =====================================================
-           FOOTER
-        ===================================================== */
 
         .founder-footer-section {
           position: relative;
@@ -2536,10 +2490,6 @@ function Founder() {
           font-size: 11px;
         }
 
-        /* =====================================================
-           HERO REVEAL
-        ===================================================== */
-
         @keyframes founderReveal {
           from {
             opacity: 0;
@@ -2558,14 +2508,9 @@ function Founder() {
           }
         }
 
-        /* =====================================================
-           REDUCED MOTION
-        ===================================================== */
-
         @media (prefers-reduced-motion: reduce) {
           *,
-          *::before,
-          *::after {
+          *::before {
             animation-duration:
               0.01ms !important;
 
@@ -2579,10 +2524,6 @@ function Founder() {
               0.01ms !important;
           }
         }
-
-        /* =====================================================
-           TABLET
-        ===================================================== */
 
         @media (max-width: 900px) {
           .biography-grid {
@@ -2611,10 +2552,6 @@ function Founder() {
             min-height: 200px;
           }
         }
-
-        /* =====================================================
-           MOBILE
-        ===================================================== */
 
         @media (max-width: 600px) {
           .founder-nav {
@@ -2754,12 +2691,44 @@ function Founder() {
           }
         }
 
+
+        @media (max-width: 768px) {
+          .biography-grid {
+            gap: 38px;
+          }
+
+          .founder-photo {
+            width: min(100%, 390px);
+            min-height: 470px;
+            padding: 25px 18px;
+          }
+
+          .founder-photo-image {
+            width: 100%;
+            max-width: 340px;
+            height: 390px;
+          }
+
+          .founder-brand {
+            top: 16px;
+            left: 16px;
+            gap: 8px;
+          }
+
+          .founder-brand img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+          }
+
+          .founder-brand-name {
+            font-size: 10px;
+          }
+        }
+
       `}</style>
 
-
-      {/* =====================================================
-          DIGITAL UNIVERSE
-      ===================================================== */}
+      {/* DIGITAL UNIVERSE */}
 
       <div className="founder-universe">
 
@@ -2796,10 +2765,7 @@ function Founder() {
 
       </div>
 
-
-      {/* =====================================================
-          NAVIGATION
-      ===================================================== */}
+      {/* NAVIGATION */}
 
       <nav className="founder-nav">
 
@@ -2835,10 +2801,7 @@ function Founder() {
 
       </nav>
 
-
-      {/* =====================================================
-          HERO
-      ===================================================== */}
+      {/* HERO */}
 
       <section className="founder-hero">
 
@@ -2889,10 +2852,7 @@ function Founder() {
 
       </section>
 
-
-      {/* =====================================================
-          BIOGRAPHY
-      ===================================================== */}
+      {/* BIOGRAPHY */}
 
       <section
         id="biography"
@@ -2905,11 +2865,26 @@ function Founder() {
 
             <div className="founder-photo founder-reveal">
 
-              <img
-                src={founderImage}
-                alt="Founder of ZeroPoint Labs"
-                className="founder-photo-img"
-              />
+              <div className="founder-photo-content">
+
+                <div className="founder-photo-image">
+
+                  <img
+                    src={founderImg}
+                    alt="S. Jeevesh - Founder of ZeroPoint Labs"
+                  />
+
+                </div>
+
+                <p>
+                  S. JEEVESH
+                </p>
+
+                <span>
+                  FOUNDER & CEO
+                </span>
+
+              </div>
 
             </div>
 
@@ -2963,10 +2938,7 @@ function Founder() {
 
       </section>
 
-
-      {/* =====================================================
-          JOURNEY
-      ===================================================== */}
+      {/* JOURNEY */}
 
       <section className="founder-section journey-section">
 
@@ -3113,10 +3085,7 @@ function Founder() {
 
       </section>
 
-
-      {/* =====================================================
-          ZEROPOINT PHILOSOPHY
-      ===================================================== */}
+      {/* ZEROPOINT PHILOSOPHY */}
 
       <section className="founder-section philosophy-section">
 
@@ -3212,10 +3181,7 @@ function Founder() {
 
       </section>
 
-
-      {/* =====================================================
-          SKILLS
-      ===================================================== */}
+      {/* SKILLS */}
 
       <section className="founder-section">
 
@@ -3319,10 +3285,7 @@ function Founder() {
 
       </section>
 
-
-      {/* =====================================================
-          ACHIEVEMENTS
-      ===================================================== */}
+      {/* ACHIEVEMENTS */}
 
       <section className="founder-section">
 
@@ -3411,10 +3374,7 @@ function Founder() {
 
       </section>
 
-
-      {/* =====================================================
-          FOOTER
-      ===================================================== */}
+      {/* FOOTER */}
 
       <section className="founder-footer-section">
 
@@ -3489,7 +3449,7 @@ function Founder() {
           </div>
 
           <div>
-            Crafted with intention.
+            All rights reserved.
           </div>
 
         </div>
