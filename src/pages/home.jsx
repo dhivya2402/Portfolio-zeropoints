@@ -6,9 +6,18 @@ import WhyCard from '../components/WhyCard.jsx'
 import EdgeFrame from '../components/EdgeFrame.jsx'
 import HeroVisual from '../components/HeroVisual.jsx'
 import Icon from '../components/Icons.jsx'
-import ServiceScrollStage from '../components/ServiceScrollStage.jsx'
+import ServiceShowcase from '../components/ServiceShowcase.jsx'
+import JumpingHeading from '../components/JumpingHeading.jsx'
 import PhotoMarquee from '../components/PhotoMarquee.jsx'
 import TextReveal from '../components/TextReveal.jsx'
+import {
+  CompanyStory,
+  MissionVision,
+  CoreValues,
+  Team,
+  Statistics,
+  Achievements,
+} from '../components/AboutSections.jsx'
 
 const problems = [
   { title: 'Struggle to generate leads', icon: 'leads' },
@@ -39,7 +48,7 @@ const pillars = [
     letter: '03',
     name: 'CREATE',
     service: 'Content Creation',
-    tagline: 'Content Production',
+    tagline: 'Content Creation',
     description: 'Business video shoots, reels production, product photography and promotional videos.',
     price: 'Projects from ₹5,000',
     icon: 'content',
@@ -54,6 +63,14 @@ const pillars = [
     price: 'Solutions from ₹75,000',
     icon: 'automate',
   },
+]
+
+// Hero heading text, split into styled segments for the letter animation.
+// (Same words as before; "Growth" keeps its .zp-script styling.)
+const heroHeading = [
+  { text: 'Building Digital Systems That Power Business ' },
+  { text: 'Growth', className: 'zp-script' },
+  { text: '.' },
 ]
 
 const whyPoints = [
@@ -83,10 +100,17 @@ export default function Home() {
   return (
     <>
       <Hero />
+      {/* About content (formerly /about): story and mission first, then the problem and services */}
+      <CompanyStory />
+      <MissionVision />
       <CompanyIntro />
       <Services />
       <WhyChooseUs />
+      <CoreValues />
+      <Team />
       <Results />
+      <Statistics />
+      <Achievements />
       <Insights />
       <FinalCTA />
       <PhotoMarquee />
@@ -129,15 +153,10 @@ function Hero() {
             Digital Systems &amp; Software
           </motion.p>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          <JumpingHeading
             className="zp-h1 mt-5"
-          >
-            Building Digital Systems That Power Business{' '}
-            <span className="zp-script">Growth</span>.
-          </motion.h1>
+            segments={heroHeading}
+          />
 
           <motion.div
             initial={{ opacity: 0, y: 18 }}
@@ -268,8 +287,11 @@ function Services() {
             generate leads, and automate your business operations.
           </p>
         </Reveal>
+      </div>
 
-        <ServiceScrollStage pillars={pillars} />
+      {/* full-bleed, scroll-driven showcase (pins under the navbar) */}
+      <div className="relative mt-14 lg:mt-16">
+        <ServiceShowcase pillars={pillars} />
       </div>
     </section>
   )

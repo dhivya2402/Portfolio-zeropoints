@@ -856,6 +856,8 @@ export default function Services() {
               return (
                 <div
                   key={service.number}
+                  id={`service-${service.title.toLowerCase()}`}
+                  style={{ scrollMarginTop: 110 }}
                   className="service-parent service-card"
                 >
                   <article className="service-card-inner relative h-full overflow-hidden rounded-[30px] border border-white/10 bg-[#08131d] p-1">

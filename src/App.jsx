@@ -3,7 +3,6 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Home from "./pages/home";
-import About from "./pages/about";
 import Founder from "./pages/founder";
 import Footer from "./pages/footer";
 import Navbar from "./pages/navbar";
@@ -22,8 +21,8 @@ function App() {
         {/* Home */}
         <Route path="/" element={<Home />} />
 
-        {/* About */}
-        <Route path="/about" element={<About />} />
+        {/* About: now part of Home. Old /about links redirect to the About anchor on Home */}
+        <Route path="/about" element={<Navigate to="/#about" replace />} />
 
         {/* Founder */}
         <Route path="/founder" element={<Founder />} />
