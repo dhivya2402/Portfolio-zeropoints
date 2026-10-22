@@ -196,16 +196,16 @@ const Contact = () => {
 
         body {
           margin: 0;
-          background: #000718;
+          background: #05080b;
         }
 
         .contact-page {
           min-height: 100vh;
           background:
-            radial-gradient(circle at 15% 20%, rgba(46,173,230,0.08), transparent 28%),
-            radial-gradient(circle at 85% 70%, rgba(46,173,230,0.06), transparent 30%),
-            #000718;
-          color: #ffffff;
+            radial-gradient(circle at 15% 20%, rgba(56,189,248,0.08), transparent 28%),
+            radial-gradient(circle at 85% 70%, rgba(56,189,248,0.06), transparent 30%),
+            #05080b;
+          color: #f8fafc;
           font-family: 'Inter', sans-serif;
           overflow: hidden;
           position: relative;
@@ -232,8 +232,8 @@ const Contact = () => {
           position: absolute;
           inset: -10%;
           background-image:
-            linear-gradient(rgba(46,173,230,0.035) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(46,173,230,0.035) 1px, transparent 1px);
+            linear-gradient(rgba(56,189,248,0.035) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(56,189,248,0.035) 1px, transparent 1px);
           background-size: 70px 70px;
           transform:
             translate(
@@ -262,7 +262,7 @@ const Contact = () => {
           border-radius: 50%;
           pointer-events: none;
           filter: blur(80px);
-          background: #2EADE6;
+          background: #38bdf8;
         }
 
         .contact-orb.one {
@@ -337,7 +337,7 @@ const Contact = () => {
 
         .contact-ring {
           position: absolute;
-          border: 1px solid rgba(46,173,230,0.08);
+          border: 1px solid rgba(56,189,248,0.08);
           border-radius: 50%;
           pointer-events: none;
           opacity: 0.55;
@@ -410,7 +410,7 @@ const Contact = () => {
           height: 140%;
           pointer-events: none;
           opacity: 0;
-          background: linear-gradient(90deg, transparent, rgba(46,173,230,0.055), transparent);
+          background: linear-gradient(90deg, transparent, rgba(56,189,248,0.055), transparent);
           transform: rotate(18deg);
           animation: contactLightBeam 11s ease-in-out infinite;
         }
@@ -433,9 +433,9 @@ const Contact = () => {
 
         .contact-shape {
           position: absolute;
-          border: 1px solid rgba(46,173,230,0.14);
-          background: rgba(46,173,230,0.012);
-          box-shadow: 0 0 30px rgba(46,173,230,0.035);
+          border: 1px solid rgba(56,189,248,0.14);
+          background: rgba(56,189,248,0.012);
+          box-shadow: 0 0 30px rgba(56,189,248,0.035);
           pointer-events: none;
         }
 
@@ -562,8 +562,8 @@ const Contact = () => {
           width: 4px;
           height: 4px;
           border-radius: 50%;
-          background: #2EADE6;
-          box-shadow: 0 0 8px #2EADE6, 0 0 20px rgba(46,173,230,0.7);
+          background: #38bdf8;
+          box-shadow: 0 0 8px #38bdf8, 0 0 20px rgba(56,189,248,0.7);
           opacity: 0;
           pointer-events: none;
         }
@@ -752,38 +752,38 @@ const Contact = () => {
           height: 52px;
           border-radius: 50%;
           object-fit: cover;
-          border: 1px solid rgba(46,173,230,0.45);
-          box-shadow: 0 0 25px rgba(46,173,230,0.12);
+          border: 1px solid rgba(56,189,248,0.45);
+          box-shadow: 0 0 25px rgba(56,189,248,0.12);
           transition: 0.3s ease;
           animation: contactLogoPulse 5s ease-in-out infinite;
         }
 
         @keyframes contactLogoPulse {
           0%, 100% {
-            box-shadow: 0 0 20px rgba(46,173,230,0.08);
+            box-shadow: 0 0 20px rgba(56,189,248,0.08);
           }
           50% {
-            box-shadow: 0 0 35px rgba(46,173,230,0.22);
+            box-shadow: 0 0 35px rgba(56,189,248,0.22);
           }
         }
 
         .contact-logo:hover {
           transform: scale(1.06);
-          box-shadow: 0 0 30px rgba(46,173,230,0.3);
+          box-shadow: 0 0 30px rgba(56,189,248,0.3);
         }
 
         .contact-back {
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          color: #b7c3ce;
+          color: #8295a5;
           text-decoration: none;
           font-size: 14px;
           transition: 0.3s ease;
         }
 
         .contact-back:hover {
-          color: #2EADE6;
+          color: #38bdf8;
           transform: translateX(-4px);
         }
 
@@ -795,7 +795,7 @@ const Contact = () => {
         }
 
         .contact-eyebrow {
-          color: #2EADE6;
+          color: #38bdf8;
           font-size: 12px;
           letter-spacing: 4px;
           text-transform: uppercase;
@@ -804,7 +804,7 @@ const Contact = () => {
         }
 
         .contact-title {
-          font-family: 'Merriweather', serif;
+          font-family: 'Inter', sans-serif;
           font-size: clamp(48px, 7vw, 88px);
           line-height: 0.98;
           font-weight: 400;
@@ -814,7 +814,7 @@ const Contact = () => {
 
         .contact-title span {
           display: block;
-          color: #2EADE6;
+          color: #38bdf8;
           font-family: 'Cormorant Garamond', serif;
           font-style: italic;
           font-weight: 500;
@@ -823,12 +823,13 @@ const Contact = () => {
 
         .contact-subtitle {
           margin-top: 32px;
-          color: #8f9eaa;
+          color: #8295a5;
           max-width: 650px;
           line-height: 1.9;
           font-size: 16px;
           font-weight: 300;
-        }
+        
+          font-family: 'Merriweather', serif;}
 
         /* MAIN CONTACT */
 
@@ -844,7 +845,7 @@ const Contact = () => {
         }
 
         .contact-info-title {
-          font-family: 'Merriweather', serif;
+          font-family: 'Inter', sans-serif;
           font-size: 27px;
           font-weight: 400;
           margin-bottom: 30px;
@@ -861,25 +862,25 @@ const Contact = () => {
           width: 44px;
           height: 44px;
           border-radius: 50%;
-          border: 1px solid rgba(46,173,230,0.25);
+          border: 1px solid rgba(56,189,248,0.25);
           display: flex;
           align-items: center;
           justify-content: center;
-          color: #2EADE6;
+          color: #38bdf8;
           flex-shrink: 0;
-          background: rgba(46,173,230,0.04);
+          background: rgba(56,189,248,0.04);
           transition: 0.3s ease;
         }
 
         .contact-detail:hover .contact-icon {
-          border-color: #2EADE6;
-          box-shadow: 0 0 20px rgba(46,173,230,0.12);
+          border-color: #38bdf8;
+          box-shadow: 0 0 20px rgba(56,189,248,0.12);
           transform: translateY(-3px);
         }
 
         .contact-detail-text small {
           display: block;
-          color: #687985;
+          color: #8295a5;
           text-transform: uppercase;
           letter-spacing: 2px;
           font-size: 10px;
@@ -888,7 +889,7 @@ const Contact = () => {
 
         .contact-detail-text a,
         .contact-detail-text p {
-          color: #d9e1e7;
+          color: #8295a5;
           text-decoration: none;
           margin: 0;
           font-size: 15px;
@@ -897,7 +898,7 @@ const Contact = () => {
         }
 
         .contact-detail-text a:hover {
-          color: #2EADE6;
+          color: #38bdf8;
         }
 
         /* SOCIALS */
@@ -916,16 +917,16 @@ const Contact = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          color: #9ba8b2;
+          color: #8295a5;
           transition: 0.3s ease;
           text-decoration: none;
         }
 
         .contact-social:hover {
-          color: #2EADE6;
-          border-color: #2EADE6;
+          color: #38bdf8;
+          border-color: #38bdf8;
           transform: translateY(-4px);
-          box-shadow: 0 0 20px rgba(46,173,230,0.12);
+          box-shadow: 0 0 20px rgba(56,189,248,0.12);
         }
 
         /* FORM */
@@ -946,12 +947,12 @@ const Contact = () => {
           left: 0;
           width: 80px;
           height: 1px;
-          background: #2EADE6;
-          box-shadow: 0 0 15px rgba(46,173,230,0.7);
+          background: #38bdf8;
+          box-shadow: 0 0 15px rgba(56,189,248,0.7);
         }
 
         .contact-form-title {
-          font-family: 'Merriweather', serif;
+          font-family: 'Inter', sans-serif;
           font-size: 28px;
           font-weight: 400;
           margin: 0 0 30px;
@@ -963,7 +964,7 @@ const Contact = () => {
 
         .contact-field label {
           display: block;
-          color: #7f8d98;
+          color: #8295a5;
           font-size: 11px;
           letter-spacing: 2px;
           text-transform: uppercase;
@@ -975,7 +976,7 @@ const Contact = () => {
           width: 100%;
           background: rgba(0,0,0,0.18);
           border: 1px solid rgba(255,255,255,0.1);
-          color: #ffffff;
+          color: #f8fafc;
           padding: 15px 16px;
           font-family: 'Inter', sans-serif;
           font-size: 14px;
@@ -994,21 +995,21 @@ const Contact = () => {
 
         .contact-field input:focus,
         .contact-field textarea:focus {
-          border-color: rgba(46,173,230,0.7);
-          box-shadow: 0 0 0 3px rgba(46,173,230,0.06);
+          border-color: rgba(56,189,248,0.7);
+          box-shadow: 0 0 0 3px rgba(56,189,248,0.06);
         }
 
         .contact-field input::placeholder,
         .contact-field textarea::placeholder {
-          color: #4e5c67;
+          color: #8295a5;
         }
 
         .contact-submit {
           width: 100%;
           height: 54px;
           border: none;
-          background: #2EADE6;
-          color: #000718;
+          background: #38bdf8;
+          color: #05080b;
           font-family: 'Inter', sans-serif;
           font-size: 13px;
           font-weight: 700;
@@ -1045,9 +1046,9 @@ const Contact = () => {
         }
 
         .contact-submit:hover:not(:disabled) {
-          background: #ffffff;
+          background: #e0f2fe;
           transform: translateY(-2px);
-          box-shadow: 0 12px 35px rgba(46,173,230,0.15);
+          box-shadow: 0 12px 35px rgba(56,189,248,0.15);
         }
 
         .contact-submit:disabled {
@@ -1072,14 +1073,14 @@ const Contact = () => {
         }
 
         .contact-section-heading small {
-          color: #2EADE6;
+          color: #38bdf8;
           text-transform: uppercase;
           letter-spacing: 3px;
           font-size: 10px;
         }
 
         .contact-section-heading h2 {
-          font-family: 'Merriweather', serif;
+          font-family: 'Inter', sans-serif;
           font-weight: 400;
           font-size: 34px;
           margin: 10px 0 0;
@@ -1096,7 +1097,7 @@ const Contact = () => {
 
         .contact-map:hover {
           opacity: 0.9;
-          border-color: rgba(46,173,230,0.25);
+          border-color: rgba(56,189,248,0.25);
         }
 
         /* NEXT STEPS */
@@ -1127,7 +1128,7 @@ const Contact = () => {
           left: -100%;
           width: 100%;
           height: 1px;
-          background: #2EADE6;
+          background: #38bdf8;
           transition: 0.5s ease;
         }
 
@@ -1136,36 +1137,37 @@ const Contact = () => {
         }
 
         .contact-step:hover {
-          border-color: rgba(46,173,230,0.35);
+          border-color: rgba(56,189,248,0.35);
           transform: translateY(-5px);
-          box-shadow: 0 15px 40px rgba(46,173,230,0.04);
+          box-shadow: 0 15px 40px rgba(56,189,248,0.04);
         }
 
         .contact-step-icon {
-          color: #2EADE6;
+          color: #38bdf8;
           margin-bottom: 25px;
         }
 
         .contact-step-number {
-          color: #42505a;
+          color: #8295a5;
           font-size: 11px;
           letter-spacing: 2px;
           margin-bottom: 12px;
         }
 
         .contact-step h3 {
-          font-family: 'Merriweather', serif;
+          font-family: 'Inter', sans-serif;
           font-size: 20px;
           font-weight: 400;
           margin: 0 0 12px;
         }
 
         .contact-step p {
-          color: #778590;
+          color: #8295a5;
           font-size: 13px;
           line-height: 1.8;
           margin: 0;
-        }
+        
+          font-family: 'Merriweather', serif;}
 
         /* CORE */
 
@@ -1186,7 +1188,7 @@ const Contact = () => {
 
         .contact-core-circle {
           position: absolute;
-          border: 1px solid rgba(46,173,230,0.18);
+          border: 1px solid rgba(56,189,248,0.18);
           border-radius: 50%;
         }
 
@@ -1224,7 +1226,7 @@ const Contact = () => {
         }
 
         .contact-core-content small {
-          color: #2EADE6;
+          color: #38bdf8;
           font-size: 10px;
           text-transform: uppercase;
           letter-spacing: 3px;
@@ -1239,7 +1241,7 @@ const Contact = () => {
         }
 
         .contact-core-content p {
-          color: #667580;
+          color: #8295a5;
           font-size: 11px;
           letter-spacing: 1px;
         }
@@ -1247,13 +1249,13 @@ const Contact = () => {
         /* TOAST */
 
         .Toastify__toast {
-          background: #000A1A !important;
-          color: #ffffff !important;
-          border: 1px solid rgba(46,173,230,0.25);
+          background: #050e1a !important;
+          color: #f8fafc !important;
+          border: 1px solid rgba(56,189,248,0.25);
         }
 
         .Toastify__progress-bar {
-          background: #2EADE6 !important;
+          background: #38bdf8 !important;
         }
 
         /* RESPONSIVE */

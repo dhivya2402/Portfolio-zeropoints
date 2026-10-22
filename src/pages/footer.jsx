@@ -206,7 +206,7 @@ export default function Footer() {
 
           <div className="zpl-footer-socials">
             <a
-              href="https://www.instagram.com/"
+              href="https://www.instagram.com/zeropointlabs.official/"
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
@@ -215,7 +215,7 @@ export default function Footer() {
             </a>
 
             <a
-              href="https://www.linkedin.com/"
+              href="https://www.linkedin.com/in/jeeveshs1811?utm_source=share_via&utm_content=profile&utm_medium=member_android"
               target="_blank"
               rel="noreferrer"
               aria-label="LinkedIn"
@@ -223,14 +223,8 @@ export default function Footer() {
               in
             </a>
 
-            <a
-              href="https://github.com/"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GitHub"
-            >
-              ⌘
-            </a>
+           
+            
           </div>
         </div>
 
