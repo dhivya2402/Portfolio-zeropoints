@@ -5,8 +5,7 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 
 const navLinks = [
   { name: "Home", path: "/" },
-  { name: "About", path: "/about" },
-   { name: "Founder", path: "/founder" },
+  { name: "Founder", path: "/founder" },
   { name: "Services", path: "/services" },
   
   { name: "Contact", path: "/contact" },
@@ -26,9 +25,10 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // close the mobile menu on every navigation, including hash-only ones like /#about
   useEffect(() => {
     setMenuOpen(false);
-  }, [location.pathname]);
+  }, [location.key]);
 
   return (
     <>

@@ -1,0 +1,459 @@
+/* =========================================================
+   SERVICE SHOWCASE  (Home -> services tour)
+   Scoped to .zsh-*; nothing here touches other pages.
+========================================================= */
+
+.zsh {
+  --zsh-nav: 84px; /* fixed navbar height */
+  --accent: #40b8ef;
+  position: relative;
+  width: 100%;
+}
+
+@media (max-width: 760px) {
+  .zsh {
+    --zsh-nav: 72px;
+  }
+}
+
+/* ---------- the pinned stage ---------- */
+
+.zsh-pin {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background: #050e1a;
+  isolation: isolate;
+}
+
+.zsh-scene {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+  color: #eef6fb;
+  text-decoration: none;
+  background: var(--zsh-bg, #050e1a);
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+
+/* until the timeline takes over, only the first scene is visible (no flash of stacked scenes) */
+.zsh--pinned .zsh-scene:not(:first-child) {
+  visibility: hidden;
+}
+
+.zsh-scene:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -8px;
+}
+
+/* ---------- depth layers ---------- */
+
+.zsh-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* .zsh-px carries pointer parallax and the hover lift; the layer above carries scroll motion */
+.zsh-px {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transition: scale 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.zsh-bg .zsh-px {
+  inset: -28px; /* head-room so parallax never shows an edge */
+}
+
+.zsh-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.zsh-mid .zsh-px,
+.zsh-fg .zsh-px {
+  padding-top: var(--zsh-nav);
+}
+
+.zsh-art {
+  --zsh-art: min(calc(100svh - var(--zsh-nav) + 56px), 124vw);
+  width: var(--zsh-art);
+  height: var(--zsh-art);
+  max-width: none;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.zsh-scene:hover .zsh-mid .zsh-px {
+  scale: 1.03;
+}
+
+.zsh-scene:hover .zsh-fg .zsh-px {
+  scale: 1.06;
+}
+
+/* ---------- the big service word (sits between background and subject) ---------- */
+
+.zsh-word {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--zsh-nav);
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 6svh;
+  overflow: hidden; /* the mask letters rise through */
+  pointer-events: none;
+}
+
+.zsh-word-inner {
+  display: block;
+  padding: 0.07em 0.04em 0.05em;
+  white-space: nowrap;
+  font-size: min(calc(92vw / (var(--n, 5) * 0.7)), 44svh);
+  font-weight: 500;
+  line-height: 0.84;
+  letter-spacing: -0.055em;
+  text-align: center;
+}
+
+.zsh-l {
+  display: inline-block;
+  will-change: transform;
+  color: transparent;
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(255, 255, 255, 0.9) 22%,
+    var(--accent) 78%,
+    rgba(255, 255, 255, 0.06) 118%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* outline copy in front of the subject: keeps the word legible through the artwork */
+.zsh-word--front .zsh-l {
+  background: none;
+  color: transparent;
+  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--accent) 45%, #ffffff);
+  opacity: 0.55;
+}
+
+/* ---------- minimal caption ---------- */
+
+/* a soft dark scrim behind the caption keeps it readable over any artwork
+   (scrim sits above the art layers, below the caption) */
+.zsh-scene::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 38%;
+  background: linear-gradient(to top, rgba(3, 10, 20, 0.78), rgba(3, 10, 20, 0));
+  pointer-events: none;
+  z-index: 3;
+}
+
+.zsh-cap {
+  z-index: 4;
+  position: absolute;
+  left: clamp(20px, 4vw, 64px);
+  right: clamp(20px, 4vw, 64px);
+  bottom: clamp(24px, 5svh, 48px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  pointer-events: none;
+}
+
+.zsh-tag {
+  max-width: 22ch;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(19px, 2.1vw, 28px);
+  font-style: italic;
+  line-height: 1.2;
+  color: #eef6fb;
+  text-shadow: 0 2px 24px rgba(3, 10, 20, 0.7);
+}
+
+.zsh-go {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  color: var(--accent);
+  background: rgba(5, 14, 26, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition:
+    background-color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.zsh-scene:hover .zsh-go,
+.zsh-scene:focus-visible .zsh-go {
+  background: var(--accent);
+  color: #04101c;
+  transform: scale(1.08);
+}
+
+/* ---------- "Scroll to Explore" ---------- */
+
+.zsh-prompt {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(20px, 4.5svh, 40px);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  translate: -50% 0;
+  pointer-events: none;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: rgba(238, 246, 251, 0.88);
+  text-shadow: 0 1px 18px rgba(3, 10, 20, 0.8);
+}
+
+.zsh-prompt-line {
+  position: relative;
+  display: block;
+  width: 1px;
+  height: 44px;
+  background: rgba(238, 246, 251, 0.28);
+  overflow: hidden;
+}
+
+.zsh-prompt-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 18px;
+  background: var(--accent);
+  animation: zsh-drip 1.7s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes zsh-drip {
+  0% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(46px);
+  }
+}
+
+/* ---------- progress rail (also the keyboard route through the tour) ---------- */
+
+.zsh-rail {
+  position: absolute;
+  right: clamp(10px, 2vw, 28px);
+  top: calc(50% + var(--zsh-nav) / 2);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transform: translateY(-50%);
+}
+
+.zsh-rail-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 7px 4px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  color: rgba(238, 246, 251, 0.5);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  transition: color 0.5s ease;
+}
+
+.zsh-rail-bar {
+  display: block;
+  width: 16px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition:
+    width 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.5s ease;
+}
+
+.zsh-rail-btn:hover {
+  color: rgba(238, 246, 251, 0.85);
+}
+
+.zsh-rail-btn[aria-current="true"] {
+  color: var(--accent);
+}
+
+.zsh-rail-btn[aria-current="true"] .zsh-rail-bar {
+  width: 34px;
+}
+
+.zsh-rail-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ---------- small screens ---------- */
+
+@media (max-width: 760px) {
+  .zsh-cap {
+    bottom: 122px; /* leave room for the scroll prompt */
+  }
+
+  .zsh-go {
+    width: 48px;
+    height: 48px;
+  }
+
+  .zsh-rail-num {
+    display: none;
+  }
+
+  .zsh-rail-btn {
+    padding: 9px 2px;
+  }
+
+  .zsh-art {
+    --zsh-art: min(calc(100svh - var(--zsh-nav) + 56px), 112vw);
+  }
+
+  .zsh-word-inner {
+    font-size: min(calc(92vw / (var(--n, 5) * 0.74)), 30svh, 25vw);
+  }
+}
+
+/* ---------- reduced motion: scenes become ordinary stacked panels ---------- */
+
+.zsh--static .zsh-pin {
+  height: auto;
+  overflow: visible;
+}
+
+.zsh--static .zsh-scene {
+  position: relative;
+  inset: auto;
+  height: min(86svh, 760px);
+  min-height: 420px;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.zsh--static .zsh-cap {
+  bottom: clamp(20px, 4svh, 40px);
+}
+
+/* AUTOMATE's gear sits bottom-left; a narrower caption wraps clear of it */
+.zsh-scene[data-scene="automate"] .zsh-tag {
+  max-width: 15ch;
+}
+
+/* ---------- GROW / CREATE / AUTOMATE: title in a clear band above the artwork ----------
+   BUILD is left exactly as designed. On the other three pillars the artwork fills the stage,
+   so the name is placed in the open space under the navbar at every size, with enough line
+   room that the letters are never cut off by the mask. */
+.zsh-scene .zsh-word {
+  top: calc(var(--zsh-nav) + 3svh);
+  bottom: auto;
+  align-items: flex-start;
+  padding: 0;
+}
+
+.zsh-scene .zsh-word-inner {
+  line-height: 1.02;
+  padding: 0.14em 0.04em 0.12em;
+  font-size: min(calc(84vw / (var(--n, 5) * 0.74)), 19svh);
+  /* glow matches each pillar's accent colour, as in the reference images */
+  filter: drop-shadow(0 0 18px color-mix(in srgb, var(--accent) 55%, transparent));
+}
+
+/* artwork sits a little lower so the title has room above it, as in the reference images */
+.zsh-scene .zsh-mid .zsh-px,
+.zsh-scene .zsh-fg .zsh-px {
+  padding-top: calc(var(--zsh-nav) + 9svh);
+}
+
+/* thin light outline on the letters, as in the reference images */
+.zsh-scene .zsh-l {
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.75);
+}
+
+/* the second, outlined copy of the word is not needed once the title sits in the clear band */
+.zsh-scene .zsh-word--front {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zsh-px,
+  .zsh-go {
+    transition: none;
+  }
+
+  .zsh-scene:hover .zsh-mid .zsh-px,
+  .zsh-scene:hover .zsh-fg .zsh-px {
+    scale: 1;
+  }
+}
+
+/* AUTOMATE: open up the letter spacing so the eight letters don't crowd together */
+.zsh-scene[data-scene="automate"] .zsh-word-inner {
+  letter-spacing: 0.035em;
+}
+
+/* ---------- photo pillars (GROW / CREATE / AUTOMATE / BUILD images) ----------
+   Each image is shown whole (no cover crop) so its own baked-in title and subtitle are
+   never cut off. The animated title and caption are hidden on these cards; the arrow
+   button and the link to the service section remain. */
+.zsh-scene[data-photo] .zsh-bg img {
+  object-fit: contain;
+}
+
+.zsh-scene[data-photo] .zsh-word,
+.zsh-scene[data-photo] .zsh-tag {
+  display: none;
+}
+
+/* keep the arrow button on the right once the caption text is hidden */
+.zsh-scene[data-photo] .zsh-cap {
+  justify-content: flex-end;
+}
+
+/* phone widths: no pointer parallax here (it is mouse-only), so the artwork can use the full
+   width. The -28px head-room inset would otherwise push the baked subtitle off the left edge. */
+@media (max-width: 760px) {
+  .zsh-scene[data-photo] .zsh-bg .zsh-px {
+    inset: 0;
+  }
+}

@@ -240,7 +240,7 @@ export default function Footer() {
 
           <nav className="zpl-footer-list">
             <Link to="/">Home</Link>
-            <Link to="/about">About Us</Link>
+            <Link to="/#about">About Us</Link>
             <Link to="/services">Services</Link>
             <Link to="/pricing">Pricing</Link>
             <Link to="/contact">Contact</Link>

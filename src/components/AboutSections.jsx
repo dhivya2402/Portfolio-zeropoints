@@ -1,10 +1,17 @@
+/**
+ * AboutSections
+ * -------------
+ * The About content, now rendered on Home (/#about). Story, Mission/Vision,
+ * Core Values, Team, Statistics and Achievements live here so Home can compose
+ * them in one place. /about redirects to /#about, so this content is never
+ * duplicated.
+ */
 import { motion } from 'framer-motion'
-import Reveal from '../components/Reveal.jsx'
-import ValueCard from '../components/ValueCard.jsx'
-import TeamCard from '../components/TeamCard.jsx'
-import EdgeFrame from '../components/EdgeFrame.jsx'
-import Icon from '../components/Icons.jsx'
-import CTA from '../components/CTA.jsx'
+import Reveal from './Reveal.jsx'
+import ValueCard from './ValueCard.jsx'
+import TeamCard from './TeamCard.jsx'
+import EdgeFrame from './EdgeFrame.jsx'
+import Icon from './Icons.jsx'
 import zplMark from '../assets/zpl-mark.png'
 import teamPhoto from '../assets/team-photo.jpeg'
 
@@ -139,40 +146,22 @@ const teamMembers = [
   },
 ]
 
-export default function About() {
-  return (
-    <>
-      <CompanyStory />
-      <MissionVision />
-      <CoreValues />
-      <Team />
-      <Statistics />
-      <Achievements />
-      <CTA
-        heading="Ready To Build Something Bigger Than A Website?"
-        highlight="Website"
-        text="Let's create digital solutions that help your business grow."
-      />
-    </>
-  )
-}
-
 /* ── 1. COMPANY STORY ────────────────────────────────────────────────── */
-function CompanyStory() {
+export function CompanyStory() {
   return (
-    <section className="relative overflow-hidden pt-24 sm:pt-32 lg:pt-40">
+    <section id="about" className="zp-section relative scroll-mt-24 overflow-hidden border-t border-hairline">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-[520px] bg-radial-fade"
       />
-      <div className="zp-container relative pb-20 sm:pb-28">
+      <div className="zp-container relative">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-7">
             <Reveal>
               <p className="zp-label text-[12.5px] sm:text-[13px]">Our Story</p>
-              <h1 className="zp-h1 mt-5">
+              <h2 className="zp-h2 mt-5">
                 Every Company Starts With An <span className="zp-script">Idea</span>.
-              </h1>
+              </h2>
             </Reveal>
 
             <Reveal delay={0.15} className="mt-9 grid gap-6 sm:grid-cols-2">
@@ -254,7 +243,7 @@ function CompanyStory() {
 }
 
 /* ── 2 & 3. MISSION / VISION ─────────────────────────────────────────── */
-function MissionVision() {
+export function MissionVision() {
   return (
     <section className="zp-section border-t border-hairline bg-bg-deep/60">
       <div className="zp-container grid gap-6 sm:grid-cols-2 sm:gap-7">
@@ -284,7 +273,7 @@ function MissionVision() {
 }
 
 /* ── 4. CORE VALUES ──────────────────────────────────────────────────── */
-function CoreValues() {
+export function CoreValues() {
   return (
     <section className="zp-section">
       <div className="zp-container">
@@ -312,9 +301,9 @@ function CoreValues() {
 }
 
 /* ── 5. TEAM ──────────────────────────────────────────────────────────── */
-function Team() {
+export function Team() {
   return (
-    <section className="zp-section overflow-x-clip border-t border-hairline bg-bg-deep/60">
+    <section id="team" className="zp-section scroll-mt-24 overflow-x-clip border-t border-hairline bg-bg-deep/60">
       <div className="zp-container">
         <Reveal className="mx-auto max-w-xl text-center">
           <p className="zp-label">Our Team</p>
@@ -366,7 +355,7 @@ function Team() {
 }
 
 /* ── 6. STATISTICS (qualitative) ─────────────────────────────────────── */
-function Statistics() {
+export function Statistics() {
   return (
     <section className="zp-section">
       <div className="zp-container">
@@ -420,7 +409,7 @@ const capabilities = [
 ]
 
 /* ── 7. ACHIEVEMENTS ─────────────────────────────────────────────────── */
-function Achievements() {
+export function Achievements() {
   return (
     <section className="zp-section border-t border-hairline bg-bg-deep/60">
       <div className="zp-container">
