@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ArrowUpRight } from "lucide-react";
@@ -14,19 +13,18 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const isHome = location.pathname === "/";
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
     setMenuOpen(false);
-  }, [location.key]);
+  }, [location.pathname, location.hash, location.key]);
 
   return (
     <>
@@ -34,131 +32,113 @@ export default function Header() {
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap');
 
         .zpl-header {
-          --zpl-espresso: #211A15;
+          --zpl-espresso: #17120E;
           --zpl-mocha: #30251E;
           --zpl-ivory: #F3EDE0;
           --zpl-beige: #C9B69B;
           --zpl-bronze: #A88960;
-
           position: fixed;
-          top: 0;
-          left: 0;
+          inset: 0 0 auto;
           width: 100%;
           z-index: 1000;
-
-          background: rgba(33, 26, 21, 0.88);
-          border-bottom: 1px solid rgba(201, 182, 155, 0.14);
-
-          backdrop-filter: blur(18px);
-          -webkit-backdrop-filter: blur(18px);
-
-          transition:
-            background 0.35s ease,
-            border-color 0.35s ease,
-            box-shadow 0.35s ease;
+          background: linear-gradient(180deg, #15100D 0%, #17120E 52%, #181310 100%);
+          border-bottom: 1px solid rgba(201, 182, 155, 0.15);
+          box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+          transition: background .35s ease, border-color .35s ease, box-shadow .35s ease, backdrop-filter .35s ease;
         }
 
-        .zpl-header *,
-        .zpl-header *::before,
-        .zpl-header *::after {
-          box-sizing: border-box;
+        .zpl-header *, .zpl-header *::before, .zpl-header *::after { box-sizing: border-box; }
+
+        /* Match the dark brown gradient from the supplied colour reference. */
+        .zpl-header.home-header:not(.scrolled) {
+          background: linear-gradient(180deg, #15100D 0%, #17120E 52%, #181310 100%);
+          border-bottom-color: rgba(201, 182, 155, 0.15);
+          box-shadow: none;
+          -webkit-backdrop-filter: none;
+          backdrop-filter: none;
         }
 
         .zpl-header.scrolled {
-          background: rgba(33, 26, 21, 0.97);
-          border-bottom-color: rgba(168, 137, 96, 0.35);
-          box-shadow: 0 10px 35px rgba(0, 0, 0, 0.24);
+          background: linear-gradient(180deg, #15100D 0%, #17120E 52%, #181310 100%);
+          border-bottom-color: rgba(168, 137, 96, 0.32);
+          box-shadow: 0 10px 32px rgba(0, 0, 0, 0.23);
+          -webkit-backdrop-filter: blur(16px);
+          backdrop-filter: blur(16px);
         }
 
-        /* HEADER LAYOUT */
-
         .zpl-header .header-inner {
-          width: min(1400px, 92%);
-          height: 88px;
-          margin: auto;
-
+          width: min(1500px, 92%);
+          min-height: 112px;
+          margin: 0 auto;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          gap: 28px;
+          gap: clamp(14px, 2vw, 30px);
         }
 
-        /* RESPONSIVE LOGO */
-
+        /* Larger logo with a responsive image box. */
         .zpl-header .zpl-logo {
           display: inline-flex;
+          flex: 0 0 auto;
           align-items: center;
-          flex-shrink: 0;
+          justify-content: flex-start;
+          min-width: 0;
           text-decoration: none;
+          line-height: 0;
         }
 
         .zpl-header .zpl-logo-image {
           display: block;
-          width: 230px;
-          height: 75px;
-          max-width: 100%;
+          width: clamp(220px, 20vw, 300px);
+          height: 104px;
+          max-width: none;
           object-fit: contain;
           object-position: left center;
-
-          transition:
-            transform 0.35s ease,
-            filter 0.35s ease;
+          flex-shrink: 0;
+          transition: transform .35s ease, filter .35s ease;
         }
 
         .zpl-header .zpl-logo:hover .zpl-logo-image {
           transform: scale(1.035);
-          filter: drop-shadow(0 0 8px rgba(168, 137, 96, 0.22));
+          filter: drop-shadow(0 0 8px rgba(168, 137, 96, .25));
         }
-
-        /* DESKTOP NAVIGATION */
 
         .zpl-header .desktop-nav {
           display: flex;
           align-items: center;
-          gap: clamp(20px, 2.5vw, 36px);
+          justify-content: center;
+          gap: clamp(18px, 2.5vw, 38px);
+          margin-left: auto;
         }
 
         .zpl-header .nav-link {
           position: relative;
-          padding: 10px 0;
-
+          padding: 12px 0;
           color: var(--zpl-beige);
           font-family: 'Cormorant Garamond', serif;
-          font-size: 21px;
+          font-size: clamp(18px, 1.35vw, 22px);
           font-weight: 500;
           font-style: italic;
           text-decoration: none;
           white-space: nowrap;
-
-          transition: color 0.3s ease;
+          transition: color .25s ease;
         }
 
         .zpl-header .nav-link::after {
           content: "";
           position: absolute;
-          bottom: 2px;
           left: 0;
-
+          bottom: 4px;
           width: 0;
           height: 1px;
-
           background: var(--zpl-bronze);
-          box-shadow: 0 0 10px rgba(168, 137, 96, 0.35);
-
-          transition: width 0.35s ease;
+          transition: width .3s ease;
         }
 
         .zpl-header .nav-link:hover,
-        .zpl-header .nav-link.active {
-          color: var(--zpl-ivory);
-        }
-
+        .zpl-header .nav-link.active { color: var(--zpl-ivory); }
         .zpl-header .nav-link:hover::after,
-        .zpl-header .nav-link.active::after {
-          width: 100%;
-        }
-
-        /* CTA BUTTON */
+        .zpl-header .nav-link.active::after { width: 100%; }
 
         .zpl-header .header-cta,
         .zpl-header .mobile-cta {
@@ -166,27 +146,19 @@ export default function Header() {
           align-items: center;
           justify-content: center;
           gap: 10px;
-
-          padding: 12px 19px;
-
-          border: 1px solid rgba(168, 137, 96, 0.65);
-          border-radius: 7px;
-
+          padding: 12px 20px;
+          border: 1px solid rgba(168, 137, 96, .7);
+          border-radius: 8px;
           color: var(--zpl-ivory);
-          background: rgba(168, 137, 96, 0.08);
-
+          background: rgba(168, 137, 96, .08);
           font-family: 'Cormorant Garamond', serif;
           font-size: 21px;
           font-weight: 500;
           font-style: italic;
           text-decoration: none;
           white-space: nowrap;
-
-          transition:
-            color 0.3s ease,
-            background 0.3s ease,
-            border-color 0.3s ease,
-            box-shadow 0.3s ease;
+          flex-shrink: 0;
+          transition: color .3s ease, background .3s ease, border-color .3s ease, transform .3s ease;
         }
 
         .zpl-header .header-cta:hover,
@@ -194,119 +166,73 @@ export default function Header() {
           color: var(--zpl-espresso);
           background: var(--zpl-beige);
           border-color: var(--zpl-beige);
-          box-shadow: 0 0 24px rgba(168, 137, 96, 0.16);
+          transform: translateY(-2px);
         }
 
         .zpl-header .header-cta svg,
-        .zpl-header .mobile-cta svg {
-          transition: transform 0.3s ease;
-        }
-
+        .zpl-header .mobile-cta svg { transition: transform .3s ease; }
         .zpl-header .header-cta:hover svg,
-        .zpl-header .mobile-cta:hover svg {
-          transform: translate(3px, -3px);
-        }
-
-        /* MOBILE MENU BUTTON */
+        .zpl-header .mobile-cta:hover svg { transform: translate(3px, -3px); }
 
         .zpl-header .mobile-menu-btn {
           display: none;
           width: 44px;
           height: 44px;
+          flex: 0 0 auto;
           align-items: center;
           justify-content: center;
-
           color: var(--zpl-beige);
           background: var(--zpl-mocha);
-          border: 1px solid rgba(201, 182, 155, 0.24);
+          border: 1px solid rgba(201, 182, 155, .25);
           border-radius: 8px;
-
           cursor: pointer;
-          transition: background 0.3s ease, border-color 0.3s ease;
         }
 
-        .zpl-header .mobile-menu-btn:hover {
-          background: rgba(168, 137, 96, 0.15);
-          border-color: var(--zpl-bronze);
+        .zpl-header .mobile-nav { display: none; }
+
+        /* Compact desktop/laptop screens */
+        @media (max-width: 1100px) and (min-width: 761px) {
+          .zpl-header .header-inner { width: 94%; gap: 16px; min-height: 98px; }
+          .zpl-header .zpl-logo-image { width: 195px; height: 88px; }
+          .zpl-header .desktop-nav { gap: 17px; }
+          .zpl-header .nav-link { font-size: 19px; }
+          .zpl-header .header-cta { padding: 10px 13px; font-size: 19px; }
         }
-
-        .zpl-header .mobile-nav {
-          display: none;
-        }
-
-        /* TABLET */
-
-        @media (max-width: 1000px) {
-          .zpl-header .header-inner {
-            gap: 18px;
-          }
-
-          .zpl-header .desktop-nav {
-            gap: 18px;
-          }
-
-          .zpl-header .nav-link {
-            font-size: 19px;
-          }
-
-          .zpl-header .zpl-logo-image {
-            width: 170px;
-            height: 58px;
-          }
-
-          .zpl-header .header-cta {
-            padding: 10px 14px;
-            font-size: 19px;
-          }
-        }
-
-        /* MOBILE NAVIGATION */
 
         @media (max-width: 760px) {
           .zpl-header .header-inner {
             width: 90%;
-            height: 74px;
+            min-height: 86px;
             gap: 12px;
           }
 
-          .zpl-header .desktop-nav,
-          .zpl-header .header-cta {
-            display: none;
-          }
-
           .zpl-header .zpl-logo-image {
-            width: 155px;
-            height: 52px;
+            width: clamp(165px, 43vw, 195px);
+            height: 76px;
           }
 
-          .zpl-header .mobile-menu-btn {
-            display: inline-flex;
-            flex-shrink: 0;
-          }
+          .zpl-header .desktop-nav,
+          .zpl-header .header-cta { display: none; }
+
+          .zpl-header .mobile-menu-btn { display: inline-flex; margin-left: auto; }
 
           .zpl-header .mobile-nav {
             display: flex;
             flex-direction: column;
             gap: 4px;
-
             max-height: 0;
             overflow: hidden;
             padding: 0 5%;
-
-            background: rgba(48, 37, 30, 0.99);
+            background: linear-gradient(180deg, #15100D 0%, #17120E 52%, #181310 100%);
             border-bottom: 1px solid transparent;
-
-            transition:
-              max-height 0.4s ease,
-              padding 0.4s ease,
-              border-color 0.3s ease;
+            transition: max-height .4s ease, padding .4s ease, border-color .3s ease;
           }
 
           .zpl-header .mobile-nav.open {
-            max-height: 450px;
+            max-height: 460px;
             padding-top: 12px;
             padding-bottom: 22px;
-            border-bottom-color: rgba(168, 137, 96, 0.35);
+            border-bottom-color: rgba(168, 137, 96, .35);
           }
 
           .zpl-header .mobile-nav-link {
@@ -314,24 +240,16 @@ export default function Header() {
             align-items: center;
             gap: 14px;
             padding: 14px 4px;
-
             color: var(--zpl-ivory);
-            border-bottom: 1px solid rgba(201, 182, 155, 0.12);
-
+            border-bottom: 1px solid rgba(201, 182, 155, .12);
             font-family: 'Cormorant Garamond', serif;
             font-size: 23px;
             font-weight: 500;
             font-style: italic;
             text-decoration: none;
-
             opacity: 0;
             transform: translateY(8px);
-
-            transition:
-              color 0.25s ease,
-              opacity 0.3s ease,
-              transform 0.3s ease;
-
+            transition: color .25s ease, opacity .3s ease, transform .3s ease;
             transition-delay: 0ms;
           }
 
@@ -349,15 +267,9 @@ export default function Header() {
             letter-spacing: 1px;
           }
 
-          .zpl-header .mobile-nav-link svg {
-            margin-left: auto;
-            color: var(--zpl-beige);
-          }
-
+          .zpl-header .mobile-nav-link svg { margin-left: auto; color: var(--zpl-beige); }
           .zpl-header .mobile-nav-link:hover,
-          .zpl-header .mobile-nav-link.active {
-            color: var(--zpl-beige);
-          }
+          .zpl-header .mobile-nav-link.active { color: var(--zpl-beige); }
 
           .zpl-header .mobile-cta {
             width: 100%;
@@ -367,30 +279,24 @@ export default function Header() {
           }
         }
 
-        @media (max-width: 360px) {
-          .zpl-header .header-inner {
-            width: 92%;
-          }
-
-          .zpl-header .zpl-logo-image {
-            width: 135px;
-            height: 48px;
-          }
+        @media (max-width: 380px) {
+          .zpl-header .header-inner { width: 92%; min-height: 80px; }
+          .zpl-header .zpl-logo-image { width: 150px; height: 70px; }
+          .zpl-header .mobile-menu-btn { width: 41px; height: 41px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .zpl-header *,
-          .zpl-header *::before,
-          .zpl-header *::after {
-            transition-duration: 0.01ms !important;
-            animation-duration: 0.01ms !important;
+          .zpl-header *, .zpl-header *::before, .zpl-header *::after {
+            transition-duration: .01ms !important;
+            animation-duration: .01ms !important;
           }
         }
       `}</style>
 
-      <header className={`zpl-header ${scrolled ? "scrolled" : ""}`}>
+      <header
+        className={`zpl-header ${isHome ? "home-header" : "inner-header"} ${scrolled ? "scrolled" : ""}`}
+      >
         <div className="header-inner">
-          {/* ZPL LOGO */}
           <Link to="/" className="zpl-logo" aria-label="ZeroPoint Labs Home">
             <img
               src="/zpl-logo.png"
@@ -399,31 +305,27 @@ export default function Header() {
             />
           </Link>
 
-          {/* DESKTOP NAVIGATION */}
           <nav className="desktop-nav" aria-label="Main navigation">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
-                className={`nav-link ${
-                  location.pathname === link.path ? "active" : ""
-                }`}
+                className={`nav-link ${location.pathname === link.path ? "active" : ""}`}
+                aria-current={location.pathname === link.path ? "page" : undefined}
               >
                 {link.name}
               </Link>
             ))}
           </nav>
 
-          {/* DESKTOP CTA */}
           <Link to="/contact" className="header-cta">
             Let's Talk <ArrowUpRight size={17} />
           </Link>
 
-          {/* MOBILE MENU BUTTON */}
           <button
             type="button"
             className="mobile-menu-btn"
-            onClick={() => setMenuOpen((prev) => !prev)}
+            onClick={() => setMenuOpen((previous) => !previous)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
           >
@@ -431,19 +333,19 @@ export default function Header() {
           </button>
         </div>
 
-        {/* MOBILE NAVIGATION */}
         <nav
           className={`mobile-nav ${menuOpen ? "open" : ""}`}
           aria-label="Mobile navigation"
+          aria-hidden={!menuOpen}
         >
           {navLinks.map((link, index) => (
             <Link
               key={link.name}
               to={link.path}
-              className={`mobile-nav-link ${
-                location.pathname === link.path ? "active" : ""
-              }`}
+              className={`mobile-nav-link ${location.pathname === link.path ? "active" : ""}`}
               style={{ "--delay": `${index * 60}ms` }}
+              tabIndex={menuOpen ? 0 : -1}
+              aria-current={location.pathname === link.path ? "page" : undefined}
             >
               <span>0{index + 1}</span>
               {link.name}
@@ -451,7 +353,7 @@ export default function Header() {
             </Link>
           ))}
 
-          <Link to="/contact" className="mobile-cta">
+          <Link to="/contact" className="mobile-cta" tabIndex={menuOpen ? 0 : -1}>
             Start a Project <ArrowUpRight size={17} />
           </Link>
         </nav>
