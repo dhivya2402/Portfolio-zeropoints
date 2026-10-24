@@ -5,7 +5,7 @@ import CircleHighlight from '../components/CircleHighlight.jsx'
 import ResultCard from '../components/ResultCard.jsx'
 import WhyCard from '../components/WhyCard.jsx'
 import EdgeFrame from '../components/EdgeFrame.jsx'
-import HeroVisual from '../components/HeroVisual.jsx'
+import ZeroPointLogo from '../components/ZeroPointLogo.jsx'
 import Icon from '../components/Icons.jsx'
 import ServiceShowcase from '../components/ServiceShowcase.jsx'
 import JumpingHeading from '../components/JumpingHeading.jsx'
@@ -191,8 +191,8 @@ function Hero() {
           </motion.div>
         </div>
 
-        <div className="lg:col-span-6">
-          <HeroVisual />
+        <div className="flex items-center justify-center lg:col-span-6">
+          <ZeroPointLogo className="w-full max-w-[460px]" />
         </div>
       </div>
     </section>
