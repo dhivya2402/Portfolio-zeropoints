@@ -1,6 +1,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import CircleHighlight from "../components/CircleHighlight.jsx";
 
 
 
@@ -461,7 +462,7 @@ export default function Pricing() {
   return (
     <main className="pricing-page">
       <style>{`
-        @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&family=Merriweather:wght@300;400;700&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
 
         .pricing-page,
         .pricing-page * {
@@ -469,11 +470,11 @@ export default function Pricing() {
         }
 
         .pricing-page {
-          --pricing-bg: #050e1a;
-          --pricing-text: #e2f3ff;
-          --pricing-blue: #38bdf8;
-          --pricing-muted: #71879a;
-          --pricing-line: rgba(56,189,248,.16);
+          --pricing-bg: #211A15;
+          --pricing-text: #F3EDE0;
+          --pricing-blue: #A88960;
+          --pricing-muted: #A39380;
+          --pricing-line: rgba(168, 137, 96,.16);
 
           min-height: 100vh;
           overflow: hidden;
@@ -481,18 +482,18 @@ export default function Pricing() {
           background:
             radial-gradient(
               circle at 78% 12%,
-              rgba(56,189,248,.075),
+              rgba(168, 137, 96,.075),
               transparent 25%
             ),
             radial-gradient(
               circle at 12% 65%,
-              rgba(56,189,248,.035),
+              rgba(168, 137, 96,.035),
               transparent 28%
             ),
-            #050e1a;
+            #211A15;
 
           color: var(--pricing-text);
-          font-family: "Merriweather", serif;
+          font-family: "Lora", Georgia, serif;
         }
 
         .pricing-page a {
@@ -522,12 +523,12 @@ export default function Pricing() {
 
           background-image:
             linear-gradient(
-              rgba(56,189,248,.055) 1px,
+              rgba(168, 137, 96,.055) 1px,
               transparent 1px
             ),
             linear-gradient(
               90deg,
-              rgba(56,189,248,.055) 1px,
+              rgba(168, 137, 96,.055) 1px,
               transparent 1px
             );
 
@@ -549,7 +550,7 @@ export default function Pricing() {
           background:
             radial-gradient(
               circle at 50% 45%,
-              rgba(56,189,248,.09),
+              rgba(168, 137, 96,.09),
               transparent 35%
             );
 
@@ -586,7 +587,7 @@ export default function Pricing() {
 
           color: var(--pricing-blue);
 
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: 10px;
           font-weight: 900;
           letter-spacing: 5px;
@@ -600,13 +601,13 @@ export default function Pricing() {
           background: var(--pricing-blue);
 
           box-shadow:
-            0 0 12px rgba(56,189,248,.8);
+            0 0 12px rgba(168, 137, 96,.8);
         }
 
         .pricing-hero h1 {
           margin: 0;
 
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: clamp(72px, 10vw, 150px);
           line-height: .8;
           letter-spacing: -9px;
@@ -618,7 +619,7 @@ export default function Pricing() {
 
           color: var(--pricing-blue);
 
-          font-family: "Cormorant Garamond", serif;
+          font-family: "Lora", Georgia, serif;
           font-style: italic;
           font-weight: 600;
           letter-spacing: -4px;
@@ -630,7 +631,7 @@ export default function Pricing() {
           max-width: 610px;
           margin: 48px 0 0;
 
-          color: #7890a3;
+          color: #C9B69B;
           font-size: 13px;
           line-height: 1.9;
         }
@@ -653,14 +654,14 @@ export default function Pricing() {
           border: 1px solid var(--pricing-line);
           border-radius: 999px;
 
-          color: #6e8496;
+          color: #A39380;
 
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: 7px;
           font-weight: 800;
           letter-spacing: 2px;
 
-          background: rgba(5,14,26,.45);
+          background: rgba(32, 25, 20,.45);
         }
 
         .pricing-hero-tag::before {
@@ -694,7 +695,7 @@ export default function Pricing() {
           width: 100%;
           height: 42%;
 
-          border: 1px solid rgba(56,189,248,.2);
+          border: 1px solid rgba(168, 137, 96,.2);
           border-radius: 50%;
 
           transform:
@@ -714,7 +715,7 @@ export default function Pricing() {
 
           box-shadow:
             0 0 10px var(--pricing-blue),
-            0 0 28px rgba(56,189,248,.75);
+            0 0 28px rgba(168, 137, 96,.75);
         }
 
         .pricing-orbit span::after {
@@ -722,7 +723,7 @@ export default function Pricing() {
           position: absolute;
           inset: -6px;
 
-          border: 1px solid rgba(56,189,248,.16);
+          border: 1px solid rgba(168, 137, 96,.16);
           border-radius: 50%;
         }
 
@@ -826,16 +827,16 @@ export default function Pricing() {
           background:
             radial-gradient(
               circle,
-              rgba(56,189,248,.2),
-              rgba(7,15,25,.96) 67%
+              rgba(168, 137, 96,.2),
+              rgba(32, 24, 19,.96) 67%
             );
 
-          border: 1px solid rgba(56,189,248,.26);
+          border: 1px solid rgba(168, 137, 96,.26);
 
           box-shadow:
-            0 0 35px rgba(56,189,248,.16),
-            0 0 110px rgba(56,189,248,.08),
-            inset 0 0 30px rgba(56,189,248,.09);
+            0 0 35px rgba(168, 137, 96,.16),
+            0 0 110px rgba(168, 137, 96,.08),
+            inset 0 0 30px rgba(168, 137, 96,.09);
 
           animation:
             pricingCoreFloat
@@ -850,7 +851,7 @@ export default function Pricing() {
           position: absolute;
 
           border-radius: 50%;
-          border: 1px solid rgba(56,189,248,.14);
+          border: 1px solid rgba(168, 137, 96,.14);
         }
 
         .pricing-core::before {
@@ -877,13 +878,13 @@ export default function Pricing() {
           background:
             radial-gradient(
               circle,
-              rgba(56,189,248,.12),
+              rgba(168, 137, 96,.12),
               transparent 68%
             );
         }
 
         .pricing-core-inner span {
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: 21px;
           font-weight: 800;
           letter-spacing: 6px;
@@ -892,7 +893,7 @@ export default function Pricing() {
           color: var(--pricing-text);
 
           text-shadow:
-            0 0 20px rgba(56,189,248,.85);
+            0 0 20px rgba(168, 137, 96,.85);
         }
 
         @keyframes pricingCoreFloat {
@@ -915,9 +916,9 @@ export default function Pricing() {
           right: 5%;
           bottom: 16%;
 
-          color: rgba(56,189,248,.16);
+          color: rgba(168, 137, 96,.16);
 
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: 9px;
           font-weight: 900;
           letter-spacing: 6px;
@@ -933,7 +934,7 @@ export default function Pricing() {
             linear-gradient(
               90deg,
               transparent,
-              rgba(56,189,248,.4)
+              rgba(168, 137, 96,.4)
             );
         }
 
@@ -971,7 +972,7 @@ export default function Pricing() {
 
           color: var(--pricing-blue);
 
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: 9px;
           font-weight: 900;
           letter-spacing: 4px;
@@ -980,7 +981,7 @@ export default function Pricing() {
         .pricing-section h2 {
           margin: 0;
 
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: clamp(42px, 6vw, 82px);
           line-height: .9;
           letter-spacing: -5px;
@@ -990,7 +991,7 @@ export default function Pricing() {
         .pricing-section h2 em {
           color: var(--pricing-blue);
 
-          font-family: "Cormorant Garamond", serif;
+          font-family: "Lora", Georgia, serif;
           font-style: italic;
           font-weight: 600;
           letter-spacing: -2px;
@@ -999,7 +1000,7 @@ export default function Pricing() {
         .pricing-section-description {
           width: min(420px, 100%);
 
-          color: #647b8e;
+          color: #A39380;
 
           font-size: 11px;
           line-height: 1.9;
@@ -1018,13 +1019,13 @@ export default function Pricing() {
 
           padding: 5px;
 
-          border: 1px solid rgba(56,189,248,.15);
+          border: 1px solid rgba(168, 137, 96,.15);
           border-radius: 999px;
 
-          background: rgba(3,10,18,.7);
+          background: rgba(29, 22, 18,.7);
 
           box-shadow:
-            inset 0 0 25px rgba(56,189,248,.025);
+            inset 0 0 25px rgba(168, 137, 96,.025);
         }
 
         .pricing-switch::before {
@@ -1039,12 +1040,12 @@ export default function Pricing() {
 
           border-radius: 999px;
 
-          background: rgba(56,189,248,.1);
+          background: rgba(168, 137, 96,.1);
 
-          border: 1px solid rgba(56,189,248,.3);
+          border: 1px solid rgba(168, 137, 96,.3);
 
           box-shadow:
-            0 0 24px rgba(56,189,248,.07);
+            0 0 24px rgba(168, 137, 96,.07);
 
           transition:
             transform .45s
@@ -1065,11 +1066,11 @@ export default function Pricing() {
           border: 0;
           background: transparent;
 
-          color: #61798b;
+          color: #A39380;
 
           cursor: pointer;
 
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: 8px;
           font-weight: 900;
           letter-spacing: 2px;
@@ -1233,15 +1234,15 @@ export default function Pricing() {
           overflow: hidden;
 
           border:
-            1px solid rgba(56,189,248,.13);
+            1px solid rgba(168, 137, 96,.13);
 
           border-radius: 3px;
 
           background:
             linear-gradient(
               145deg,
-              rgba(10,24,38,.9),
-              rgba(4,12,21,.96)
+              rgba(37, 28, 22,.9),
+              rgba(30, 23, 18,.96)
             );
 
           transform:
@@ -1256,17 +1257,17 @@ export default function Pricing() {
             box-shadow .35s ease;
 
           box-shadow:
-            inset 0 0 40px rgba(56,189,248,.018);
+            inset 0 0 40px rgba(168, 137, 96,.018);
         }
 
         .pricing-card:hover {
           border-color:
-            rgba(56,189,248,.34);
+            rgba(168, 137, 96,.34);
 
           box-shadow:
-            0 20px 70px rgba(0,0,0,.28),
-            0 0 35px rgba(56,189,248,.055),
-            inset 0 0 50px rgba(56,189,248,.035);
+            0 20px 70px rgba(0, 0, 0,.28),
+            0 0 35px rgba(168, 137, 96,.055),
+            inset 0 0 50px rgba(168, 137, 96,.035);
         }
 
         .pricing-card::before {
@@ -1279,7 +1280,7 @@ export default function Pricing() {
             linear-gradient(
               120deg,
               transparent 20%,
-              rgba(56,189,248,.035) 50%,
+              rgba(168, 137, 96,.035) 50%,
               transparent 80%
             );
 
@@ -1310,7 +1311,7 @@ export default function Pricing() {
           background:
             radial-gradient(
               circle,
-              rgba(56,189,248,.1),
+              rgba(168, 137, 96,.1),
               transparent 68%
             );
 
@@ -1320,18 +1321,18 @@ export default function Pricing() {
 
         .pricing-card.is-featured {
           border-color:
-            rgba(56,189,248,.35);
+            rgba(168, 137, 96,.35);
 
           background:
             linear-gradient(
               145deg,
-              rgba(10,30,46,.96),
-              rgba(4,13,23,.98)
+              rgba(40, 31, 24,.96),
+              rgba(31, 24, 19,.98)
             );
 
           box-shadow:
-            0 0 50px rgba(56,189,248,.055),
-            inset 0 0 60px rgba(56,189,248,.035);
+            0 0 50px rgba(168, 137, 96,.055),
+            inset 0 0 60px rgba(168, 137, 96,.035);
         }
 
         .pricing-featured-badge {
@@ -1343,17 +1344,17 @@ export default function Pricing() {
           padding: 8px 11px;
 
           background:
-            rgba(56,189,248,.11);
+            rgba(168, 137, 96,.11);
 
           border-left:
-            1px solid rgba(56,189,248,.2);
+            1px solid rgba(168, 137, 96,.2);
 
           border-bottom:
-            1px solid rgba(56,189,248,.2);
+            1px solid rgba(168, 137, 96,.2);
 
           color: var(--pricing-blue);
 
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: 6px;
           font-weight: 900;
           letter-spacing: 2px;
@@ -1366,9 +1367,9 @@ export default function Pricing() {
         }
 
         .pricing-number {
-          color: #3e5669;
+          color: #968672;
 
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: 8px;
           font-weight: 800;
           letter-spacing: 2px;
@@ -1382,14 +1383,14 @@ export default function Pricing() {
           place-items: center;
 
           border:
-            1px solid rgba(56,189,248,.16);
+            1px solid rgba(168, 137, 96,.16);
 
           border-radius: 50%;
 
           color: var(--pricing-blue);
 
           background:
-            rgba(56,189,248,.035);
+            rgba(168, 137, 96,.035);
 
           transition:
             transform .45s ease,
@@ -1402,7 +1403,7 @@ export default function Pricing() {
             scale(1.08);
 
           background:
-            rgba(56,189,248,.09);
+            rgba(168, 137, 96,.09);
         }
 
         .pricing-card-title-row {
@@ -1418,7 +1419,7 @@ export default function Pricing() {
 
           color: var(--pricing-text);
 
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: 25px;
           font-weight: 800;
           letter-spacing: -1.5px;
@@ -1427,7 +1428,7 @@ export default function Pricing() {
         .pricing-arrow {
           color: var(--pricing-blue);
 
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: 20px;
 
           transition:
@@ -1453,16 +1454,16 @@ export default function Pricing() {
         .pricing-price-main {
           color: var(--pricing-text);
 
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: clamp(28px, 3vw, 40px);
           font-weight: 800;
           letter-spacing: -2px;
         }
 
         .pricing-price-suffix {
-          color: #536b7d;
+          color: #968672;
 
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: 8px;
           font-weight: 700;
           letter-spacing: 1px;
@@ -1473,7 +1474,7 @@ export default function Pricing() {
 
           margin: 0;
 
-          color: #657d8f;
+          color: #A39380;
 
           font-size: 10px;
           line-height: 1.75;
@@ -1488,7 +1489,7 @@ export default function Pricing() {
           background:
             linear-gradient(
               90deg,
-              rgba(56,189,248,.22),
+              rgba(168, 137, 96,.22),
               transparent
             );
         }
@@ -1497,7 +1498,7 @@ export default function Pricing() {
         .pricing-ideal > span {
           color: var(--pricing-blue);
 
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: 7px;
           font-weight: 900;
           letter-spacing: 2px;
@@ -1519,9 +1520,9 @@ export default function Pricing() {
 
           gap: 9px;
 
-          color: #8ca0af;
+          color: #C9B69B;
 
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: 9px;
           line-height: 1.4;
         }
@@ -1543,7 +1544,7 @@ export default function Pricing() {
         .pricing-ideal p {
           margin: 8px 0 0;
 
-          color: #637a8c;
+          color: #A39380;
 
           font-size: 9px;
           line-height: 1.55;
@@ -1558,11 +1559,11 @@ export default function Pricing() {
           padding: 13px 14px;
 
           border:
-            1px solid rgba(56,189,248,.17);
+            1px solid rgba(168, 137, 96,.17);
 
-          color: #89a0b0;
+          color: #C9B69B;
 
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: 7px;
           font-weight: 900;
           letter-spacing: 1.6px;
@@ -1573,12 +1574,12 @@ export default function Pricing() {
 
         .pricing-card-button:hover {
           border-color:
-            rgba(56,189,248,.5);
+            rgba(168, 137, 96,.5);
 
           color: var(--pricing-text);
 
           background:
-            rgba(56,189,248,.06);
+            rgba(168, 137, 96,.06);
         }
 
         /* =====================================================
@@ -1592,7 +1593,7 @@ export default function Pricing() {
 
           text-align: center;
 
-          color: #687f91;
+          color: #A39380;
 
           font-size: 11px;
           line-height: 1.9;
@@ -1620,7 +1621,7 @@ export default function Pricing() {
         .pricing-maintenance h3 {
           margin: 0;
 
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: 28px;
           letter-spacing: -1px;
         }
@@ -1630,7 +1631,7 @@ export default function Pricing() {
 
           margin: 0;
 
-          color: #61788a;
+          color: #A39380;
 
           font-size: 10px;
           line-height: 1.7;
@@ -1642,10 +1643,10 @@ export default function Pricing() {
           border-collapse: collapse;
 
           border:
-            1px solid rgba(56,189,248,.12);
+            1px solid rgba(168, 137, 96,.12);
 
           background:
-            rgba(4,12,21,.55);
+            rgba(30, 23, 18,.55);
         }
 
         .pricing-maintenance-table th,
@@ -1653,23 +1654,23 @@ export default function Pricing() {
           padding: 18px 20px;
 
           border-bottom:
-            1px solid rgba(56,189,248,.09);
+            1px solid rgba(168, 137, 96,.09);
 
           text-align: left;
         }
 
         .pricing-maintenance-table th {
-          color: #3f596c;
+          color: #968672;
 
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: 7px;
           letter-spacing: 2px;
         }
 
         .pricing-maintenance-table td {
-          color: #9aabb8;
+          color: #C9B69B;
 
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: 10px;
         }
 
@@ -1691,15 +1692,15 @@ export default function Pricing() {
           overflow: hidden;
 
           border:
-            1px solid rgba(56,189,248,.12);
+            1px solid rgba(168, 137, 96,.12);
 
           background:
             radial-gradient(
               circle at 80% 50%,
-              rgba(56,189,248,.08),
+              rgba(168, 137, 96,.08),
               transparent 32%
             ),
-            rgba(3,11,19,.72);
+            rgba(30, 23, 18,.72);
         }
 
         .pricing-note::before {
@@ -1713,9 +1714,9 @@ export default function Pricing() {
           transform:
             translateY(-50%);
 
-          color: rgba(56,189,248,.045);
+          color: rgba(168, 137, 96,.045);
 
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: 170px;
           font-weight: 900;
           letter-spacing: -15px;
@@ -1724,7 +1725,7 @@ export default function Pricing() {
         .pricing-note-label {
           color: var(--pricing-blue);
 
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: 8px;
           font-weight: 900;
           letter-spacing: 3px;
@@ -1735,7 +1736,7 @@ export default function Pricing() {
 
           margin: 20px 0;
 
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: clamp(35px, 5vw, 65px);
           line-height: .95;
           letter-spacing: -4px;
@@ -1746,7 +1747,7 @@ export default function Pricing() {
 
           margin: 0;
 
-          color: #6d8496;
+          color: #A39380;
 
           font-size: 11px;
           line-height: 1.9;
@@ -1783,11 +1784,11 @@ export default function Pricing() {
           border-radius: 50%;
 
           border:
-            1px solid rgba(56,189,248,.08);
+            1px solid rgba(168, 137, 96,.08);
 
           box-shadow:
-            0 0 120px rgba(56,189,248,.035),
-            inset 0 0 120px rgba(56,189,248,.025);
+            0 0 120px rgba(168, 137, 96,.035),
+            inset 0 0 120px rgba(168, 137, 96,.025);
 
           animation:
             pricingVisionPulse
@@ -1819,7 +1820,7 @@ export default function Pricing() {
         .pricing-vision-label {
           color: var(--pricing-blue);
 
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: 9px;
           font-weight: 900;
           letter-spacing: 4px;
@@ -1828,16 +1829,17 @@ export default function Pricing() {
         .pricing-vision h2 {
           margin: 25px 0 35px;
 
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: clamp(48px, 8vw, 105px);
           line-height: .87;
+          font-weight: 600;
           letter-spacing: -7px;
         }
 
         .pricing-vision h2 em {
           color: var(--pricing-blue);
 
-          font-family: "Cormorant Garamond", serif;
+          font-family: "Lora", Georgia, serif;
           font-style: italic;
           font-weight: 600;
           letter-spacing: -3px;
@@ -1848,7 +1850,7 @@ export default function Pricing() {
 
           margin: 0 auto;
 
-          color: #657d90;
+          color: #A39380;
 
           font-size: 11px;
           line-height: 1.9;
@@ -1865,11 +1867,11 @@ export default function Pricing() {
           padding: 16px 20px;
 
           border:
-            1px solid rgba(56,189,248,.25);
+            1px solid rgba(168, 137, 96,.25);
 
           color: var(--pricing-text);
 
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: 8px;
           font-weight: 900;
           letter-spacing: 2px;
@@ -1885,10 +1887,10 @@ export default function Pricing() {
             var(--pricing-blue);
 
           background:
-            rgba(56,189,248,.06);
+            rgba(168, 137, 96,.06);
 
           box-shadow:
-            0 0 30px rgba(56,189,248,.07);
+            0 0 30px rgba(168, 137, 96,.07);
         }
 
         /* =====================================================
@@ -2580,7 +2582,7 @@ export default function Pricing() {
             <br />
             We're building
             <br />
-            <em>partnerships.</em>
+            <em><CircleHighlight padX={0.06} padY={0.06}>partnerships.</CircleHighlight></em>
           </h2>
 
           <p className="pricing-vision-copy">

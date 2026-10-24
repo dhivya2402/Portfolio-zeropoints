@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import CircleHighlight from "../components/CircleHighlight.jsx";
 import {
   ArrowRight,
   Code2,
@@ -69,7 +70,7 @@ function Founder() {
     <div className="founder-page" ref={universeRef}>
       <style>{`
 
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
 
         * {
           box-sizing: border-box;
@@ -81,8 +82,8 @@ function Founder() {
 
         body {
           margin: 0;
-          background: #05080b;
-          font-family: "Inter", sans-serif;
+          background: #17110D;
+          font-family: "Montserrat", sans-serif;
         }
 
         .founder-page {
@@ -97,23 +98,23 @@ function Founder() {
           background:
             radial-gradient(
               circle at 15% 10%,
-              rgba(56, 189, 248, 0.10),
+              rgba(168, 137, 96, 0.10),
               transparent 28%
             ),
             radial-gradient(
               circle at 85% 30%,
-              rgba(56, 189, 248, 0.07),
+              rgba(168, 137, 96, 0.07),
               transparent 30%
             ),
             linear-gradient(
               135deg,
-              #05080b 0%,
-              #050e1a 45%,
-              #05080b 100%
+              #17110D 0%,
+              #211A15 45%,
+              #17110D 100%
             );
 
           color: #f8fafc;
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
         }
 
         .founder-page a {
@@ -134,12 +135,12 @@ function Founder() {
 
           background-image:
             linear-gradient(
-              rgba(224, 242, 254, 0.055) 1px,
+              rgba(243, 237, 224, 0.055) 1px,
               transparent 1px
             ),
             linear-gradient(
               90deg,
-              rgba(224, 242, 254, 0.055) 1px,
+              rgba(243, 237, 224, 0.055) 1px,
               transparent 1px
             );
 
@@ -187,8 +188,8 @@ function Founder() {
           width: 3px;
           height: 3px;
           border-radius: 50%;
-          background: rgba(56, 189, 248, 0.8);
-          box-shadow: 0 0 12px rgba(56, 189, 248, 0.65);
+          background: rgba(168, 137, 96, 0.8);
+          box-shadow: 0 0 12px rgba(168, 137, 96, 0.65);
           opacity: 0.5;
         }
 
@@ -396,7 +397,7 @@ function Founder() {
           background:
             radial-gradient(
               circle,
-              rgba(56, 189, 248, 0.14),
+              rgba(168, 137, 96, 0.14),
               transparent 70%
             );
 
@@ -412,7 +413,7 @@ function Founder() {
           background:
             radial-gradient(
               circle,
-              rgba(56, 189, 248, 0.10),
+              rgba(168, 137, 96, 0.10),
               transparent 70%
             );
 
@@ -428,7 +429,7 @@ function Founder() {
           background:
             radial-gradient(
               circle,
-              rgba(56, 189, 248, 0.09),
+              rgba(168, 137, 96, 0.09),
               transparent 70%
             );
 
@@ -493,7 +494,7 @@ function Founder() {
 
         .founder-ring {
           position: absolute;
-          border: 1px solid rgba(56, 189, 248, 0.12);
+          border: 1px solid rgba(168, 137, 96, 0.12);
           border-radius: 50%;
           transform-style: preserve-3d;
           animation: ringFloat 18s linear infinite;
@@ -547,7 +548,7 @@ function Founder() {
           position: absolute;
           width: 20px;
           height: 20px;
-          border: 1px solid rgba(56, 189, 248, 0.18);
+          border: 1px solid rgba(168, 137, 96, 0.18);
           opacity: 0.45;
           animation: shapeFloat 12s ease-in-out infinite;
         }
@@ -609,7 +610,7 @@ function Founder() {
             linear-gradient(
               90deg,
               transparent,
-              rgba(56, 189, 248, 0.055),
+              rgba(168, 137, 96, 0.055),
               transparent
             );
 
@@ -656,9 +657,9 @@ function Founder() {
           align-items: center;
           gap: 9px;
           padding: 10px 17px;
-          border: 1px solid rgba(224, 242, 254, 0.14);
+          border: 1px solid rgba(243, 237, 224, 0.14);
           border-radius: 999px;
-          color: #8295a5;
+          color: #A39380;
           font-size: 12px;
 
           transition:
@@ -672,9 +673,9 @@ function Founder() {
         .founder-nav-button:hover {
           transform: translateY(-3px);
           color: #ffffff;
-          border-color: rgba(56, 189, 248, 0.5);
-          background: rgba(56, 189, 248, 0.08);
-          box-shadow: 0 0 25px rgba(56, 189, 248, 0.08);
+          border-color: rgba(168, 137, 96, 0.5);
+          background: rgba(168, 137, 96, 0.08);
+          box-shadow: 0 0 25px rgba(168, 137, 96, 0.08);
         }
 
         .founder-hero {
@@ -698,7 +699,7 @@ function Founder() {
           display: inline-flex;
           align-items: center;
           gap: 10px;
-          color: #38bdf8;
+          color: #A88960;
           font-size: 11px;
           font-weight: 700;
           letter-spacing: 0.22em;
@@ -713,7 +714,7 @@ function Founder() {
         .founder-eyebrow-line {
           width: 30px;
           height: 1px;
-          background: #38bdf8;
+          background: #A88960;
           position: relative;
           overflow: hidden;
         }
@@ -745,7 +746,7 @@ function Founder() {
           line-height: 0.86;
           letter-spacing: -0.075em;
           font-weight: 600;
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
 
           animation:
             founderReveal 1.1s
@@ -753,14 +754,14 @@ function Founder() {
             cubic-bezier(0.22, 1, 0.36, 1)
             both;
 
-          text-shadow: 0 0 60px rgba(56, 189, 248, 0.04);
+          text-shadow: 0 0 60px rgba(168, 137, 96, 0.04);
         }
 
         .founder-title span {
           display: block;
-          color: #38bdf8;
+          color: #A88960;
           position: relative;
-          font-family: "Cormorant Garamond", serif;
+          font-family: "Lora", Georgia, serif;
           font-style: italic;
           font-weight: 600;
           letter-spacing: -0.035em;
@@ -779,7 +780,7 @@ function Founder() {
             linear-gradient(
               90deg,
               transparent,
-              rgba(56, 189, 248, 0.65),
+              rgba(168, 137, 96, 0.65),
               transparent
             );
 
@@ -801,10 +802,10 @@ function Founder() {
         .founder-subtitle {
           max-width: 620px;
           margin: 0 auto;
-          color: #8295a5;
+          color: #A39380;
           font-size: 18px;
           line-height: 1.8;
-          font-family: "Merriweather", serif;
+          font-family: "Lora", Georgia, serif;
 
           animation:
             founderReveal 1s
@@ -834,8 +835,8 @@ function Founder() {
           gap: 10px;
           padding: 15px 22px;
           border-radius: 999px;
-          background: #38bdf8;
-          color: #050e1a;
+          background: #A88960;
+          color: #211A15;
           font-size: 13px;
           font-weight: 700;
 
@@ -858,7 +859,7 @@ function Founder() {
             linear-gradient(
               90deg,
               transparent,
-              rgba(255,255,255,0.65),
+              rgba(255, 255, 255,0.65),
               transparent
             );
 
@@ -882,11 +883,11 @@ function Founder() {
 
         .founder-primary-button:hover {
           transform: translateY(-5px) scale(1.02);
-          background: #38bdf8;
+          background: #A88960;
 
           box-shadow:
-            0 15px 40px rgba(56, 189, 248, 0.25),
-            0 0 30px rgba(56, 189, 248, 0.12);
+            0 15px 40px rgba(168, 137, 96, 0.25),
+            0 0 30px rgba(168, 137, 96, 0.12);
         }
 
         .founder-section {
@@ -902,7 +903,7 @@ function Founder() {
 
         .founder-section-label {
           margin-bottom: 20px;
-          color: #38bdf8;
+          color: #A88960;
           font-size: 10px;
           font-weight: 700;
           letter-spacing: 0.2em;
@@ -915,22 +916,22 @@ function Founder() {
           line-height: 0.95;
           letter-spacing: -0.06em;
           font-weight: 600;
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
         }
 
         .founder-section-title span {
-          color: #38bdf8;
-          font-family: "Cormorant Garamond", serif;
+          color: #A88960;
+          font-family: "Lora", Georgia, serif;
           font-style: italic;
           font-weight: 600;
           letter-spacing: -0.025em;
         }
 
         .founder-text {
-          color: #8295a5;
+          color: #A39380;
           font-size: 16px;
           line-height: 1.85;
-          font-family: "Merriweather", serif;
+          font-family: "Lora", Georgia, serif;
         }
 
         .founder-reveal {
@@ -964,19 +965,19 @@ function Founder() {
           justify-content: center;
           margin: 0 auto;
 
-          border: 1px solid rgba(56, 189, 248, 0.18);
+          border: 1px solid rgba(168, 137, 96, 0.18);
           border-radius: 30px;
 
           background:
             radial-gradient(
               circle at 50% 45%,
-              rgba(56, 189, 248, 0.12),
+              rgba(168, 137, 96, 0.12),
               transparent 48%
             ),
             linear-gradient(
               145deg,
-              rgba(15, 46, 76, 0.52),
-              rgba(2, 14, 31, 0.78)
+              rgba(52, 40, 32, 0.52),
+              rgba(34, 26, 21, 0.78)
             );
 
           position: relative;
@@ -991,16 +992,16 @@ function Founder() {
 
           box-shadow:
             0 25px 80px rgba(0, 0, 0, 0.28),
-            0 0 55px rgba(56, 189, 248, 0.07);
+            0 0 55px rgba(168, 137, 96, 0.07);
         }
 
         .founder-photo:hover {
           transform: translateY(-10px) scale(1.01);
-          border-color: rgba(56, 189, 248, 0.42);
+          border-color: rgba(168, 137, 96, 0.42);
 
           box-shadow:
-            0 30px 90px rgba(20, 100, 145, 0.16),
-            0 0 55px rgba(56, 189, 248, 0.12);
+            0 30px 90px rgba(120, 92, 62, 0.16),
+            0 0 55px rgba(168, 137, 96, 0.12);
         }
 
         .founder-photo::before {
@@ -1016,7 +1017,7 @@ function Founder() {
           background:
             radial-gradient(
               circle,
-              rgba(56, 189, 248, 0.18),
+              rgba(168, 137, 96, 0.18),
               transparent 68%
             );
 
@@ -1035,7 +1036,7 @@ function Founder() {
             linear-gradient(
               90deg,
               transparent,
-              rgba(56, 189, 248, 0.35),
+              rgba(168, 137, 96, 0.35),
               transparent
             );
 
@@ -1055,12 +1056,12 @@ function Founder() {
           margin: 0 auto 22px;
           overflow: hidden;
           border-radius: 26px;
-          border: 1px solid rgba(56, 189, 248, 0.32);
-          background: #050e1a;
+          border: 1px solid rgba(168, 137, 96, 0.32);
+          background: #211A15;
 
           box-shadow:
             0 20px 55px rgba(0, 0, 0, 0.38),
-            0 0 35px rgba(56, 189, 248, 0.10);
+            0 0 35px rgba(168, 137, 96, 0.10);
 
           animation: founderImageFloat 7s ease-in-out infinite;
         }
@@ -1076,7 +1077,7 @@ function Founder() {
             linear-gradient(
               180deg,
               transparent 55%,
-              rgba(2, 8, 23, 0.45)
+              rgba(31, 24, 19, 0.45)
             );
         }
 
@@ -1141,7 +1142,7 @@ function Founder() {
 
         .founder-photo-content p {
           margin: 0;
-          color: #e0f2fe;
+          color: #F3EDE0;
           font-size: 13px;
           font-weight: 700;
           letter-spacing: 0.18em;
@@ -1150,7 +1151,7 @@ function Founder() {
         .founder-photo-content span {
           display: block;
           margin-top: 7px;
-          color: #38bdf8;
+          color: #A88960;
           font-size: 10px;
           font-weight: 700;
           letter-spacing: 0.18em;
@@ -1170,12 +1171,12 @@ function Founder() {
         .quote-box {
           margin-top: 35px;
           padding: 25px;
-          border-left: 2px solid #38bdf8;
-          background: rgba(56, 189, 248, 0.06);
-          color: #e0f2fe;
+          border-left: 2px solid #A88960;
+          background: rgba(168, 137, 96, 0.06);
+          color: #F3EDE0;
           font-size: 17px;
           line-height: 1.7;
-          font-family: "Merriweather", serif;
+          font-family: "Lora", Georgia, serif;
           position: relative;
           overflow: hidden;
         }
@@ -1192,7 +1193,7 @@ function Founder() {
             linear-gradient(
               90deg,
               transparent,
-              rgba(56, 189, 248, 0.04),
+              rgba(168, 137, 96, 0.04),
               transparent
             );
 
@@ -1213,9 +1214,9 @@ function Founder() {
           background:
             linear-gradient(
               180deg,
-              rgba(0, 7, 24, 0),
-              rgba(6, 25, 48, 0.45),
-              rgba(0, 7, 24, 0)
+              rgba(32, 24, 19, 0),
+              rgba(41, 31, 25, 0.45),
+              rgba(32, 24, 19, 0)
             );
         }
 
@@ -1240,7 +1241,7 @@ function Founder() {
             linear-gradient(
               to bottom,
               transparent,
-              rgba(56, 189, 248, 0.4),
+              rgba(168, 137, 96, 0.4),
               transparent
             );
         }
@@ -1253,11 +1254,11 @@ function Founder() {
           width: 7px;
           height: 7px;
           border-radius: 50%;
-          background: #38bdf8;
+          background: #A88960;
 
           box-shadow:
-            0 0 10px #38bdf8,
-            0 0 25px rgba(56, 189, 248, 0.7);
+            0 0 10px #A88960,
+            0 0 25px rgba(168, 137, 96, 0.7);
 
           animation: timelineEnergy 8s linear infinite;
         }
@@ -1300,9 +1301,9 @@ function Founder() {
           align-items: center;
           justify-content: center;
           border-radius: 50%;
-          border: 1px solid rgba(56, 189, 248, 0.35);
-          background: #050e1a;
-          color: #38bdf8;
+          border: 1px solid rgba(168, 137, 96, 0.35);
+          background: #211A15;
+          color: #A88960;
           font-size: 11px;
           font-weight: 700;
 
@@ -1313,12 +1314,12 @@ function Founder() {
 
         .journey-item:hover .journey-number {
           transform: scale(1.12);
-          box-shadow: 0 0 25px rgba(56, 189, 248, 0.15);
+          box-shadow: 0 0 25px rgba(168, 137, 96, 0.15);
         }
 
         .journey-year {
           margin-bottom: 8px;
-          color: #38bdf8;
+          color: #A88960;
           font-size: 10px;
           font-weight: 700;
           letter-spacing: 0.18em;
@@ -1329,16 +1330,16 @@ function Founder() {
           font-size: 25px;
           font-weight: 500;
           letter-spacing: -0.03em;
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
         }
 
         .journey-item p {
           max-width: 650px;
           margin: 0;
-          color: #8295a5;
+          color: #A39380;
           font-size: 15px;
           line-height: 1.75;
-          font-family: "Merriweather", serif;
+          font-family: "Lora", Georgia, serif;
         }
 
         .philosophy-section {
@@ -1348,7 +1349,7 @@ function Founder() {
           background:
             radial-gradient(
               circle at 50% 50%,
-              rgba(56, 189, 248, 0.06),
+              rgba(168, 137, 96, 0.06),
               transparent 55%
             );
         }
@@ -1361,7 +1362,7 @@ function Founder() {
           left: 50%;
           top: 50%;
           transform: translate(-50%, -50%);
-          border: 1px solid rgba(56, 189, 248, 0.05);
+          border: 1px solid rgba(168, 137, 96, 0.05);
           border-radius: 50%;
           animation: philosophyOrbit 20s linear infinite;
         }
@@ -1394,8 +1395,8 @@ function Founder() {
           min-height: 240px;
           padding: 30px;
           overflow: hidden;
-          border: 1px solid rgba(224, 242, 254, 0.12);
-          background: rgba(5, 23, 42, 0.58);
+          border: 1px solid rgba(243, 237, 224, 0.12);
+          background: rgba(39, 30, 24, 0.58);
           backdrop-filter: blur(12px);
 
           transition:
@@ -1437,7 +1438,7 @@ function Founder() {
             linear-gradient(
               90deg,
               transparent,
-              rgba(56, 189, 248, 0.8),
+              rgba(168, 137, 96, 0.8),
               transparent
             );
 
@@ -1464,15 +1465,15 @@ function Founder() {
 
         .philosophy-card:hover {
           transform: translateY(-14px) scale(1.015);
-          border-color: rgba(56, 189, 248, 0.38);
-          background: rgba(8, 34, 58, 0.72);
-          box-shadow: 0 25px 70px rgba(20, 110, 155, 0.10);
+          border-color: rgba(168, 137, 96, 0.38);
+          background: rgba(45, 34, 28, 0.72);
+          box-shadow: 0 25px 70px rgba(120, 92, 62, 0.10);
         }
 
         .philosophy-card span {
           display: block;
           margin-bottom: 40px;
-          color: #38bdf8;
+          color: #A88960;
           font-size: 11px;
           font-weight: 700;
           letter-spacing: 0.15em;
@@ -1483,15 +1484,15 @@ function Founder() {
           font-size: 25px;
           font-weight: 500;
           letter-spacing: -0.03em;
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
         }
 
         .philosophy-card p {
           margin: 0;
-          color: #8295a5;
+          color: #A39380;
           font-size: 14px;
           line-height: 1.7;
-          font-family: "Merriweather", serif;
+          font-family: "Lora", Georgia, serif;
         }
 
         .skills-grid {
@@ -1504,8 +1505,8 @@ function Founder() {
         .skill-card {
           min-height: 210px;
           padding: 28px;
-          border: 1px solid rgba(224, 242, 254, 0.12);
-          background: rgba(7, 27, 48, 0.55);
+          border: 1px solid rgba(243, 237, 224, 0.12);
+          background: rgba(41, 31, 25, 0.55);
           position: relative;
           overflow: hidden;
 
@@ -1543,7 +1544,7 @@ function Founder() {
             linear-gradient(
               90deg,
               transparent,
-              rgba(56, 189, 248, 0.55),
+              rgba(168, 137, 96, 0.55),
               transparent
             );
 
@@ -1572,9 +1573,9 @@ function Founder() {
 
         .skill-card:hover {
           transform: translateY(-12px) scale(1.015);
-          border-color: rgba(56, 189, 248, 0.4);
-          background: rgba(10, 39, 65, 0.65);
-          box-shadow: 0 20px 60px rgba(20, 110, 155, 0.09);
+          border-color: rgba(168, 137, 96, 0.4);
+          background: rgba(48, 36, 29, 0.65);
+          box-shadow: 0 20px 60px rgba(120, 92, 62, 0.09);
         }
 
         .skill-icon {
@@ -1584,9 +1585,9 @@ function Founder() {
           display: flex;
           align-items: center;
           justify-content: center;
-          color: #38bdf8;
-          border: 1px solid rgba(56, 189, 248, 0.2);
-          background: rgba(56, 189, 248, 0.07);
+          color: #A88960;
+          border: 1px solid rgba(168, 137, 96, 0.2);
+          background: rgba(168, 137, 96, 0.07);
 
           transition:
             transform 0.4s ease,
@@ -1595,22 +1596,22 @@ function Founder() {
 
         .skill-card:hover .skill-icon {
           transform: rotate(-6deg) scale(1.08);
-          box-shadow: 0 0 25px rgba(56, 189, 248, 0.12);
+          box-shadow: 0 0 25px rgba(168, 137, 96, 0.12);
         }
 
         .skill-card h3 {
           margin: 0 0 10px;
           font-size: 18px;
           font-weight: 500;
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
         }
 
         .skill-card p {
           margin: 0;
-          color: #8295a5;
+          color: #A39380;
           font-size: 13px;
           line-height: 1.6;
-          font-family: "Merriweather", serif;
+          font-family: "Lora", Georgia, serif;
         }
 
         .achievement-grid {
@@ -1624,8 +1625,8 @@ function Founder() {
           position: relative;
           overflow: hidden;
           padding: 30px;
-          border: 1px solid rgba(224, 242, 254, 0.12);
-          background: rgba(5, 24, 43, 0.55);
+          border: 1px solid rgba(243, 237, 224, 0.12);
+          background: rgba(39, 30, 24, 0.55);
 
           transition:
             transform 0.4s ease,
@@ -1645,12 +1646,12 @@ function Founder() {
 
         .achievement-card:hover {
           transform: translateY(-12px);
-          border-color: rgba(56, 189, 248, 0.35);
-          box-shadow: 0 20px 60px rgba(20, 110, 155, 0.09);
+          border-color: rgba(168, 137, 96, 0.35);
+          box-shadow: 0 20px 60px rgba(120, 92, 62, 0.09);
         }
 
         .achievement-icon {
-          color: #38bdf8;
+          color: #A88960;
           margin-bottom: 25px;
 
           transition:
@@ -1663,7 +1664,7 @@ function Founder() {
 
           filter:
             drop-shadow(
-              0 0 10px rgba(56, 189, 248, 0.35)
+              0 0 10px rgba(168, 137, 96, 0.35)
             );
         }
 
@@ -1671,15 +1672,15 @@ function Founder() {
           margin: 0 0 10px;
           font-size: 20px;
           font-weight: 500;
-          font-family: "Inter", sans-serif;
+          font-family: "Montserrat", sans-serif;
         }
 
         .achievement-card p {
           margin: 0;
-          color: #8295a5;
+          color: #A39380;
           font-size: 14px;
           line-height: 1.7;
-          font-family: "Merriweather", serif;
+          font-family: "Lora", Georgia, serif;
         }
 
         @keyframes founderReveal {
@@ -2045,7 +2046,7 @@ function Founder() {
 
             <h2 className="founder-section-title">
               Start from
-              <span> zero.</span>
+              <span> <CircleHighlight>zero.</CircleHighlight></span>
             </h2>
 
             <p className="founder-text">

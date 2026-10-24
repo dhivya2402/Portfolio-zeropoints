@@ -13,7 +13,7 @@ export default function EdgeFrame({ children, className = '' }) {
       {/* faint radial glow behind the framed block */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(64,184,239,0.08),transparent_70%)]"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(168, 137, 96,0.08),transparent_70%)]"
       />
 
       {/* partial top guide line with a small illuminated segment */}

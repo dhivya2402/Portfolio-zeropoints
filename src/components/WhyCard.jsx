@@ -20,7 +20,7 @@ export default function WhyCard({ index, title, description, icon = 'node', dela
       viewport={{ once: true, amount: 0.4 }}
       transition={{ duration: 0.65, delay, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ y: -5 }}
-      className="zp-glass group relative flex h-full flex-col p-7 shadow-[0_0_44px_-30px_rgba(64,184,239,0.45)] sm:p-8"
+      className="zp-glass group relative flex h-full flex-col p-7 shadow-[0_0_44px_-30px_rgba(168, 137, 96,0.45)] sm:p-8"
     >
       {/* subtle elegant index numeral — quiet by default, faintly warms on hover */}
       <span
@@ -30,7 +30,7 @@ export default function WhyCard({ index, title, description, icon = 'node', dela
         {String(index).padStart(2, '0')}
       </span>
 
-      <span className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-white/[0.10] bg-white/[0.04] text-accent-bright/85 transition-all duration-500 group-hover:border-accent-bright/45 group-hover:text-accent-bright group-hover:shadow-[0_0_20px_-4px_rgba(64,184,239,0.55)]">
+      <span className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#C9B69B]/[0.18] bg-white/[0.04] text-accent-bright/85 transition-all duration-500 group-hover:border-accent-bright/45 group-hover:text-accent-bright group-hover:shadow-[0_0_20px_-4px_rgba(168, 137, 96,0.55)]">
         <Icon name={icon} size={20} />
       </span>
 

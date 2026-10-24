@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal.jsx'
+import CircleHighlight from '../components/CircleHighlight.jsx'
 import ResultCard from '../components/ResultCard.jsx'
 import WhyCard from '../components/WhyCard.jsx'
 import EdgeFrame from '../components/EdgeFrame.jsx'
@@ -134,12 +135,12 @@ function Hero() {
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-40 top-24 h-96 w-96 rounded-full bg-[radial-gradient(circle,rgba(64,184,239,0.10),transparent_70%)] blur-3xl"
+        className="pointer-events-none absolute -left-40 top-24 h-96 w-96 rounded-full bg-[radial-gradient(circle,rgba(168, 137, 96,0.10),transparent_70%)] blur-3xl"
       />
       {/* subtle permanent ambient glow — sits behind the hero visual */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-24 top-28 h-[460px] w-[460px] rounded-full bg-[radial-gradient(circle,rgba(64,184,239,0.14),transparent_70%)] blur-[90px] opacity-70"
+        className="pointer-events-none absolute -right-24 top-28 h-[460px] w-[460px] rounded-full bg-[radial-gradient(circle,rgba(168, 137, 96,0.14),transparent_70%)] blur-[90px] opacity-70"
       />
 
       <div className="zp-container relative grid items-center gap-14 pb-24 sm:pb-32 lg:grid-cols-12 lg:gap-8 lg:pb-40">
@@ -222,7 +223,7 @@ function CompanyIntro() {
                     viewport={{ once: true, amount: 0.4 }}
                     transition={{ duration: 0.65, delay: 0.1 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
                     whileHover={{ y: -3 }}
-                    className="zp-glass flex flex-1 items-center gap-3 self-stretch rounded-2xl border-accent/10 p-5 shadow-[0_0_36px_-20px_rgba(64,184,239,0.55)]"
+                    className="zp-glass flex flex-1 items-center gap-3 self-stretch rounded-2xl border-accent/10 p-5 shadow-[0_0_36px_-20px_rgba(168, 137, 96,0.55)]"
                   >
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-hairline bg-white/[0.03] text-accent-bright">
                       <Icon name={p.icon} size={15} />
@@ -274,7 +275,7 @@ function Services() {
     <section id="services" className="zp-section relative overflow-hidden border-t border-hairline">
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[760px] -translate-x-1/2 rounded-full bg-[radial-gradient(50%_50%_at_50%_0%,rgba(64,184,239,0.08),transparent_70%)] blur-3xl"
+        className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[760px] -translate-x-1/2 rounded-full bg-[radial-gradient(50%_50%_at_50%_0%,rgba(168, 137, 96,0.08),transparent_70%)] blur-3xl"
       />
       <div className="zp-container relative">
         <Reveal className="mx-auto max-w-2xl text-center">
@@ -303,7 +304,7 @@ function WhyChooseUs() {
     <section className="zp-section relative overflow-hidden">
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-0 h-[440px] w-[760px] -translate-x-1/2 rounded-full bg-[radial-gradient(50%_50%_at_50%_0%,rgba(64,184,239,0.10),transparent_70%)] blur-3xl"
+        className="pointer-events-none absolute left-1/2 top-0 h-[440px] w-[760px] -translate-x-1/2 rounded-full bg-[radial-gradient(50%_50%_at_50%_0%,rgba(168, 137, 96,0.10),transparent_70%)] blur-3xl"
       />
       <div className="zp-container relative">
         <Reveal className="mx-auto max-w-2xl text-center">
@@ -342,7 +343,7 @@ function Results() {
       {/* subtle permanent ambient glow behind the proof grid */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/3 h-[460px] w-[760px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(64,184,239,0.07),transparent_70%)] blur-[100px]"
+        className="pointer-events-none absolute left-1/2 top-1/3 h-[460px] w-[760px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(168, 137, 96,0.07),transparent_70%)] blur-[100px]"
       />
       <div className="zp-container relative">
         <Reveal className="mx-auto max-w-xl text-center">
@@ -432,14 +433,14 @@ function Insights() {
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: 0.65, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -5 }}
-              className="group relative flex aspect-square flex-col items-center justify-center gap-4 overflow-hidden rounded-[20px] border border-white/[0.09] bg-bg-panel/45 p-4 shadow-[0_0_40px_-26px_rgba(64,184,239,0.55)] backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-accent-bright/30 hover:shadow-[0_32px_80px_-30px_rgba(64,184,239,0.45)]"
+              className="group relative flex aspect-square flex-col items-center justify-center gap-4 overflow-hidden rounded-[20px] border border-[#C9B69B]/[0.16] bg-bg-panel/45 p-4 shadow-[0_0_40px_-26px_rgba(168, 137, 96,0.55)] backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-accent-bright/30 hover:shadow-[0_32px_80px_-30px_rgba(168, 137, 96,0.45)]"
             >
               {/* ambient illustration glow — visible by default, warms further on hover */}
               <div
                 aria-hidden
-                className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_35%,rgba(64,184,239,0.10),transparent_75%)] opacity-100 transition-opacity duration-500 group-hover:opacity-100"
+                className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_35%,rgba(168, 137, 96,0.10),transparent_75%)] opacity-100 transition-opacity duration-500 group-hover:opacity-100"
               />
-              <span className="relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/[0.10] bg-white/[0.04] text-accent-bright/80 transition-all duration-500 group-hover:border-accent-bright/50 group-hover:text-accent-bright group-hover:shadow-[0_0_24px_-6px_rgba(64,184,239,0.65)]">
+              <span className="relative flex h-12 w-12 items-center justify-center rounded-xl border border-[#C9B69B]/[0.18] bg-white/[0.04] text-accent-bright/80 transition-all duration-500 group-hover:border-accent-bright/50 group-hover:text-accent-bright group-hover:shadow-[0_0_24px_-6px_rgba(168, 137, 96,0.65)]">
                 <Icon name={t.icon} size={20} />
               </span>
               <span className="relative text-[12px] font-semibold uppercase tracking-wider text-ink-secondary transition-colors duration-500 group-hover:text-ink-primary">
@@ -467,16 +468,16 @@ function FinalCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="relative overflow-hidden rounded-[28px] border border-white/[0.09] bg-bg-panel/45 px-6 py-16 text-center shadow-[0_0_70px_-28px_rgba(64,184,239,0.45)] backdrop-blur-xl sm:px-12 sm:py-20"
+          className="relative overflow-hidden rounded-[28px] border border-[#C9B69B]/[0.16] bg-bg-panel/45 px-6 py-16 text-center shadow-[0_0_70px_-28px_rgba(168, 137, 96,0.45)] backdrop-blur-xl sm:px-12 sm:py-20"
         >
           {/* deep ambient glow orbs — permanent, subtle depth */}
           <div
             aria-hidden
-            className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(64,184,239,0.16),transparent_70%)] blur-3xl"
+            className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(168, 137, 96,0.16),transparent_70%)] blur-3xl"
           />
           <div
             aria-hidden
-            className="pointer-events-none absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(64,184,239,0.12),transparent_70%)] blur-3xl"
+            className="pointer-events-none absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(168, 137, 96,0.12),transparent_70%)] blur-3xl"
           />
           <div
             aria-hidden
@@ -484,9 +485,9 @@ function FinalCTA() {
           />
 
           {/* subtle floating light particles */}
-          <span className="pointer-events-none absolute left-[16%] top-[24%] h-1.5 w-1.5 animate-pulse-glow rounded-full bg-accent-bright shadow-[0_0_10px_2px_rgba(64,184,239,0.7)]" />
-          <span className="pointer-events-none absolute right-[18%] top-[32%] h-1 w-1 animate-pulse-glow rounded-full bg-accent-bright shadow-[0_0_10px_2px_rgba(64,184,239,0.7)]" />
-          <span className="pointer-events-none absolute left-[28%] bottom-[22%] h-1 w-1 animate-pulse-glow rounded-full bg-accent-bright shadow-[0_0_10px_2px_rgba(64,184,239,0.7)]" />
+          <span className="pointer-events-none absolute left-[16%] top-[24%] h-1.5 w-1.5 animate-pulse-glow rounded-full bg-accent-bright shadow-[0_0_10px_2px_rgba(168, 137, 96,0.7)]" />
+          <span className="pointer-events-none absolute right-[18%] top-[32%] h-1 w-1 animate-pulse-glow rounded-full bg-accent-bright shadow-[0_0_10px_2px_rgba(168, 137, 96,0.7)]" />
+          <span className="pointer-events-none absolute left-[28%] bottom-[22%] h-1 w-1 animate-pulse-glow rounded-full bg-accent-bright shadow-[0_0_10px_2px_rgba(168, 137, 96,0.7)]" />
 
           {/* corner brackets for the same premium UI-frame language used elsewhere */}
           <span
@@ -499,7 +500,7 @@ function FinalCTA() {
           />
 
           <h2 className="zp-h2 relative mx-auto max-w-2xl">
-            Ready To Build Something Bigger Than A <span className="zp-script">Website</span>?
+            Ready To Build Something Bigger Than A <span className="zp-script"><CircleHighlight>Website</CircleHighlight></span>?
           </h2>
           <p className="zp-refined relative mx-auto mt-6 max-w-lg text-center">
             Let&rsquo;s create digital solutions that help your business grow.

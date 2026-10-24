@@ -47,7 +47,7 @@ function Group({ hidden = false }) {
       {logos.map((p) => (
         <div
           key={p.name}
-          className={`group relative shrink-0 overflow-hidden rounded-[20px] border border-white/[0.09] shadow-[0_0_40px_-26px_rgba(64,184,239,0.55)] transition-[border-color,box-shadow] duration-500 hover:border-accent-bright/35 hover:shadow-[0_32px_80px_-30px_rgba(64,184,239,0.45)] ${TILE}`}
+          className={`group relative shrink-0 overflow-hidden rounded-[20px] border border-white/[0.09] shadow-[0_0_40px_-26px_rgba(168, 137, 96,0.55)] transition-[border-color,box-shadow] duration-500 hover:border-accent-bright/35 hover:shadow-[0_32px_80px_-30px_rgba(168, 137, 96,0.45)] ${TILE}`}
           style={{ backgroundColor: p.bg }}
         >
           <img

@@ -52,7 +52,7 @@ export default function ResultCard({ value, label, sublabel, icon = 'growth', de
       viewport={{ once: true, amount: 0.4 }}
       transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ y: -4 }}
-      className="zp-glass zp-corner-br group flex h-full flex-col justify-between p-7 shadow-[0_0_42px_-30px_rgba(64,184,239,0.45)] sm:p-8"
+      className="zp-glass zp-corner-br group flex h-full flex-col justify-between p-7 shadow-[0_0_42px_-30px_rgba(168, 137, 96,0.45)] sm:p-8"
     >
       <div className="flex items-start justify-between gap-3">
         <span
@@ -61,7 +61,7 @@ export default function ResultCard({ value, label, sublabel, icon = 'growth', de
         >
           {shown}
         </span>
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/[0.10] bg-white/[0.04] text-ink-secondary/70 transition-all duration-500 group-hover:border-accent-bright/45 group-hover:text-accent-bright group-hover:shadow-[0_0_18px_-4px_rgba(64,184,239,0.5)]">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#C9B69B]/[0.18] bg-white/[0.04] text-ink-secondary/70 transition-all duration-500 group-hover:border-accent-bright/45 group-hover:text-accent-bright group-hover:shadow-[0_0_18px_-4px_rgba(168, 137, 96,0.5)]">
           <Icon name={icon} size={16} />
         </span>
       </div>

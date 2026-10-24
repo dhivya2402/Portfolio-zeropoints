@@ -8,12 +8,11 @@
  */
 import { motion } from 'framer-motion'
 import Reveal from './Reveal.jsx'
+import CircleHighlight from './CircleHighlight.jsx'
 import ValueCard from './ValueCard.jsx'
-import TeamCard from './TeamCard.jsx'
 import EdgeFrame from './EdgeFrame.jsx'
 import Icon from './Icons.jsx'
 import zplMark from '../assets/zpl-mark.png'
-import teamPhoto from '../assets/team-photo.jpeg'
 
 const values = [
   { title: 'Ownership', description: 'Every project deserves our full commitment.', icon: 'ownership' },
@@ -45,107 +44,6 @@ const highlights = [
   'Growing Every Month',
 ]
 
-// Team images live in src/assets. Looked up by filename (case-insensitive, any of
-// jpeg/jpg/png) so a missing photo falls back to the initials badge instead of
-// breaking the build.
-const teamImageFiles = import.meta.glob('../assets/*.{jpeg,jpg,png,webp}', {
-  eager: true,
-  import: 'default',
-})
-const teamImages = Object.fromEntries(
-  Object.entries(teamImageFiles).map(([path, url]) => [
-    path.split('/').pop().replace(/\.[^.]+$/, '').toLowerCase(),
-    url,
-  ]),
-)
-
-const teamMembers = [
-  {
-    name: 'Srinitha',
-    role: 'Script Writing',
-    image: teamImages['srinitha'],
-    lines: [
-      'Researches topics and shapes ideas into clear stories.',
-      'Refines content for clarity, tone and impact.',
-      'Supports video and ad scripts with strong hooks.',
-    ],
-  },
-  {
-    name: 'Hari',
-    role: 'Shooting / Editing',
-    image: teamImages['hari'],
-    lines: [
-      'Shoots reels, shorts and promotional videos.',
-      'Edits footage into polished, on-brand content.',
-      'Keeps every video sharp, consistent and engaging.',
-    ],
-  },
-  {
-    name: 'Anjana',
-    role: 'App / Web Developer (Lead)',
-    image: teamImages['anjana'],
-    lines: [
-      'Leads planning, development and delivery of web and app projects.',
-      'Guides the team from first idea to final launch.',
-      'Reviews the work to keep quality high in every build.',
-    ],
-  },
-  {
-    name: 'Santhosh',
-    role: 'App / Web Developer (Lead)',
-    image: teamImages['santhosh'],
-    focus: { x: 0.5, y: 0.43 },
-    lines: [
-      'Leads planning, development and delivery of web and app projects.',
-      'Guides the team from first idea to final launch.',
-      'Reviews the work to keep quality high in every build.',
-    ],
-  },
-  {
-    name: 'Dhivyadharshini',
-    role: 'App / Web Developer',
-    image: teamImages['dhivyadharshini'],
-    focus: { x: 0.6, y: 0.3 },
-    lines: [
-      'Learning member of the development team.',
-      'Assists in building and testing web and app projects.',
-      'Preparing to take on future client projects.',
-    ],
-  },
-  {
-    name: 'Sai Pooja',
-    role: 'App / Web Developer',
-    image: teamImages['saipooja'],
-    focus: { x: 0.5, y: 0.3 },
-    lines: [
-      'Learning member of the development team.',
-      'Assists in building and testing web and app projects.',
-      'Preparing to take on future client projects.',
-    ],
-  },
-  {
-    name: 'Jayashri',
-    role: 'App / Web Developer',
-    image: teamImages['jayasri'] ?? teamImages['jayashri'],
-    lines: [
-      'Learning member of the development team.',
-      'Assists in building and testing web and app projects.',
-      'Preparing to take on future client projects.',
-    ],
-  },
-  {
-    name: 'Divyadharshini',
-    role: 'Sales',
-    image: teamImages['divyadharshini'],
-    focus: { x: 0.5, y: 0.4 },
-    lines: [
-      'Finds and reaches out to potential clients.',
-      'Explains our services and understands client needs.',
-      'Builds long-term relationships with every business.',
-    ],
-  },
-]
-
 /* ── 1. COMPANY STORY ────────────────────────────────────────────────── */
 export function CompanyStory() {
   return (
@@ -160,7 +58,7 @@ export function CompanyStory() {
             <Reveal>
               <p className="zp-label text-[12.5px] sm:text-[13px]">Our Story</p>
               <h2 className="zp-h2 mt-5">
-                Every Company Starts With An <span className="zp-script">Idea</span>.
+                Every Company Starts With An <span className="zp-script"><CircleHighlight>Idea</CircleHighlight></span>.
               </h2>
             </Reveal>
 
@@ -191,7 +89,7 @@ export function CompanyStory() {
             <div className="relative mx-auto flex h-72 w-full max-w-sm items-center justify-center lg:h-full lg:max-h-[380px]">
               <div
                 aria-hidden
-                className="pointer-events-none absolute h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(64,184,239,0.20),transparent_70%)] blur-2xl"
+                className="pointer-events-none absolute h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(168, 137, 96,0.20),transparent_70%)] blur-2xl"
               />
               <div
                 aria-hidden
@@ -199,30 +97,30 @@ export function CompanyStory() {
               />
               <div
                 aria-hidden
-                className="pointer-events-none absolute inset-14 animate-spin-slow-reverse rounded-full border border-dashed border-white/[0.10]"
+                className="pointer-events-none absolute inset-14 animate-spin-slow-reverse rounded-full border border-dashed border-[#C9B69B]/[0.18]"
               />
 
-              <span className="pointer-events-none absolute left-[12%] top-[62%] h-2 w-2 animate-pulse-glow rounded-full bg-accent-bright shadow-[0_0_10px_2px_rgba(64,184,239,0.7)]" />
-              <span className="pointer-events-none absolute right-[16%] top-[20%] h-1.5 w-1.5 animate-pulse-glow rounded-full bg-accent-bright shadow-[0_0_10px_2px_rgba(64,184,239,0.7)]" />
+              <span className="pointer-events-none absolute left-[12%] top-[62%] h-2 w-2 animate-pulse-glow rounded-full bg-accent-bright shadow-[0_0_10px_2px_rgba(168, 137, 96,0.7)]" />
+              <span className="pointer-events-none absolute right-[16%] top-[20%] h-1.5 w-1.5 animate-pulse-glow rounded-full bg-accent-bright shadow-[0_0_10px_2px_rgba(168, 137, 96,0.7)]" />
 
               {/* central glowing "idea" mark */}
-              <div className="relative flex h-24 w-24 items-center justify-center rounded-full border border-accent-bright/40 bg-white/[0.03] shadow-[0_0_50px_-8px_rgba(64,184,239,0.7)] backdrop-blur-sm">
+              <div className="relative flex h-24 w-24 items-center justify-center rounded-full border border-accent-bright/40 bg-white/[0.03] shadow-[0_0_50px_-8px_rgba(168, 137, 96,0.7)] backdrop-blur-sm">
                 <Icon name="idea" size={34} className="text-accent-bright" />
               </div>
 
               <svg viewBox="0 0 220 220" className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden>
-                <circle cx="40" cy="170" r="3.5" fill="#40B8EF" opacity="0.85" />
-                <circle cx="180" cy="45" r="3" fill="#40B8EF" opacity="0.8" />
+                <circle cx="40" cy="170" r="3.5" fill="#A88960" opacity="0.85" />
+                <circle cx="180" cy="45" r="3" fill="#A88960" opacity="0.8" />
                 <path
                   d="M40 170 Q100 150 110 110"
-                  stroke="rgba(64,184,239,0.3)"
+                  stroke="rgba(168, 137, 96,0.3)"
                   strokeWidth="1"
                   strokeDasharray="3 5"
                   fill="none"
                 />
                 <path
                   d="M180 45 Q140 70 112 108"
-                  stroke="rgba(64,184,239,0.3)"
+                  stroke="rgba(168, 137, 96,0.3)"
                   strokeWidth="1"
                   strokeDasharray="3 5"
                   fill="none"
@@ -318,37 +216,10 @@ export function Team() {
         </Reveal>
 
         <Reveal delay={0.1} className="mx-auto mt-12 max-w-4xl">
-          <div className="relative">
-            <div
-              aria-hidden
-              className="pointer-events-none absolute -inset-6 rounded-[32px] bg-[radial-gradient(60%_80%_at_50%_50%,rgba(64,184,239,0.20),transparent_75%)] blur-2xl"
-            />
-            <div className="relative overflow-hidden rounded-[24px] border border-accent-bright/30 bg-bg-panel/40 shadow-[0_40px_100px_-30px_rgba(64,184,239,0.45)]">
-              <img
-                src={teamPhoto}
-                alt="ZeroPoint Labs Team"
-                className="aspect-[16/9] w-full object-cover"
-              />
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 rounded-[24px] ring-1 ring-inset ring-white/[0.08]"
-              />
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 rounded-[24px] shadow-[inset_0_0_0_1px_rgba(64,184,239,0.18)]"
-              />
-            </div>
-          </div>
           <p className="mt-5 text-center text-[13px] font-medium uppercase tracking-widest2 text-ink-muted">
             The ZeroPoint Labs Team
           </p>
         </Reveal>
-
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {teamMembers.map((member, i) => (
-            <TeamCard key={member.name} member={member} delay={i * 0.05} />
-          ))}
-        </div>
       </div>
     </section>
   )
@@ -426,7 +297,7 @@ export function Achievements() {
         <Reveal delay={0.15} className="relative mx-auto mt-16 max-w-3xl">
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_60%_at_50%_50%,rgba(64,184,239,0.08),transparent_70%)]"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_60%_at_50%_50%,rgba(168, 137, 96,0.08),transparent_70%)]"
           />
           <div className="relative flex flex-col items-center">
             <span className="flex h-16 w-16 items-center justify-center rounded-2xl border border-accent-bright/40 bg-white/[0.03] shadow-glow-sm">

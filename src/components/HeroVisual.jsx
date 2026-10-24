@@ -19,7 +19,7 @@ export default function HeroVisual() {
       {/* ambient background glow */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(64,184,239,0.22),transparent_65%)] blur-2xl"
+        className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(168, 137, 96,0.22),transparent_65%)] blur-2xl"
       />
 
       {/* slow-rotating orbit rings */}
@@ -29,7 +29,7 @@ export default function HeroVisual() {
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-[16%] animate-spin-slow-reverse rounded-full border border-white/[0.06]"
+        className="pointer-events-none absolute inset-[16%] animate-spin-slow-reverse rounded-full border border-[#C9B69B]/[0.11]"
       />
       <div
         aria-hidden
@@ -37,8 +37,8 @@ export default function HeroVisual() {
       />
 
       {/* orbiting node dots */}
-      <span className="pointer-events-none absolute left-[6%] top-1/2 h-2 w-2 -translate-y-1/2 animate-pulse-glow rounded-full bg-accent-bright shadow-[0_0_10px_2px_rgba(64,184,239,0.7)]" />
-      <span className="pointer-events-none absolute right-[10%] top-[12%] h-1.5 w-1.5 animate-pulse-glow rounded-full bg-accent-bright shadow-[0_0_10px_2px_rgba(64,184,239,0.7)]" />
+      <span className="pointer-events-none absolute left-[6%] top-1/2 h-2 w-2 -translate-y-1/2 animate-pulse-glow rounded-full bg-accent-bright shadow-[0_0_10px_2px_rgba(168, 137, 96,0.7)]" />
+      <span className="pointer-events-none absolute right-[10%] top-[12%] h-1.5 w-1.5 animate-pulse-glow rounded-full bg-accent-bright shadow-[0_0_10px_2px_rgba(168, 137, 96,0.7)]" />
 
       {/* floating particles */}
       {particles.map((p, i) => (
@@ -63,7 +63,7 @@ export default function HeroVisual() {
       <motion.div
         animate={{ y: [0, -12, 0] }}
         transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute inset-[13%] overflow-hidden rounded-[22px] border border-white/[0.10] bg-gradient-to-br from-bg-elevated/90 via-bg-panel/80 to-bg-deep/90 shadow-[0_40px_100px_-30px_rgba(64,184,239,0.35)] backdrop-blur-xl"
+        className="absolute inset-[13%] overflow-hidden rounded-[22px] border border-[#C9B69B]/[0.18] bg-gradient-to-br from-bg-elevated/90 via-bg-panel/80 to-bg-deep/90 shadow-[0_40px_100px_-30px_rgba(168, 137, 96,0.35)] backdrop-blur-xl"
       >
         {/* faint grid */}
         <div
@@ -71,7 +71,7 @@ export default function HeroVisual() {
           className="pointer-events-none absolute inset-0 bg-grid-lines bg-[size:22px_22px] opacity-[0.18]"
         />
         {/* top chrome bar */}
-        <div className="relative flex items-center justify-between border-b border-white/[0.06] px-5 py-3.5">
+        <div className="relative flex items-center justify-between border-b border-[#C9B69B]/[0.11] px-5 py-3.5">
           <div className="flex items-center gap-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-white/30" />
             <span className="h-1.5 w-1.5 rounded-full bg-white/20" />
@@ -87,8 +87,8 @@ export default function HeroVisual() {
           <svg viewBox="0 0 220 90" className="h-[46%] w-full" preserveAspectRatio="none" aria-hidden>
             <defs>
               <linearGradient id="heroCurveFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="rgba(64,184,239,0.45)" />
-                <stop offset="100%" stopColor="rgba(64,184,239,0)" />
+                <stop offset="0%" stopColor="rgba(168, 137, 96,0.45)" />
+                <stop offset="100%" stopColor="rgba(168, 137, 96,0)" />
               </linearGradient>
             </defs>
             <path
@@ -98,12 +98,12 @@ export default function HeroVisual() {
             <path
               d="M0 65 C 30 55, 45 20, 70 30 S 120 65, 150 35 S 195 10, 220 22"
               fill="none"
-              stroke="#40B8EF"
+              stroke="#A88960"
               strokeWidth="1.6"
               strokeLinecap="round"
             />
-            <circle cx="150" cy="35" r="3" fill="#40B8EF" />
-            <circle cx="150" cy="35" r="6" fill="none" stroke="#40B8EF" strokeOpacity="0.4" />
+            <circle cx="150" cy="35" r="3" fill="#A88960" />
+            <circle cx="150" cy="35" r="6" fill="none" stroke="#A88960" strokeOpacity="0.4" />
           </svg>
 
           <div className="flex items-end justify-between gap-2">
