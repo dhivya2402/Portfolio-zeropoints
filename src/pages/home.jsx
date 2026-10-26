@@ -124,7 +124,7 @@ export default function Home() {
 /* ── 1. HERO ─────────────────────────────────────────────────────────── */
 function Hero() {
   return (
-    <section className="relative overflow-hidden pt-20 sm:pt-28 lg:pt-36">
+    <section className="relative overflow-hidden pt-[7.5rem] sm:pt-28 lg:pt-36">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-[640px] bg-radial-fade"
