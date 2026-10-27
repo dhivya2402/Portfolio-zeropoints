@@ -5,7 +5,7 @@ import CircleHighlight from '../components/CircleHighlight.jsx'
 import ResultCard from '../components/ResultCard.jsx'
 import WhyCard from '../components/WhyCard.jsx'
 import EdgeFrame from '../components/EdgeFrame.jsx'
-import ZeroPointLogo from '../components/ZeroPointLogo.jsx'
+import logo from '../assets/logooo.png'
 import Icon from '../components/Icons.jsx'
 import ServiceShowcase from '../components/ServiceShowcase.jsx'
 import JumpingHeading from '../components/JumpingHeading.jsx'
@@ -57,8 +57,8 @@ const pillars = [
   {
     letter: '04',
     name: 'AUTOMATE',
-    service: 'Web Applications', // existing Services-page entry: dashboards, management systems, custom software
-    photo: 'Business Promotion', // keeps the photo this pillar already shows
+    service: 'Web Applications',
+    photo: 'Business Promotion',
     tagline: 'Business Software & Automation',
     description: 'Inventory management, CRM, customer management, business dashboards and custom software.',
     price: 'Solutions from ₹75,000',
@@ -66,8 +66,6 @@ const pillars = [
   },
 ]
 
-// Hero heading text, split into styled segments for the letter animation.
-// (Same words as before; "Growth" keeps its .zp-script styling.)
 const heroHeading = [
   { text: 'Building Digital Systems That Power Business ' },
   { text: 'Growth', className: 'zp-script' },
@@ -97,11 +95,17 @@ const whyPoints = [
   },
 ]
 
+const insightTopics = [
+  { icon: 'network', label: 'Technology' },
+  { icon: 'marketing', label: 'Marketing' },
+  { icon: 'seo', label: 'SEO' },
+  { icon: 'growth', label: 'Business Growth' },
+]
+
 export default function Home() {
   return (
     <>
       <Hero />
-      {/* About content (formerly /about): story and mission first, then the problem and services */}
       <CompanyStory />
       <MissionVision />
       <CompanyIntro />
@@ -115,7 +119,6 @@ export default function Home() {
       <Insights />
       <FinalCTA />
       <PhotoMarquee />
-      {/* keep last: its scroll triggers must be created after the pinned services stage */}
       <TextReveal />
     </>
   )
@@ -125,23 +128,10 @@ export default function Home() {
 function Hero() {
   return (
     <section className="relative overflow-hidden pt-[7.5rem] sm:pt-28 lg:pt-36">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-[640px] bg-radial-fade"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-grid-lines bg-[size:64px_64px] opacity-[0.25] [mask-image:radial-gradient(60%_50%_at_50%_0%,#000_0%,transparent_100%)]"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -left-40 top-24 h-96 w-96 rounded-full bg-[radial-gradient(circle,rgba(168, 137, 96,0.10),transparent_70%)] blur-3xl"
-      />
-      {/* subtle permanent ambient glow — sits behind the hero visual */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-24 top-28 h-[460px] w-[460px] rounded-full bg-[radial-gradient(circle,rgba(168, 137, 96,0.14),transparent_70%)] blur-[90px] opacity-70"
-      />
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[640px] bg-radial-fade" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-grid-lines bg-[size:64px_64px] opacity-[0.25] [mask-image:radial-gradient(60%_50%_at_50%_0%,#000_0%,transparent_100%)]" />
+      <div aria-hidden className="pointer-events-none absolute -left-40 top-24 h-96 w-96 rounded-full bg-[radial-gradient(circle,rgba(168,137,96,0.10),transparent_70%)] blur-3xl" />
+      <div aria-hidden className="pointer-events-none absolute -right-24 top-28 h-[460px] w-[460px] rounded-full bg-[radial-gradient(circle,rgba(168,137,96,0.14),transparent_70%)] blur-[90px] opacity-70" />
 
       <div className="zp-container relative grid items-center gap-14 pb-24 sm:pb-32 lg:grid-cols-12 lg:gap-8 lg:pb-40">
         <div className="lg:col-span-6">
@@ -153,12 +143,7 @@ function Hero() {
           >
             Digital Systems &amp; Software
           </motion.p>
-
-          <JumpingHeading
-            className="zp-h1 mt-5"
-            segments={heroHeading}
-          />
-
+          <JumpingHeading className="zp-h1 mt-5" segments={heroHeading} />
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
@@ -175,24 +160,25 @@ function Hero() {
               every solution is designed with measurable business outcomes in mind.
             </p>
           </motion.div>
-
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}
             className="mt-10 flex flex-wrap items-center gap-4"
           >
-            <Link to="/contact" className="zp-btn-primary">
-              Start Your Project
-            </Link>
-            <Link to="/services" className="zp-btn-secondary">
-              View Our Work
-            </Link>
+            <Link to="/contact" className="zp-btn-primary">Start Your Project</Link>
+            <Link to="/services" className="zp-btn-secondary">View Our Work</Link>
           </motion.div>
         </div>
-
         <div className="flex items-center justify-center lg:col-span-6">
-          <ZeroPointLogo className="w-full max-w-[460px]" />
+          <motion.img
+            src={logo}
+            alt="ZeroPoint Labs — Code. Create. Elevate."
+            initial={{ opacity: 0, scale: 0.96, y: 12 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="h-auto w-full max-w-[460px] rounded-2xl object-contain drop-shadow-[0_0_35px_rgba(168,137,96,0.16)]"
+          />
         </div>
       </div>
     </section>
@@ -210,9 +196,7 @@ function CompanyIntro() {
             Technology That <span className="zp-script">Solves</span> Business Problems.
           </h2>
         </Reveal>
-
         <div className="mt-12 grid gap-8 lg:grid-cols-12 lg:gap-8">
-          {/* problem → solution flow */}
           <div className="lg:col-span-7">
             <div className="flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:gap-3">
               {problems.map((p, i) => (
@@ -223,19 +207,15 @@ function CompanyIntro() {
                     viewport={{ once: true, amount: 0.4 }}
                     transition={{ duration: 0.65, delay: 0.1 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
                     whileHover={{ y: -3 }}
-                    className="zp-glass flex flex-1 items-center gap-3 self-stretch rounded-2xl border-accent/10 p-5 shadow-[0_0_36px_-20px_rgba(168, 137, 96,0.55)]"
+                    className="zp-glass flex flex-1 items-center gap-3 self-stretch rounded-2xl border-accent/10 p-5 shadow-[0_0_36px_-20px_rgba(168,137,96,0.55)]"
                   >
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-hairline bg-white/[0.03] text-accent-bright">
                       <Icon name={p.icon} size={15} />
                     </span>
-                    <p className="text-[12.5px] font-medium leading-snug text-ink-primary">
-                      {p.title}
-                    </p>
+                    <p className="text-[12.5px] font-medium leading-snug text-ink-primary">{p.title}</p>
                   </motion.div>
                   {i < problems.length - 1 && (
-                    <span className="hidden shrink-0 text-ink-muted sm:flex sm:items-center">
-                      <Icon name="arrowRight" size={14} />
-                    </span>
+                    <span className="hidden shrink-0 text-ink-muted sm:flex sm:items-center"><Icon name="arrowRight" size={14} /></span>
                   )}
                 </div>
               ))}
@@ -250,7 +230,6 @@ function CompanyIntro() {
               </motion.span>
             </div>
           </div>
-
           <Reveal delay={0.18} className="space-y-5 lg:col-span-5">
             <p className="zp-refined">
               Every business has unique challenges. Some struggle to generate leads. Some lose
@@ -269,117 +248,55 @@ function CompanyIntro() {
   )
 }
 
-/* ── 3B. SERVICES — FOUR PILLARS ─────────────────────────────────────── */
+/* ── 4 PILLARS / SERVICES ────────────────────────────────────────────── */
 function Services() {
   return (
     <section id="services" className="zp-section relative overflow-hidden border-t border-hairline">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[760px] -translate-x-1/2 rounded-full bg-[radial-gradient(50%_50%_at_50%_0%,rgba(168, 137, 96,0.08),transparent_70%)] blur-3xl"
-      />
+      <div aria-hidden className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[760px] -translate-x-1/2 rounded-full bg-[radial-gradient(50%_50%_at_50%_0%,rgba(168,137,96,0.08),transparent_70%)] blur-3xl" />
       <div className="zp-container relative">
         <Reveal className="mx-auto max-w-2xl text-center">
           <p className="zp-label font-extrabold tracking-[0.08em]" style={{ fontSize: 'clamp(2.2rem, 4vw, 4rem)', lineHeight: 1 }}>4 PILLARS</p>
-          <h2 className="zp-h2 mt-5">
-            Build. Grow. Create. <span className="zp-script">Automate.</span>
-          </h2>
-          <p className="zp-refined mx-auto mt-6 max-w-lg text-center">
-            We build your digital infrastructure, create your content, grow your audience and
-            generate leads, and automate your business operations.
-          </p>
+          <h2 className="zp-h2 mt-5">Build. Grow. Create. <span className="zp-script">Automate.</span></h2>
+          <p className="zp-refined mx-auto mt-6 max-w-lg text-center">We build your digital infrastructure, create your content, grow your audience and generate leads, and automate your business operations.</p>
         </Reveal>
       </div>
-
-      {/* full-bleed, scroll-driven showcase (pins under the navbar) */}
-      <div className="relative mt-14 lg:mt-16">
-        <ServiceShowcase pillars={pillars} />
-      </div>
+      <div className="relative mt-14 lg:mt-16"><ServiceShowcase pillars={pillars} /></div>
     </section>
   )
 }
 
-/* ── 4. WHY CHOOSE US ────────────────────────────────────────────────── */
+/* ── WHY CHOOSE US ───────────────────────────────────────────────────── */
 function WhyChooseUs() {
   return (
     <section className="zp-section relative overflow-hidden">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-0 h-[440px] w-[760px] -translate-x-1/2 rounded-full bg-[radial-gradient(50%_50%_at_50%_0%,rgba(168, 137, 96,0.10),transparent_70%)] blur-3xl"
-      />
+      <div aria-hidden className="pointer-events-none absolute left-1/2 top-0 h-[440px] w-[760px] -translate-x-1/2 rounded-full bg-[radial-gradient(50%_50%_at_50%_0%,rgba(168,137,96,0.10),transparent_70%)] blur-3xl" />
       <div className="zp-container relative">
         <Reveal className="mx-auto max-w-2xl text-center">
           <p className="zp-label">Why Choose Us</p>
-          <h2 className="zp-h2 mt-5">
-            We Think Like Business <span className="zp-script">Owners</span>.
-          </h2>
-          <p className="zp-refined mx-auto mt-6 max-w-lg text-center">
-            Technology should support your business&mdash;not complicate it. Every project
-            starts by understanding your goals before a single design or line of code is
-            created.
-          </p>
+          <h2 className="zp-h2 mt-5">We Think Like Business <span className="zp-script">Owners</span>.</h2>
+          <p className="zp-refined mx-auto mt-6 max-w-lg text-center">Technology should support your business—not complicate it. Every project starts by understanding your goals before a single design or line of code is created.</p>
         </Reveal>
-
         <div className="mx-auto mt-14 grid max-w-3xl gap-5 sm:grid-cols-2 lg:mt-16 lg:gap-6">
-          {whyPoints.map((point, i) => (
-            <WhyCard
-              key={point.title}
-              index={i + 1}
-              title={point.title}
-              description={point.description}
-              icon={point.icon}
-              delay={i * 0.08}
-            />
-          ))}
+          {whyPoints.map((point, i) => <WhyCard key={point.title} index={i + 1} title={point.title} description={point.description} icon={point.icon} delay={i * 0.08} />)}
         </div>
       </div>
     </section>
   )
 }
 
-/* ── 5. RESULTS ───────────────────────────────────────────────────────── */
+/* ── RESULTS ─────────────────────────────────────────────────────────── */
 function Results() {
   return (
     <section className="zp-section relative overflow-hidden border-t border-hairline bg-bg-deep/60">
-      {/* subtle permanent ambient glow behind the proof grid */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/3 h-[460px] w-[760px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(168, 137, 96,0.07),transparent_70%)] blur-[100px]"
-      />
+      <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/3 h-[460px] w-[760px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(168,137,96,0.07),transparent_70%)] blur-[100px]" />
       <div className="zp-container relative">
-        <Reveal className="mx-auto max-w-xl text-center">
-          <p className="zp-label">Proof, Not Promises</p>
-          <h2 className="zp-h2 mt-5">Results That Speak For Themselves</h2>
-        </Reveal>
-
+        <Reveal className="mx-auto max-w-xl text-center"><p className="zp-label">Proof, Not Promises</p><h2 className="zp-h2 mt-5">Results That Speak For Themselves</h2></Reveal>
         <EdgeFrame className="mt-16">
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
-            <ResultCard
-              value="14,500+"
-              label="YouTube Subscribers Generated"
-              sublabel="Within just 11 Shorts"
-              icon="growth"
-            />
-            <ResultCard
-              value="50+"
-              label="Qualified Leads Generated Through Meta Ads"
-              sublabel="In One Month"
-              icon="target"
-              delay={0.08}
-            />
-            <ResultCard
-              value="CRM · Billing"
-              label="Business Websites &amp; Automation"
-              sublabel="Successfully Delivered"
-              icon="layers"
-              delay={0.16}
-            />
-            <ResultCard
-              value="Confidential"
-              label="Some Projects Remain Private"
-              sublabel="To respect our clients"
-              icon="ownership"
-              delay={0.24}
-            />
+            <ResultCard value="14,500+" label="YouTube Subscribers Generated" sublabel="Within just 11 Shorts" icon="growth" />
+            <ResultCard value="50+" label="Qualified Leads Generated Through Meta Ads" sublabel="In One Month" icon="target" delay={0.08} />
+            <ResultCard value="CRM · Billing" label="Business Websites &amp; Automation" sublabel="Successfully Delivered" icon="layers" delay={0.16} />
+            <ResultCard value="Confidential" label="Some Projects Remain Private" sublabel="To respect our clients" icon="ownership" delay={0.24} />
           </div>
         </EdgeFrame>
       </div>
@@ -387,65 +304,24 @@ function Results() {
   )
 }
 
-/* ── 6. LATEST BLOG / INSIGHTS ───────────────────────────────────────── */
-const insightTopics = [
-  { icon: 'network', label: 'Technology' },
-  { icon: 'marketing', label: 'Marketing' },
-  { icon: 'seo', label: 'SEO' },
-  { icon: 'growth', label: 'Business Growth' },
-]
-
+/* ── INSIGHTS ────────────────────────────────────────────────────────── */
 function Insights() {
   return (
     <section className="zp-section relative overflow-hidden border-t border-hairline">
-      {/*
-        NOTE FOR INTEGRATION: no article data was provided, so this is a
-        compact editorial placeholder — sized and styled to slot in the
-        team's Blog page/data source later without needing a rebuild.
-      */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-[380px] bg-radial-fade opacity-60"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-grid-lines bg-[size:64px_64px] opacity-[0.12] [mask-image:radial-gradient(55%_45%_at_50%_0%,#000_0%,transparent_100%)]"
-      />
-
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[380px] bg-radial-fade opacity-60" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-grid-lines bg-[size:64px_64px] opacity-[0.12] [mask-image:radial-gradient(55%_45%_at_50%_0%,#000_0%,transparent_100%)]" />
       <div className="zp-container relative">
         <Reveal className="mx-auto max-w-xl text-center">
           <p className="zp-label">Latest Insights</p>
-          <h2 className="zp-h2 mt-5">
-            Insights, Ideas &amp; <span className="text-accent-bright">Digital Growth</span>
-          </h2>
-          <p className="zp-refined mx-auto mt-5 max-w-lg text-center">
-            Articles that help business owners understand technology, marketing, branding and
-            digital transformation.
-          </p>
+          <h2 className="zp-h2 mt-5">Insights, Ideas &amp; <span className="text-accent-bright">Digital Growth</span></h2>
+          <p className="zp-refined mx-auto mt-5 max-w-lg text-center">Articles that help business owners understand technology, marketing, branding and digital transformation.</p>
         </Reveal>
-
         <div className="mx-auto mt-14 grid max-w-4xl grid-cols-2 gap-4 sm:gap-5 lg:mt-16 lg:grid-cols-4">
           {insightTopics.map((t, i) => (
-            <motion.div
-              key={t.icon}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.65, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -5 }}
-              className="group relative flex aspect-square flex-col items-center justify-center gap-4 overflow-hidden rounded-[20px] border border-[#C9B69B]/[0.16] bg-bg-panel/45 p-4 shadow-[0_0_40px_-26px_rgba(168, 137, 96,0.55)] backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-accent-bright/30 hover:shadow-[0_32px_80px_-30px_rgba(168, 137, 96,0.45)]"
-            >
-              {/* ambient illustration glow — visible by default, warms further on hover */}
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_35%,rgba(168, 137, 96,0.10),transparent_75%)] opacity-100 transition-opacity duration-500 group-hover:opacity-100"
-              />
-              <span className="relative flex h-12 w-12 items-center justify-center rounded-xl border border-[#C9B69B]/[0.18] bg-white/[0.04] text-accent-bright/80 transition-all duration-500 group-hover:border-accent-bright/50 group-hover:text-accent-bright group-hover:shadow-[0_0_24px_-6px_rgba(168, 137, 96,0.65)]">
-                <Icon name={t.icon} size={20} />
-              </span>
-              <span className="relative text-[12px] font-semibold uppercase tracking-wider text-ink-secondary transition-colors duration-500 group-hover:text-ink-primary">
-                {t.label}
-              </span>
+            <motion.div key={t.icon} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.65, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }} whileHover={{ y: -5 }} className="group relative flex aspect-square flex-col items-center justify-center gap-4 overflow-hidden rounded-[20px] border border-[#C9B69B]/[0.16] bg-bg-panel/45 p-4 shadow-[0_0_40px_-26px_rgba(168,137,96,0.55)] backdrop-blur-xl transition-all duration-500 hover:border-accent-bright/30 hover:shadow-[0_32px_80px_-30px_rgba(168,137,96,0.45)]">
+              <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_35%,rgba(168,137,96,0.10),transparent_75%)] opacity-100 transition-opacity duration-500" />
+              <span className="relative flex h-12 w-12 items-center justify-center rounded-xl border border-[#C9B69B]/[0.18] bg-white/[0.04] text-accent-bright/80 transition-all duration-500 group-hover:border-accent-bright/50 group-hover:text-accent-bright group-hover:shadow-[0_0_24px_-6px_rgba(168,137,96,0.65)]"><Icon name={t.icon} size={20} /></span>
+              <span className="relative text-[12px] font-semibold uppercase tracking-wider text-ink-secondary transition-colors duration-500 group-hover:text-ink-primary">{t.label}</span>
             </motion.div>
           ))}
         </div>
@@ -454,62 +330,24 @@ function Insights() {
   )
 }
 
-/* ── 7. FINAL CTA ─────────────────────────────────────────────────────── */
+/* ── FINAL CTA ───────────────────────────────────────────────────────── */
 function FinalCTA() {
   return (
     <section className="zp-section relative overflow-hidden">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-radial-fade opacity-50"
-      />
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-radial-fade opacity-50" />
       <div className="zp-container relative">
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="relative overflow-hidden rounded-[28px] border border-[#C9B69B]/[0.16] bg-bg-panel/45 px-6 py-16 text-center shadow-[0_0_70px_-28px_rgba(168, 137, 96,0.45)] backdrop-blur-xl sm:px-12 sm:py-20"
-        >
-          {/* deep ambient glow orbs — permanent, subtle depth */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(168, 137, 96,0.16),transparent_70%)] blur-3xl"
-          />
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(168, 137, 96,0.12),transparent_70%)] blur-3xl"
-          />
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 bg-grid-lines bg-[size:56px_56px] opacity-[0.08] [mask-image:radial-gradient(55%_55%_at_50%_40%,#000_0%,transparent_100%)]"
-          />
-
-          {/* subtle floating light particles */}
-          <span className="pointer-events-none absolute left-[16%] top-[24%] h-1.5 w-1.5 animate-pulse-glow rounded-full bg-accent-bright shadow-[0_0_10px_2px_rgba(168, 137, 96,0.7)]" />
-          <span className="pointer-events-none absolute right-[18%] top-[32%] h-1 w-1 animate-pulse-glow rounded-full bg-accent-bright shadow-[0_0_10px_2px_rgba(168, 137, 96,0.7)]" />
-          <span className="pointer-events-none absolute left-[28%] bottom-[22%] h-1 w-1 animate-pulse-glow rounded-full bg-accent-bright shadow-[0_0_10px_2px_rgba(168, 137, 96,0.7)]" />
-
-          {/* corner brackets for the same premium UI-frame language used elsewhere */}
-          <span
-            aria-hidden
-            className="pointer-events-none absolute left-5 top-5 h-4 w-4 border-l border-t border-accent-bright/40"
-          />
-          <span
-            aria-hidden
-            className="pointer-events-none absolute bottom-5 right-5 h-4 w-4 border-b border-r border-accent-bright/40"
-          />
-
-          <h2 className="zp-h2 relative mx-auto max-w-2xl">
-            Ready To Build Something Bigger Than A <span className="zp-script"><CircleHighlight>Website</CircleHighlight></span>?
-          </h2>
-          <p className="zp-refined relative mx-auto mt-6 max-w-lg text-center">
-            Let&rsquo;s create digital solutions that help your business grow.
-          </p>
-          <div className="relative mt-9">
-            <Link to="/contact" className="zp-btn-primary">
-              Start Your Project
-            </Link>
-          </div>
+        <motion.div initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="relative overflow-hidden rounded-[28px] border border-[#C9B69B]/[0.16] bg-bg-panel/45 px-6 py-16 text-center shadow-[0_0_70px_-28px_rgba(168,137,96,0.45)] backdrop-blur-xl sm:px-12 sm:py-20">
+          <div aria-hidden className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(168,137,96,0.16),transparent_70%)] blur-3xl" />
+          <div aria-hidden className="pointer-events-none absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(168,137,96,0.12),transparent_70%)] blur-3xl" />
+          <div aria-hidden className="pointer-events-none absolute inset-0 bg-grid-lines bg-[size:56px_56px] opacity-[0.08] [mask-image:radial-gradient(55%_55%_at_50%_40%,#000_0%,transparent_100%)]" />
+          <span className="pointer-events-none absolute left-[16%] top-[24%] h-1.5 w-1.5 animate-pulse-glow rounded-full bg-accent-bright shadow-[0_0_10px_2px_rgba(168,137,96,0.7)]" />
+          <span className="pointer-events-none absolute right-[18%] top-[32%] h-1 w-1 animate-pulse-glow rounded-full bg-accent-bright shadow-[0_0_10px_2px_rgba(168,137,96,0.7)]" />
+          <span className="pointer-events-none absolute left-[28%] bottom-[22%] h-1 w-1 animate-pulse-glow rounded-full bg-accent-bright shadow-[0_0_10px_2px_rgba(168,137,96,0.7)]" />
+          <span aria-hidden className="pointer-events-none absolute left-5 top-5 h-4 w-4 border-l border-t border-accent-bright/40" />
+          <span aria-hidden className="pointer-events-none absolute bottom-5 right-5 h-4 w-4 border-b border-r border-accent-bright/40" />
+          <h2 className="zp-h2 relative mx-auto max-w-2xl">Ready To Build Something Bigger Than A <span className="zp-script"><CircleHighlight>Website</CircleHighlight></span>?</h2>
+          <p className="zp-refined relative mx-auto mt-6 max-w-lg text-center">Let&rsquo;s create digital solutions that help your business grow.</p>
+          <div className="relative mt-9"><Link to="/contact" className="zp-btn-primary">Start Your Project</Link></div>
         </motion.div>
       </div>
     </section>
