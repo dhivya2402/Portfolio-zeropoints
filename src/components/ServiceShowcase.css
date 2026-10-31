@@ -474,36 +474,88 @@
   display: none;
 }
 
-/* phones: the stage is only as tall as the picture needs (no empty dark space) */
+/* =========================================================
+   PHONES (<= 760px): four stacked, fully visible pillar cards
+   Replaces the pinned scroll tour (the component renders this list instead of the
+   stage on phones, so no pin, fixed stage height or ScrollTrigger is involved).
+   Each artwork is shown whole: width follows the card, height follows the image's own
+   aspect ratio (no crop, no stretch), and the card's rounded frame sits outside it.
+========================================================= */
 @media (max-width: 760px) {
-  .zsh--pinned .zsh-pin {
-    height: calc(var(--zsh-nav) + 8px + (100vw - 32px) / 1.68 + 52px);
+  .zsh--stack {
+    padding: 0 clamp(10px, 3.5vw, 18px);
   }
 
-  .zsh-scene[data-art] .zsh-bg .zsh-px {
-    padding: calc(var(--zsh-nav) + 8px) 16px 52px;
+  .zsh-stack {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 5vw, 24px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
-  .zsh-prompt {
-    display: none;
+  .zsh-stack-item {
+    margin: 0;
+    padding: 0;
   }
 
-  /* progress dots move under the picture instead of overlapping its edge */
-  .zsh-rail {
-    top: auto;
-    bottom: 8px;
-    right: auto;
-    left: 50%;
-    flex-direction: row;
-    gap: 4px;
-    transform: translateX(-50%);
+  .zsh-card {
+    display: block;
+    /* the padding keeps the image's square corners inside the card's rounded corners,
+       so nothing is clipped (no overflow: hidden on purpose) */
+    padding: 5px;
+    border: 1px solid rgba(201, 182, 155, 0.45);
+    border-radius: 20px;
+    background: #130d08; /* matches the artwork's own edge colour */
+    box-shadow:
+      0 0 0 1px rgba(168, 137, 96, 0.1),
+      0 16px 40px rgba(0, 0, 0, 0.55),
+      0 0 36px rgba(201, 160, 106, 0.18);
+    color: #f3ede0;
+    text-decoration: none;
+    scroll-margin-top: 110px; /* clear of the fixed navbar when focused or jumped to */
+    -webkit-tap-highlight-color: transparent;
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.35s ease,
+      border-color 0.35s ease;
   }
 
-  .zsh-rail-btn {
-    padding: 8px 6px;
+  .zsh-card img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
   }
 
-  .zsh-rail-btn[aria-current="true"] .zsh-rail-bar {
-    width: 28px;
+  .zsh-card:active {
+    transform: scale(0.992);
+  }
+
+  .zsh-card:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+}
+
+@media (max-width: 760px) and (hover: hover) and (pointer: fine) {
+  .zsh-card:hover {
+    border-color: rgba(201, 182, 155, 0.7);
+    box-shadow:
+      0 0 0 1px rgba(168, 137, 96, 0.18),
+      0 20px 48px rgba(0, 0, 0, 0.6),
+      0 0 48px rgba(201, 160, 106, 0.3);
+  }
+}
+
+@media (max-width: 760px) and (prefers-reduced-motion: reduce) {
+  .zsh-card {
+    transition: none;
+  }
+
+  .zsh-card:active {
+    transform: none;
   }
 }

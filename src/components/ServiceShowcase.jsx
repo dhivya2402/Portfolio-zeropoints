@@ -94,6 +94,57 @@ function useMotionOk() {
   return ok
 }
 
+// Phones (same breakpoint as the phone rules in ServiceShowcase.css) get four stacked,
+// fully visible cards instead of the pinned scroll tour.
+const MOBILE_QUERY = '(max-width: 760px)'
+
+function useIsMobile() {
+  const [mobile, setMobile] = useState(() =>
+    typeof window === 'undefined' ? false : window.matchMedia(MOBILE_QUERY).matches,
+  )
+  useLayoutEffect(() => {
+    const mq = window.matchMedia(MOBILE_QUERY)
+    const onChange = () => setMobile(mq.matches)
+    onChange()
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+  return mobile
+}
+
+// Order of the phone cards, the label printed in each artwork (used for the link's
+// accessible name) and the artwork's pixel size (reserves its exact aspect ratio).
+const MOBILE_ORDER = [
+  { name: 'BUILD', label: 'Web & App Development', w: 2076, h: 1224 },
+  { name: 'CREATE', label: 'Content Creation', w: 2076, h: 1236 },
+  { name: 'AUTOMATE', label: 'Business Software & Automation', w: 2052, h: 1212 },
+  { name: 'GROW', label: 'Digital Marketing', w: 2100, h: 1248 },
+]
+
+function MobileCard({ p, cfg, art, first }) {
+  return (
+    <li className="zsh-stack-item">
+      <Link
+        to={`/services#service-${p.name.toLowerCase()}`}
+        className="zsh-card"
+        aria-label={`${p.name} — ${art.label}`}
+        data-scene={cfg.slug}
+        style={{ '--accent': cfg.accent }}
+      >
+        <img
+          src={cfg.image}
+          alt=""
+          width={art.w}
+          height={art.h}
+          draggable="false"
+          decoding="async"
+          loading={first ? 'eager' : 'lazy'}
+        />
+      </Link>
+    </li>
+  )
+}
+
 function Scene({ p, cfg, active, animated }) {
   const word = [...p.name]
   return (
@@ -157,6 +208,7 @@ function Scene({ p, cfg, active, animated }) {
 export default function ServiceShowcase({ pillars }) {
   const items = pillars.filter((p) => SCENES[p.name])
   const motionOk = useMotionOk()
+  const isMobile = useIsMobile()
   const rootRef = useRef(null)
   const stRef = useRef(null)
   const tlRef = useRef(null)
@@ -166,7 +218,8 @@ export default function ServiceShowcase({ pillars }) {
 
   useLayoutEffect(() => {
     const root = rootRef.current
-    if (!root || !motionOk || !items.length) return
+    // phones use the stacked cards: no pin, no scrub, no snap
+    if (!root || !motionOk || isMobile || !items.length) return
 
     const cleanups = []
     const ctx = gsap.context(() => {
@@ -323,7 +376,15 @@ export default function ServiceShowcase({ pillars }) {
       setActive(0)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [motionOk, pillars])
+  }, [motionOk, isMobile, pillars])
+
+  // switching between the stacked and pinned layouts changes the page height
+  const layoutRef = useRef(isMobile)
+  useLayoutEffect(() => {
+    if (layoutRef.current === isMobile) return
+    layoutRef.current = isMobile
+    ScrollTrigger.refresh()
+  }, [isMobile])
 
   // rail buttons: jump to a scene (also the keyboard route through the pinned tour).
   // Driven by a GSAP tween through ScrollTrigger's own scroll setter: the scroll keeps
@@ -362,8 +423,23 @@ export default function ServiceShowcase({ pillars }) {
 
   const accent = SCENES[items[Math.min(active, items.length - 1)].name].accent
 
+  if (isMobile) {
+    const cards = MOBILE_ORDER.map((art) => ({ art, p: items.find((it) => it.name === art.name) })).filter((c) => c.p)
+    return (
+      // distinct key: switching layouts remounts the root, so a pinned stage is never patched in place
+      <div key="stack" className="zsh zsh--stack" role="region" aria-label="Our services">
+        <ul className="zsh-stack" role="list">
+          {cards.map(({ art, p }, i) => (
+            <MobileCard key={p.name} p={p} cfg={SCENES[p.name]} art={art} first={i === 0} />
+          ))}
+        </ul>
+      </div>
+    )
+  }
+
   return (
     <div
+      key="stage"
       ref={rootRef}
       className={`zsh ${motionOk ? 'zsh--pinned' : 'zsh--static'}`}
       role="region"
