@@ -559,3 +559,35 @@
     transform: none;
   }
 }
+
+/* =========================================================
+   DESKTOP / LAPTOP IMAGE CLARITY (>= 761px only; phones untouched)
+   - the stage now reserves the navbar's real height, so the artwork's top border is no
+     longer clipped underneath it and the picture is not squeezed
+   - no permanent compositing hints on the artwork layers: the browser re-rasterises the
+     settled image at its true pixel size instead of resampling a cached, scaled layer
+   - the picture is never enlarged past its own pixel width, no filters or overlays
+========================================================= */
+@media (min-width: 761px) {
+  .zsh {
+    --zsh-nav: 112px; /* matches the fixed navbar's min-height */
+  }
+
+  .zsh-scene[data-art] .zsh-bg,
+  .zsh-scene[data-art] .zsh-bg .zsh-px {
+    will-change: auto;
+  }
+
+  .zsh-scene[data-art] .zsh-bg img {
+    max-width: min(100%, 2100px);
+    image-rendering: auto;
+    filter: none;
+    opacity: 1;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1100px) {
+  .zsh {
+    --zsh-nav: 98px; /* compact navbar */
+  }
+}
