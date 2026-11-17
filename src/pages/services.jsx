@@ -281,7 +281,7 @@ export default function Services() {
           <p className="body-serif mt-6 max-w-2xl text-sm leading-7 text-[#C9B69B]">We don't start with a package. We understand your business, identify what needs to improve, and recommend the right solution.</p>
         </div>
         <div className="services-grid grid gap-6 lg:grid-cols-2">
-          {services.map(service => { const Icon = service.icon; return <div key={service.number} className="service-parent service-card">
+          {services.map(service => { const Icon = service.icon; return <div key={service.number} id={`service-${service.title.toLowerCase()}`} className="service-parent service-card scroll-mt-32">
             <article className="service-card-inner relative h-full overflow-hidden rounded-[30px] border border-[#C9B69B]/20 bg-[#30251E] p-1">
               <div className="service-orb one absolute -right-20 -top-20 h-64 w-64 rounded-full border border-[#A88960]/15 bg-[#A88960]/[.045]" /><div className="service-orb two absolute -bottom-24 -left-20 h-56 w-56 rounded-full border border-white/5 bg-white/[.02]" />
               <div className="service-glass relative h-full rounded-[26px] border border-[#C9B69B]/10 bg-[#30251E] p-7 sm:p-9">

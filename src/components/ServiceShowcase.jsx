@@ -25,9 +25,9 @@ gsap.registerPlugin(ScrollTrigger)
  * letter by letter. Scroll snaps to each scene so one is always settled and
  * clickable.
  *
- * Every scene is a real <Link> to that service's card on the existing
- * /services page (`/services#service-<name>`), so the router, navbar and
- * browser Back button behave exactly as for any other link.
+ * Every scene is a real <Link> to the existing /services page, which always
+ * opens at the top (see ScrollToTop), so the router, navbar and browser Back
+ * button behave exactly as for any other link.
  *
  * Artwork: src/assets/pillar-<slug>.webp - one gold visual per service, shown whole
  * (never cropped or stretched) with its own name, label and arrow.
@@ -125,7 +125,7 @@ function MobileCard({ p, cfg, art, first }) {
   return (
     <li className="zsh-stack-item">
       <Link
-        to={`/services#service-${p.name.toLowerCase()}`}
+        to="/services"
         className="zsh-card"
         aria-label={`${p.name} — ${art.label}`}
         data-scene={cfg.slug}
@@ -149,7 +149,7 @@ function Scene({ p, cfg, active, animated }) {
   const word = [...p.name]
   return (
     <Link
-      to={`/services#service-${p.name.toLowerCase()}`}
+      to="/services"
       className="zsh-scene"
       aria-label={`${cfg.label}. ${p.tagline}`}
       data-scene={cfg.slug}

@@ -583,6 +583,31 @@
     image-rendering: auto;
     filter: none;
     opacity: 1;
+    /* The phone cards frame the picture with a 5px dark matte, a gold hairline and a soft
+       gold glow; that defined, lit edge is a big part of why they look luminous. Same
+       frame here, drawn with shadow rings so the picture's box and layout do not change
+       (the rings stay within the 8px the stage already leaves above the picture).
+       Drop shadow and glow are the phone cards' own values, which light the backdrop to
+       the same level as on phones. */
+    box-shadow:
+      0 0 0 5px #130d08,
+      0 0 0 7px rgba(201, 182, 155, 0.45),
+      0 16px 40px rgba(0, 0, 0, 0.55),
+      0 0 36px rgba(201, 160, 106, 0.18);
+  }
+
+  /* The artwork's pixels are shown untouched (no overlay, filter or blend). What made it
+     feel darker than on phones was its surround: a near-black stage (#0e0907) the same
+     shade as the picture's own edges, so its dark areas dissolved into the page. Phones
+     show the same picture on the site's page tone (#211a15). Use that tone here too. */
+  .zsh-scene[data-art] {
+    background: #211a15;
+  }
+
+  .zsh-scene[data-art] .zsh-bg .zsh-px {
+    background:
+      radial-gradient(48% 52% at 50% 56%, rgba(168, 137, 96, 0.2), transparent 72%),
+      #211a15;
   }
 }
 
