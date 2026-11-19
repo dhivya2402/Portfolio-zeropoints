@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ArrowUpRight } from "lucide-react";
@@ -47,9 +48,10 @@ export default function Header() {
           transition: background .35s ease, border-color .35s ease, box-shadow .35s ease, backdrop-filter .35s ease;
         }
 
-        .zpl-header *, .zpl-header *::before, .zpl-header *::after { box-sizing: border-box; }
+        .zpl-header *, .zpl-header *::before, .zpl-header *::after {
+          box-sizing: border-box;
+        }
 
-        /* Match the dark brown gradient from the supplied colour reference. */
         .zpl-header.home-header:not(.scrolled) {
           background: linear-gradient(180deg, #15100D 0%, #17120E 52%, #181310 100%);
           border-bottom-color: rgba(201, 182, 155, 0.15);
@@ -66,9 +68,10 @@ export default function Header() {
           backdrop-filter: blur(16px);
         }
 
+        /* Compact desktop navbar */
         .zpl-header .header-inner {
           width: min(1500px, 92%);
-          min-height: 112px;
+          min-height: 82px;
           margin: 0 auto;
           display: flex;
           align-items: center;
@@ -76,7 +79,6 @@ export default function Header() {
           gap: clamp(14px, 2vw, 30px);
         }
 
-        /* Larger logo with a responsive image box. */
         .zpl-header .zpl-logo {
           display: inline-flex;
           flex: 0 0 auto;
@@ -87,10 +89,11 @@ export default function Header() {
           line-height: 0;
         }
 
+        /* Large logo inside compact navbar */
         .zpl-header .zpl-logo-image {
           display: block;
-          width: clamp(220px, 20vw, 300px);
-          height: 104px;
+          width: clamp(240px, 22vw, 320px);
+          height: 110px;
           max-width: none;
           object-fit: contain;
           object-position: left center;
@@ -136,9 +139,14 @@ export default function Header() {
         }
 
         .zpl-header .nav-link:hover,
-        .zpl-header .nav-link.active { color: var(--zpl-ivory); }
+        .zpl-header .nav-link.active {
+          color: var(--zpl-ivory);
+        }
+
         .zpl-header .nav-link:hover::after,
-        .zpl-header .nav-link.active::after { width: 100%; }
+        .zpl-header .nav-link.active::after {
+          width: 100%;
+        }
 
         .zpl-header .header-cta,
         .zpl-header .mobile-cta {
@@ -170,9 +178,14 @@ export default function Header() {
         }
 
         .zpl-header .header-cta svg,
-        .zpl-header .mobile-cta svg { transition: transform .3s ease; }
+        .zpl-header .mobile-cta svg {
+          transition: transform .3s ease;
+        }
+
         .zpl-header .header-cta:hover svg,
-        .zpl-header .mobile-cta:hover svg { transform: translate(3px, -3px); }
+        .zpl-header .mobile-cta:hover svg {
+          transform: translate(3px, -3px);
+        }
 
         .zpl-header .mobile-menu-btn {
           display: none;
@@ -188,33 +201,59 @@ export default function Header() {
           cursor: pointer;
         }
 
-        .zpl-header .mobile-nav { display: none; }
+        .zpl-header .mobile-nav {
+          display: none;
+        }
 
         /* Compact desktop/laptop screens */
         @media (max-width: 1100px) and (min-width: 761px) {
-          .zpl-header .header-inner { width: 94%; gap: 16px; min-height: 98px; }
-          .zpl-header .zpl-logo-image { width: 195px; height: 88px; }
-          .zpl-header .desktop-nav { gap: 17px; }
-          .zpl-header .nav-link { font-size: 19px; }
-          .zpl-header .header-cta { padding: 10px 13px; font-size: 19px; }
+          .zpl-header .header-inner {
+            width: 94%;
+            gap: 16px;
+            min-height: 76px;
+          }
+
+          .zpl-header .zpl-logo-image {
+            width: 220px;
+            height: 100px;
+          }
+
+          .zpl-header .desktop-nav {
+            gap: 17px;
+          }
+
+          .zpl-header .nav-link {
+            font-size: 19px;
+          }
+
+          .zpl-header .header-cta {
+            padding: 10px 13px;
+            font-size: 19px;
+          }
         }
 
+        /* Mobile */
         @media (max-width: 760px) {
           .zpl-header .header-inner {
             width: 90%;
-            min-height: 86px;
+            min-height: 70px;
             gap: 12px;
           }
 
           .zpl-header .zpl-logo-image {
-            width: clamp(165px, 43vw, 195px);
-            height: 76px;
+            width: clamp(180px, 45vw, 210px);
+            height: 90px;
           }
 
           .zpl-header .desktop-nav,
-          .zpl-header .header-cta { display: none; }
+          .zpl-header .header-cta {
+            display: none;
+          }
 
-          .zpl-header .mobile-menu-btn { display: inline-flex; margin-left: auto; }
+          .zpl-header .mobile-menu-btn {
+            display: inline-flex;
+            margin-left: auto;
+          }
 
           .zpl-header .mobile-nav {
             display: flex;
@@ -267,9 +306,15 @@ export default function Header() {
             letter-spacing: 1px;
           }
 
-          .zpl-header .mobile-nav-link svg { margin-left: auto; color: var(--zpl-beige); }
+          .zpl-header .mobile-nav-link svg {
+            margin-left: auto;
+            color: var(--zpl-beige);
+          }
+
           .zpl-header .mobile-nav-link:hover,
-          .zpl-header .mobile-nav-link.active { color: var(--zpl-beige); }
+          .zpl-header .mobile-nav-link.active {
+            color: var(--zpl-beige);
+          }
 
           .zpl-header .mobile-cta {
             width: 100%;
@@ -280,13 +325,26 @@ export default function Header() {
         }
 
         @media (max-width: 380px) {
-          .zpl-header .header-inner { width: 92%; min-height: 80px; }
-          .zpl-header .zpl-logo-image { width: 150px; height: 70px; }
-          .zpl-header .mobile-menu-btn { width: 41px; height: 41px; }
+          .zpl-header .header-inner {
+            width: 92%;
+            min-height: 66px;
+          }
+
+          .zpl-header .zpl-logo-image {
+            width: 175px;
+            height: 85px;
+          }
+
+          .zpl-header .mobile-menu-btn {
+            width: 41px;
+            height: 41px;
+          }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .zpl-header *, .zpl-header *::before, .zpl-header *::after {
+          .zpl-header *,
+          .zpl-header *::before,
+          .zpl-header *::after {
             transition-duration: .01ms !important;
             animation-duration: .01ms !important;
           }

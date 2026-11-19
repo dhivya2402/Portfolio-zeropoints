@@ -331,7 +331,7 @@ export default function Footer() {
         <p>© {new Date().getFullYear()} ZeroPoint Labs. All rights reserved.</p>
         <p>
           Build. Grow. Create. Automate.
-          <span className="zpl-footer-accent"> ✦</span>
+          <span className="zpl-footer-accent"> </span>
         </p>
       </div>
     </footer>

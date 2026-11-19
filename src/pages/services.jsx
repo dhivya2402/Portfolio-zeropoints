@@ -261,9 +261,9 @@ export default function Services() {
         <div className="hero-glow-two absolute bottom-[12%] right-[12%] h-80 w-80 rounded-full bg-[#C9B69B]/[.07] blur-[140px]" />
         <div className="hero-dust pointer-events-none absolute inset-0" aria-hidden="true" />
       </div>
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-28 lg:px-10">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-28 translate-y-10 lg:px-10">
         <div className="max-w-5xl">
-          <div className="services-hero-element mb-7 flex items-center gap-4"><span className="hero-rule h-px w-12" /><span className="text-[10px] font-semibold uppercase tracking-[.4em] text-[#A88960] sm:text-xs">ZEROPOINT LABS / SERVICES</span></div>
+
           <h1 className="services-hero-element text-5xl font-extrabold leading-[.92] tracking-[-.065em] text-white sm:text-7xl lg:text-[7.8rem]">Digital<br /><span className="premium-text">Solutions.</span></h1>
           <p className="services-hero-element body-serif mt-8 max-w-2xl text-sm leading-7 text-[#C9B69B] sm:text-base sm:leading-8">From building your digital presence to growing your audience and automating your operations, ZeroPoint Labs provides technology, marketing and creative solutions designed for growing businesses. <strong className="font-bold text-white">Every solution is designed around your actual business requirements.</strong></p>
           <div className="services-hero-element mt-8 flex flex-wrap gap-3">{["BUILD","GROW","CREATE","AUTOMATE"].map(item => <span key={item} className="rounded-full border border-[#C9B69B]/25 px-4 py-2 text-[9px] font-semibold tracking-[.25em] text-[#C9B69B] transition hover:border-[#A88960]/70 hover:text-white"><span className="mr-2 text-[#A88960]">•</span>{item}</span>)}</div>
@@ -281,7 +281,7 @@ export default function Services() {
           <p className="body-serif mt-6 max-w-2xl text-sm leading-7 text-[#C9B69B]">We don't start with a package. We understand your business, identify what needs to improve, and recommend the right solution.</p>
         </div>
         <div className="services-grid grid gap-6 lg:grid-cols-2">
-          {services.map(service => { const Icon = service.icon; return <div key={service.number} className="service-parent service-card">
+          {services.map(service => { const Icon = service.icon; return <div key={service.number} id={`service-${service.title.toLowerCase()}`} className="service-parent service-card scroll-mt-32">
             <article className="service-card-inner relative h-full overflow-hidden rounded-[30px] border border-[#C9B69B]/20 bg-[#30251E] p-1">
               <div className="service-orb one absolute -right-20 -top-20 h-64 w-64 rounded-full border border-[#A88960]/15 bg-[#A88960]/[.045]" /><div className="service-orb two absolute -bottom-24 -left-20 h-56 w-56 rounded-full border border-white/5 bg-white/[.02]" />
               <div className="service-glass relative h-full rounded-[26px] border border-[#C9B69B]/10 bg-[#30251E] p-7 sm:p-9">

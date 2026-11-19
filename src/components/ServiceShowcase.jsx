@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Icon from './Icons.jsx'
 import './ServiceShowcase.css'
-// pillar images (project assets): each scene uses its own image as the main visual
-import buildImage from '../assets/create.png'
-import growImage from '../assets/grow.png'
-import createImage from '../assets/ideate.png'
-import automateImage from '../assets/automate.png'
+// pillar visuals (gold artwork; each already carries its name, label and arrow)
+import buildImage from '../assets/pillar-build.webp'
+import createImage from '../assets/pillar-create.webp'
+import automateImage from '../assets/pillar-automate.webp'
+import growImage from '../assets/pillar-grow.webp'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -25,19 +25,16 @@ gsap.registerPlugin(ScrollTrigger)
  * letter by letter. Scroll snaps to each scene so one is always settled and
  * clickable.
  *
- * Every scene is a real <Link> to that service's card on the existing
- * /services page (`/services#service-<name>`), so the router, navbar and
- * browser Back button behave exactly as for any other link.
+ * Every scene is a real <Link> to the existing /services page, which always
+ * opens at the top (see ScrollToTop), so the router, navbar and browser Back
+ * button behave exactly as for any other link.
  *
- * Artwork: public/images/services/showcase/<slug>-{bg,mid,fg}.svg - three
- * separate depth layers per service (see tools/gen_art.py to regenerate, or
- * replace any file with your own artwork of the same name and shape).
+ * Artwork: src/assets/pillar-<slug>.webp - one gold visual per service, shown whole
+ * (never cropped or stretched) with its own name, label and arrow.
  *
  * Reduced motion: no pinning or movement. Scenes stack as ordinary full-width
  * panels (same artwork, same links).
  */
-
-const ART = '/images/services/showcase'
 
 // Keyed by the pillar's existing `name` in home.jsx.
 const SCENES = {
@@ -45,16 +42,16 @@ const SCENES = {
     slug: 'build',
     image: buildImage,
     label: 'Website Development',
-    accent: '#40B8EF',
-    bg: '#06182c',
+    accent: '#C9A06A',
+    bg: '#211A15',
     reveal: null,
   },
   GROW: {
     slug: 'grow',
     image: growImage,
     label: 'Digital Marketing',
-    accent: '#FFB347',
-    bg: '#171127',
+    accent: '#D9B26F',
+    bg: '#211A15',
     // a sun rising from the bottom edge
     reveal: { from: 'circle(0% at 50% 100%)', to: 'circle(150% at 50% 100%)' },
   },
@@ -62,8 +59,8 @@ const SCENES = {
     slug: 'create',
     image: createImage,
     label: 'Content Creation',
-    accent: '#F472B6',
-    bg: '#150d33',
+    accent: '#C99370',
+    bg: '#211A15',
     // a lens iris opening from the centre
     reveal: { from: 'circle(0% at 50% 52%)', to: 'circle(76% at 50% 52%)' },
   },
@@ -71,8 +68,8 @@ const SCENES = {
     slug: 'automate',
     image: automateImage,
     label: 'Business Software',
-    accent: '#34D399',
-    bg: '#06222a',
+    accent: '#BBA77D',
+    bg: '#211A15',
     // a clean linear wipe, like a process advancing
     reveal: { from: 'inset(0% 100% 0% 0%)', to: 'inset(0% 0% 0% 0%)' },
   },
@@ -97,22 +94,73 @@ function useMotionOk() {
   return ok
 }
 
+// Phones (same breakpoint as the phone rules in ServiceShowcase.css) get four stacked,
+// fully visible cards instead of the pinned scroll tour.
+const MOBILE_QUERY = '(max-width: 760px)'
+
+function useIsMobile() {
+  const [mobile, setMobile] = useState(() =>
+    typeof window === 'undefined' ? false : window.matchMedia(MOBILE_QUERY).matches,
+  )
+  useLayoutEffect(() => {
+    const mq = window.matchMedia(MOBILE_QUERY)
+    const onChange = () => setMobile(mq.matches)
+    onChange()
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+  return mobile
+}
+
+// Order of the phone cards, the label printed in each artwork (used for the link's
+// accessible name) and the artwork's pixel size (reserves its exact aspect ratio).
+const MOBILE_ORDER = [
+  { name: 'BUILD', label: 'Web & App Development', w: 2076, h: 1224 },
+  { name: 'CREATE', label: 'Content Creation', w: 2076, h: 1236 },
+  { name: 'AUTOMATE', label: 'Business Software & Automation', w: 2052, h: 1212 },
+  { name: 'GROW', label: 'Digital Marketing', w: 2100, h: 1248 },
+]
+
+function MobileCard({ p, cfg, art, first }) {
+  return (
+    <li className="zsh-stack-item">
+      <Link
+        to="/services"
+        className="zsh-card"
+        aria-label={`${p.name} — ${art.label}`}
+        data-scene={cfg.slug}
+        style={{ '--accent': cfg.accent }}
+      >
+        <img
+          src={cfg.image}
+          alt=""
+          width={art.w}
+          height={art.h}
+          draggable="false"
+          decoding="async"
+          loading={first ? 'eager' : 'lazy'}
+        />
+      </Link>
+    </li>
+  )
+}
+
 function Scene({ p, cfg, active, animated }) {
   const word = [...p.name]
   return (
     <Link
-      to={`/services#service-${p.name.toLowerCase()}`}
+      to="/services"
       className="zsh-scene"
       aria-label={`${cfg.label}. ${p.tagline}`}
       data-scene={cfg.slug}
-      data-photo={cfg.image ? '' : undefined}
+      data-art=""
       // only the settled scene is a tab stop; the others are reached with the rail
       tabIndex={!animated || active ? 0 : -1}
       style={{ '--accent': cfg.accent, '--zsh-bg': cfg.bg, '--n': word.length }}
     >
       <div className="zsh-layer zsh-bg" aria-hidden="true">
         <div className="zsh-px">
-          <img src={cfg.image ?? `${ART}/${cfg.slug}-bg.svg`} alt="" draggable="false" decoding="async" />
+          <img src={cfg.image} alt="" draggable="false" decoding="async" />
         </div>
       </div>
 
@@ -128,7 +176,6 @@ function Scene({ p, cfg, active, animated }) {
 
       <div className="zsh-layer zsh-mid" aria-hidden="true">
         <div className="zsh-px">
-          {!cfg.image && <img className="zsh-art" src={`${ART}/${cfg.slug}-mid.svg`} alt="" draggable="false" decoding="async" />}
         </div>
       </div>
 
@@ -145,7 +192,6 @@ function Scene({ p, cfg, active, animated }) {
 
       <div className="zsh-layer zsh-fg" aria-hidden="true">
         <div className="zsh-px">
-          {!cfg.image && <img className="zsh-art" src={`${ART}/${cfg.slug}-fg.svg`} alt="" draggable="false" decoding="async" />}
         </div>
       </div>
 
@@ -162,6 +208,7 @@ function Scene({ p, cfg, active, animated }) {
 export default function ServiceShowcase({ pillars }) {
   const items = pillars.filter((p) => SCENES[p.name])
   const motionOk = useMotionOk()
+  const isMobile = useIsMobile()
   const rootRef = useRef(null)
   const stRef = useRef(null)
   const tlRef = useRef(null)
@@ -171,7 +218,8 @@ export default function ServiceShowcase({ pillars }) {
 
   useLayoutEffect(() => {
     const root = rootRef.current
-    if (!root || !motionOk || !items.length) return
+    // phones use the stacked cards: no pin, no scrub, no snap
+    if (!root || !motionOk || isMobile || !items.length) return
 
     const cleanups = []
     const ctx = gsap.context(() => {
@@ -197,7 +245,7 @@ export default function ServiceShowcase({ pillars }) {
         gsap.set(a.bg, { y: 0, yPercent: first ? 0 : 6, scale: first ? 1 : 1.12 })
         gsap.set(a.mid, { y: 0, yPercent: first ? 0 : 16, scale: first ? 1 : 0.9, opacity: first ? 1 : 0 })
         gsap.set(a.fg, { y: 0, yPercent: first ? 0 : 36, scale: first ? 1 : 0.82, opacity: first ? 1 : 0 })
-        gsap.set([a.letters, a.lettersF], { yPercent: first ? 0 : 118 })
+        gsap.set([a.letters, a.lettersF], { y: 0, yPercent: first ? 0 : 118 })
         gsap.set(a.cap, { autoAlpha: first ? 1 : 0, y: first ? 0 : 24 })
       })
 
@@ -222,7 +270,7 @@ export default function ServiceShowcase({ pillars }) {
         mids.push(t0 + TRANS / 2)
 
         // outgoing: lifts away in layers, letters rise out through their mask
-        ;[a.letters, a.lettersF].forEach((L) => ft(L, { yPercent: 0 }, { yPercent: -118, duration: TRANS * 0.55, ease: 'power2.in', stagger: 0.05 }, t0))
+        ;[a.letters, a.lettersF].forEach((L) => ft(L, { y: 0, yPercent: 0 }, { y: 0, yPercent: -118, duration: TRANS * 0.55, ease: 'power2.in', stagger: 0.05 }, t0))
         ft(a.cap, { autoAlpha: 1, y: 0 }, { autoAlpha: 0, y: -24, duration: TRANS * 0.35, ease: 'power1.in' }, t0)
         ft(a.bg, { y: 0, yPercent: 0, scale: 1 }, { y: 0, yPercent: -3, scale: 1.06, duration: TRANS }, t0)
         ft(a.mid, { y: 0, yPercent: 0, scale: 1, opacity: 1 }, { y: 0, yPercent: -10, scale: 1.08, opacity: 0, duration: TRANS, ease: 'power1.in' }, t0)
@@ -236,7 +284,7 @@ export default function ServiceShowcase({ pillars }) {
         ft(b.bg, { y: 0, yPercent: 6, scale: 1.12 }, { y: 0, yPercent: 0, scale: 1, duration: TRANS * 0.9, ease: 'power2.out' }, t0 + TRANS * 0.1)
         ft(b.mid, { y: 0, yPercent: 16, scale: 0.9, opacity: 0 }, { y: 0, yPercent: 0, scale: 1, opacity: 1, duration: TRANS * 0.8, ease: 'power3.out' }, t0 + TRANS * 0.2)
         ft(b.fg, { y: 0, yPercent: 36, scale: 0.82, opacity: 0 }, { y: 0, yPercent: 0, scale: 1, opacity: 1, duration: TRANS * 0.85, ease: 'power3.out' }, t0 + TRANS * 0.28)
-        ;[b.letters, b.lettersF].forEach((L) => ft(L, { yPercent: 118 }, { yPercent: 0, duration: TRANS * 0.6, ease: 'back.out(1.8)', stagger: 0.06 }, t0 + TRANS * 0.38))
+        ;[b.letters, b.lettersF].forEach((L) => ft(L, { y: 0, yPercent: 118 }, { y: 0, yPercent: 0, duration: TRANS * 0.6, ease: 'back.out(1.8)', stagger: 0.06 }, t0 + TRANS * 0.38))
         ft(b.cap, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: TRANS * 0.3, ease: 'power2.out' }, t0 + TRANS * 0.72)
         ft(a.s, { autoAlpha: 1 }, { autoAlpha: 0, duration: 0.001 }, t0 + TRANS)
         tl.to({}, { duration: 0 }, t0 + TRANS) // pad the timeline to the end of the hand-over
@@ -328,7 +376,15 @@ export default function ServiceShowcase({ pillars }) {
       setActive(0)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [motionOk, pillars])
+  }, [motionOk, isMobile, pillars])
+
+  // switching between the stacked and pinned layouts changes the page height
+  const layoutRef = useRef(isMobile)
+  useLayoutEffect(() => {
+    if (layoutRef.current === isMobile) return
+    layoutRef.current = isMobile
+    ScrollTrigger.refresh()
+  }, [isMobile])
 
   // rail buttons: jump to a scene (also the keyboard route through the pinned tour).
   // Driven by a GSAP tween through ScrollTrigger's own scroll setter: the scroll keeps
@@ -367,8 +423,23 @@ export default function ServiceShowcase({ pillars }) {
 
   const accent = SCENES[items[Math.min(active, items.length - 1)].name].accent
 
+  if (isMobile) {
+    const cards = MOBILE_ORDER.map((art) => ({ art, p: items.find((it) => it.name === art.name) })).filter((c) => c.p)
+    return (
+      // distinct key: switching layouts remounts the root, so a pinned stage is never patched in place
+      <div key="stack" className="zsh zsh--stack" role="region" aria-label="Our services">
+        <ul className="zsh-stack" role="list">
+          {cards.map(({ art, p }, i) => (
+            <MobileCard key={p.name} p={p} cfg={SCENES[p.name]} art={art} first={i === 0} />
+          ))}
+        </ul>
+      </div>
+    )
+  }
+
   return (
     <div
+      key="stage"
       ref={rootRef}
       className={`zsh ${motionOk ? 'zsh--pinned' : 'zsh--static'}`}
       role="region"
