@@ -263,7 +263,7 @@ export default function Services() {
       </div>
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-28 lg:px-10">
         <div className="max-w-5xl">
-          <div className="services-hero-element mb-7 flex items-center gap-4"><span className="hero-rule h-px w-12" /><span className="text-[10px] font-semibold uppercase tracking-[.4em] text-[#A88960] sm:text-xs">ZEROPOINT LABS / SERVICES</span></div>
+          <div className="services-hero-element relative top-2.5 mb-7 flex items-center gap-4"><span className="text-[10px] font-semibold uppercase tracking-[.4em] text-[#A88960] sm:text-xs">ZEROPOINT LABS / SERVICES</span></div>
           <h1 className="services-hero-element text-5xl font-extrabold leading-[.92] tracking-[-.065em] text-white sm:text-7xl lg:text-[7.8rem]">Digital<br /><span className="premium-text">Solutions.</span></h1>
           <p className="services-hero-element body-serif mt-8 max-w-2xl text-sm leading-7 text-[#C9B69B] sm:text-base sm:leading-8">From building your digital presence to growing your audience and automating your operations, ZeroPoint Labs provides technology, marketing and creative solutions designed for growing businesses. <strong className="font-bold text-white">Every solution is designed around your actual business requirements.</strong></p>
           <div className="services-hero-element mt-8 flex flex-wrap gap-3">{["BUILD","GROW","CREATE","AUTOMATE"].map(item => <span key={item} className="rounded-full border border-[#C9B69B]/25 px-4 py-2 text-[9px] font-semibold tracking-[.25em] text-[#C9B69B] transition hover:border-[#A88960]/70 hover:text-white"><span className="mr-2 text-[#A88960]">•</span>{item}</span>)}</div>

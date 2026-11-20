@@ -12,14 +12,21 @@ const navLinks = [
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
   const location = useLocation();
   const isHome = location.pathname === "/";
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 24);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 24);
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -37,6 +44,7 @@ export default function Header() {
           --zpl-ivory: #F3EDE0;
           --zpl-beige: #C9B69B;
           --zpl-bronze: #A88960;
+
           position: fixed;
           inset: 0 0 auto;
           width: 100%;
@@ -44,12 +52,16 @@ export default function Header() {
           background: linear-gradient(180deg, #15100D 0%, #17120E 52%, #181310 100%);
           border-bottom: 1px solid rgba(201, 182, 155, 0.15);
           box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
-          transition: background .35s ease, border-color .35s ease, box-shadow .35s ease, backdrop-filter .35s ease;
+          transition: background .35s ease, border-color .35s ease,
+            box-shadow .35s ease, backdrop-filter .35s ease;
         }
 
-        .zpl-header *, .zpl-header *::before, .zpl-header *::after { box-sizing: border-box; }
+        .zpl-header *,
+        .zpl-header *::before,
+        .zpl-header *::after {
+          box-sizing: border-box;
+        }
 
-        /* Match the dark brown gradient from the supplied colour reference. */
         .zpl-header.home-header:not(.scrolled) {
           background: linear-gradient(180deg, #15100D 0%, #17120E 52%, #181310 100%);
           border-bottom-color: rgba(201, 182, 155, 0.15);
@@ -76,7 +88,8 @@ export default function Header() {
           gap: clamp(14px, 2vw, 30px);
         }
 
-        /* Larger logo with a responsive image box. */
+        /* Logo */
+
         .zpl-header .zpl-logo {
           display: inline-flex;
           flex: 0 0 auto;
@@ -85,6 +98,22 @@ export default function Header() {
           min-width: 0;
           text-decoration: none;
           line-height: 0;
+          background: transparent !important;
+          outline: none;
+          -webkit-tap-highlight-color: transparent;
+        }
+
+        .zpl-header .zpl-logo,
+        .zpl-header .zpl-logo:hover,
+        .zpl-header .zpl-logo:focus,
+        .zpl-header .zpl-logo:active,
+        .zpl-header .zpl-logo:focus-visible {
+          background: transparent !important;
+          outline: none !important;
+          border: none !important;
+          box-shadow: none !important;
+          -webkit-tap-highlight-color: transparent !important;
+          tap-highlight-color: transparent;
         }
 
         .zpl-header .zpl-logo-image {
@@ -98,10 +127,14 @@ export default function Header() {
           transition: transform .35s ease, filter .35s ease;
         }
 
+        /* Corrected logo hover selector */
+
         .zpl-header .zpl-logo:hover .zpl-logo-image {
-          transform: scale(1.035);
-          filter: drop-shadow(0 0 8px rgba(168, 137, 96, .25));
+          transform: none !important;
+          filter: none !important;
         }
+
+        /* Desktop navigation */
 
         .zpl-header .desktop-nav {
           display: flex;
@@ -136,9 +169,16 @@ export default function Header() {
         }
 
         .zpl-header .nav-link:hover,
-        .zpl-header .nav-link.active { color: var(--zpl-ivory); }
+        .zpl-header .nav-link.active {
+          color: var(--zpl-ivory);
+        }
+
         .zpl-header .nav-link:hover::after,
-        .zpl-header .nav-link.active::after { width: 100%; }
+        .zpl-header .nav-link.active::after {
+          width: 100%;
+        }
+
+        /* CTA buttons */
 
         .zpl-header .header-cta,
         .zpl-header .mobile-cta {
@@ -158,7 +198,8 @@ export default function Header() {
           text-decoration: none;
           white-space: nowrap;
           flex-shrink: 0;
-          transition: color .3s ease, background .3s ease, border-color .3s ease, transform .3s ease;
+          transition: color .3s ease, background .3s ease,
+            border-color .3s ease, transform .3s ease;
         }
 
         .zpl-header .header-cta:hover,
@@ -170,9 +211,16 @@ export default function Header() {
         }
 
         .zpl-header .header-cta svg,
-        .zpl-header .mobile-cta svg { transition: transform .3s ease; }
+        .zpl-header .mobile-cta svg {
+          transition: transform .3s ease;
+        }
+
         .zpl-header .header-cta:hover svg,
-        .zpl-header .mobile-cta:hover svg { transform: translate(3px, -3px); }
+        .zpl-header .mobile-cta:hover svg {
+          transform: translate(3px, -3px);
+        }
+
+        /* Mobile menu button */
 
         .zpl-header .mobile-menu-btn {
           display: none;
@@ -188,16 +236,39 @@ export default function Header() {
           cursor: pointer;
         }
 
-        .zpl-header .mobile-nav { display: none; }
+        .zpl-header .mobile-nav {
+          display: none;
+        }
 
         /* Compact desktop/laptop screens */
+
         @media (max-width: 1100px) and (min-width: 761px) {
-          .zpl-header .header-inner { width: 94%; gap: 16px; min-height: 98px; }
-          .zpl-header .zpl-logo-image { width: 195px; height: 88px; }
-          .zpl-header .desktop-nav { gap: 17px; }
-          .zpl-header .nav-link { font-size: 19px; }
-          .zpl-header .header-cta { padding: 10px 13px; font-size: 19px; }
+          .zpl-header .header-inner {
+            width: 94%;
+            gap: 16px;
+            min-height: 98px;
+          }
+
+          .zpl-header .zpl-logo-image {
+            width: 195px;
+            height: 88px;
+          }
+
+          .zpl-header .desktop-nav {
+            gap: 17px;
+          }
+
+          .zpl-header .nav-link {
+            font-size: 19px;
+          }
+
+          .zpl-header .header-cta {
+            padding: 10px 13px;
+            font-size: 19px;
+          }
         }
+
+        /* Mobile screens */
 
         @media (max-width: 760px) {
           .zpl-header .header-inner {
@@ -212,9 +283,14 @@ export default function Header() {
           }
 
           .zpl-header .desktop-nav,
-          .zpl-header .header-cta { display: none; }
+          .zpl-header .header-cta {
+            display: none;
+          }
 
-          .zpl-header .mobile-menu-btn { display: inline-flex; margin-left: auto; }
+          .zpl-header .mobile-menu-btn {
+            display: inline-flex;
+            margin-left: auto;
+          }
 
           .zpl-header .mobile-nav {
             display: flex;
@@ -225,7 +301,8 @@ export default function Header() {
             padding: 0 5%;
             background: linear-gradient(180deg, #15100D 0%, #17120E 52%, #181310 100%);
             border-bottom: 1px solid transparent;
-            transition: max-height .4s ease, padding .4s ease, border-color .3s ease;
+            transition: max-height .4s ease, padding .4s ease,
+              border-color .3s ease;
           }
 
           .zpl-header .mobile-nav.open {
@@ -249,7 +326,8 @@ export default function Header() {
             text-decoration: none;
             opacity: 0;
             transform: translateY(8px);
-            transition: color .25s ease, opacity .3s ease, transform .3s ease;
+            transition: color .25s ease, opacity .3s ease,
+              transform .3s ease;
             transition-delay: 0ms;
           }
 
@@ -267,9 +345,15 @@ export default function Header() {
             letter-spacing: 1px;
           }
 
-          .zpl-header .mobile-nav-link svg { margin-left: auto; color: var(--zpl-beige); }
+          .zpl-header .mobile-nav-link svg {
+            margin-left: auto;
+            color: var(--zpl-beige);
+          }
+
           .zpl-header .mobile-nav-link:hover,
-          .zpl-header .mobile-nav-link.active { color: var(--zpl-beige); }
+          .zpl-header .mobile-nav-link.active {
+            color: var(--zpl-beige);
+          }
 
           .zpl-header .mobile-cta {
             width: 100%;
@@ -280,13 +364,26 @@ export default function Header() {
         }
 
         @media (max-width: 380px) {
-          .zpl-header .header-inner { width: 92%; min-height: 80px; }
-          .zpl-header .zpl-logo-image { width: 150px; height: 70px; }
-          .zpl-header .mobile-menu-btn { width: 41px; height: 41px; }
+          .zpl-header .header-inner {
+            width: 92%;
+            min-height: 80px;
+          }
+
+          .zpl-header .zpl-logo-image {
+            width: 150px;
+            height: 70px;
+          }
+
+          .zpl-header .mobile-menu-btn {
+            width: 41px;
+            height: 41px;
+          }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .zpl-header *, .zpl-header *::before, .zpl-header *::after {
+          .zpl-header *,
+          .zpl-header *::before,
+          .zpl-header *::after {
             transition-duration: .01ms !important;
             animation-duration: .01ms !important;
           }
@@ -294,10 +391,19 @@ export default function Header() {
       `}</style>
 
       <header
-        className={`zpl-header ${isHome ? "home-header" : "inner-header"} ${scrolled ? "scrolled" : ""}`}
+        className={`zpl-header ${
+          isHome ? "home-header" : "inner-header"
+        } ${scrolled ? "scrolled" : ""}`}
       >
         <div className="header-inner">
-          <Link to="/" className="zpl-logo" aria-label="ZeroPoint Labs Home">
+
+          {/* Logo */}
+
+          <Link
+            to="/"
+            className="zpl-logo"
+            aria-label="ZeroPoint Labs Home"
+          >
             <img
               src="/zpl-logo.png"
               alt="ZeroPoint Labs"
@@ -305,22 +411,32 @@ export default function Header() {
             />
           </Link>
 
+          {/* Desktop navigation */}
+
           <nav className="desktop-nav" aria-label="Main navigation">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
-                className={`nav-link ${location.pathname === link.path ? "active" : ""}`}
-                aria-current={location.pathname === link.path ? "page" : undefined}
+                className={`nav-link ${
+                  location.pathname === link.path ? "active" : ""
+                }`}
+                aria-current={
+                  location.pathname === link.path ? "page" : undefined
+                }
               >
                 {link.name}
               </Link>
             ))}
           </nav>
 
+          {/* Desktop CTA */}
+
           <Link to="/contact" className="header-cta">
             Let's Talk <ArrowUpRight size={17} />
           </Link>
+
+          {/* Mobile menu button */}
 
           <button
             type="button"
@@ -333,6 +449,8 @@ export default function Header() {
           </button>
         </div>
 
+        {/* Mobile navigation */}
+
         <nav
           className={`mobile-nav ${menuOpen ? "open" : ""}`}
           aria-label="Mobile navigation"
@@ -342,10 +460,14 @@ export default function Header() {
             <Link
               key={link.name}
               to={link.path}
-              className={`mobile-nav-link ${location.pathname === link.path ? "active" : ""}`}
+              className={`mobile-nav-link ${
+                location.pathname === link.path ? "active" : ""
+              }`}
               style={{ "--delay": `${index * 60}ms` }}
               tabIndex={menuOpen ? 0 : -1}
-              aria-current={location.pathname === link.path ? "page" : undefined}
+              aria-current={
+                location.pathname === link.path ? "page" : undefined
+              }
             >
               <span>0{index + 1}</span>
               {link.name}
@@ -353,7 +475,11 @@ export default function Header() {
             </Link>
           ))}
 
-          <Link to="/contact" className="mobile-cta" tabIndex={menuOpen ? 0 : -1}>
+          <Link
+            to="/contact"
+            className="mobile-cta"
+            tabIndex={menuOpen ? 0 : -1}
+          >
             Start a Project <ArrowUpRight size={17} />
           </Link>
         </nav>
@@ -361,3 +487,4 @@ export default function Header() {
     </>
   );
 }
+
